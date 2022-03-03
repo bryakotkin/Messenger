@@ -13,6 +13,15 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     var window: UIWindow?
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
+        let profileVC = ProfileViewController()
+        profileVC.title = "My profile"
+        
+        let navigationVC = UINavigationController(rootViewController: profileVC)
+        navigationVC.navigationBar.prefersLargeTitles = true
+        
+        window = UIWindow(frame: UIScreen.main.bounds)
+        window?.rootViewController = navigationVC
+        window?.makeKeyAndVisible()
         
         Logger.printAppStatus(.notrunning, .inactive, #function)
         
