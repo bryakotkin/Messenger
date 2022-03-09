@@ -46,11 +46,17 @@ class ProfileViewController: UIViewController {
     }
     
     private func showImagePicker(type: UIImagePickerController.SourceType) {
-        let imagePicker = UIImagePickerController()
-        imagePicker.sourceType = type
-        imagePicker.delegate = self
-        
-        present(imagePicker, animated: true, completion: nil)
+        if UIImagePickerController.isSourceTypeAvailable(type) {
+            let imagePicker = UIImagePickerController()
+
+            imagePicker.sourceType = type
+            imagePicker.delegate = self
+            
+            present(imagePicker, animated: true, completion: nil)
+        }
+        else {
+            print("\(type.rawValue) not available")
+        }
     }
     
     @objc private func cancelButtonAction() {
@@ -70,12 +76,7 @@ extension ProfileViewController: ProfileViewProtocol {
         }
                 
         let cameraAction = UIAlertAction(title: "Сделать фото", style: .default) { action in
-            if UIImagePickerController.isSourceTypeAvailable(.camera) {
-                self.showImagePicker(type: .camera)
-            }
-            else {
-                print("Camera not available")
-            }
+            self.showImagePicker(type: .camera)
         }
                 
         let cancelAction = UIAlertAction(title: "Отмена", style: .cancel, handler: nil)
