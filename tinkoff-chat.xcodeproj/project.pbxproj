@@ -7,20 +7,28 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		111FE23C27D0F41C003D9098 /* UIButton+Color.swift in Sources */ = {isa = PBXBuildFile; fileRef = 111FE23B27D0F41C003D9098 /* UIButton+Color.swift */; };
+		111FE23E27D10872003D9098 /* UIViewController+HideKeyboard.swift in Sources */ = {isa = PBXBuildFile; fileRef = 111FE23D27D10872003D9098 /* UIViewController+HideKeyboard.swift */; };
+		11A8556E27C807FE0005514D /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11A8556D27C807FE0005514D /* ProfileViewController.swift */; };
+		11A8557027C80F720005514D /* ProfileView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11A8556F27C80F720005514D /* ProfileView.swift */; };
+		11A8557227C813020005514D /* UIColor+HEX.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11A8557127C813020005514D /* UIColor+HEX.swift */; };
+		11A8557427C8188D0005514D /* UIView+Nib.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11A8557327C8188D0005514D /* UIView+Nib.swift */; };
 		11CC1EBF27C69DC200450552 /* Logger.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11CC1EBE27C69DC200450552 /* Logger.swift */; };
 		11DEFF4E27BEEDA800688EE4 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11DEFF4D27BEEDA800688EE4 /* AppDelegate.swift */; };
-		11DEFF5227BEEDA800688EE4 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11DEFF5127BEEDA800688EE4 /* ViewController.swift */; };
-		11DEFF5527BEEDA800688EE4 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 11DEFF5327BEEDA800688EE4 /* Main.storyboard */; };
 		11DEFF5727BEEDA900688EE4 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 11DEFF5627BEEDA900688EE4 /* Assets.xcassets */; };
 		11DEFF5A27BEEDA900688EE4 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 11DEFF5827BEEDA900688EE4 /* LaunchScreen.storyboard */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		111FE23B27D0F41C003D9098 /* UIButton+Color.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIButton+Color.swift"; sourceTree = "<group>"; };
+		111FE23D27D10872003D9098 /* UIViewController+HideKeyboard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewController+HideKeyboard.swift"; sourceTree = "<group>"; };
+		11A8556D27C807FE0005514D /* ProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewController.swift; sourceTree = "<group>"; };
+		11A8556F27C80F720005514D /* ProfileView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileView.swift; sourceTree = "<group>"; };
+		11A8557127C813020005514D /* UIColor+HEX.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIColor+HEX.swift"; sourceTree = "<group>"; };
+		11A8557327C8188D0005514D /* UIView+Nib.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+Nib.swift"; sourceTree = "<group>"; };
 		11CC1EBE27C69DC200450552 /* Logger.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Logger.swift; sourceTree = "<group>"; };
 		11DEFF4A27BEEDA800688EE4 /* tinkoff-chat.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "tinkoff-chat.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		11DEFF4D27BEEDA800688EE4 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		11DEFF5127BEEDA800688EE4 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
-		11DEFF5427BEEDA800688EE4 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		11DEFF5627BEEDA900688EE4 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		11DEFF5927BEEDA900688EE4 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		11DEFF5B27BEEDA900688EE4 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -37,6 +45,31 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		11A8556827C807840005514D /* Profile */ = {
+			isa = PBXGroup;
+			children = (
+				11A8556C27C807DF0005514D /* Model */,
+				11A8556B27C807D70005514D /* View */,
+				11A8556D27C807FE0005514D /* ProfileViewController.swift */,
+			);
+			path = Profile;
+			sourceTree = "<group>";
+		};
+		11A8556B27C807D70005514D /* View */ = {
+			isa = PBXGroup;
+			children = (
+				11A8556F27C80F720005514D /* ProfileView.swift */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		11A8556C27C807DF0005514D /* Model */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
 		11CC1EBB27C69D4B00450552 /* Services */ = {
 			isa = PBXGroup;
 			children = (
@@ -48,9 +81,8 @@
 		11CC1EBC27C69D5400450552 /* Modules */ = {
 			isa = PBXGroup;
 			children = (
-				11DEFF5327BEEDA800688EE4 /* Main.storyboard */,
+				11A8556827C807840005514D /* Profile */,
 				11DEFF4D27BEEDA800688EE4 /* AppDelegate.swift */,
-				11DEFF5127BEEDA800688EE4 /* ViewController.swift */,
 			);
 			path = Modules;
 			sourceTree = "<group>";
@@ -58,6 +90,10 @@
 		11CC1EBD27C69D5E00450552 /* Extensions */ = {
 			isa = PBXGroup;
 			children = (
+				11A8557127C813020005514D /* UIColor+HEX.swift */,
+				11A8557327C8188D0005514D /* UIView+Nib.swift */,
+				111FE23B27D0F41C003D9098 /* UIButton+Color.swift */,
+				111FE23D27D10872003D9098 /* UIViewController+HideKeyboard.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -151,7 +187,6 @@
 			files = (
 				11DEFF5A27BEEDA900688EE4 /* LaunchScreen.storyboard in Resources */,
 				11DEFF5727BEEDA900688EE4 /* Assets.xcassets in Resources */,
-				11DEFF5527BEEDA800688EE4 /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -162,23 +197,20 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				11DEFF5227BEEDA800688EE4 /* ViewController.swift in Sources */,
+				11A8557027C80F720005514D /* ProfileView.swift in Sources */,
+				111FE23E27D10872003D9098 /* UIViewController+HideKeyboard.swift in Sources */,
 				11CC1EBF27C69DC200450552 /* Logger.swift in Sources */,
+				11A8557427C8188D0005514D /* UIView+Nib.swift in Sources */,
+				11A8556E27C807FE0005514D /* ProfileViewController.swift in Sources */,
+				111FE23C27D0F41C003D9098 /* UIButton+Color.swift in Sources */,
 				11DEFF4E27BEEDA800688EE4 /* AppDelegate.swift in Sources */,
+				11A8557227C813020005514D /* UIColor+HEX.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXVariantGroup section */
-		11DEFF5327BEEDA800688EE4 /* Main.storyboard */ = {
-			isa = PBXVariantGroup;
-			children = (
-				11DEFF5427BEEDA800688EE4 /* Base */,
-			);
-			name = Main.storyboard;
-			sourceTree = "<group>";
-		};
 		11DEFF5827BEEDA900688EE4 /* LaunchScreen.storyboard */ = {
 			isa = PBXVariantGroup;
 			children = (
@@ -313,11 +345,11 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = UA2ZXG4WK9;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = "tinkoff-chat/Info.plist";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
-				INFOPLIST_KEY_UIMainStoryboardFile = Main;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
@@ -341,11 +373,11 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = UA2ZXG4WK9;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = "tinkoff-chat/Info.plist";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
-				INFOPLIST_KEY_UIMainStoryboardFile = Main;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
