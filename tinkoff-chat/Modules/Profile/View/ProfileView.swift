@@ -71,7 +71,7 @@ class ProfileView: UIView {
     override init(frame: CGRect) {
         super.init(frame: frame)
         
-        backgroundColor = .white
+        backgroundColor = .systemBackground
         
         addSubview(userImageView)
         addSubview(usernameLabel)

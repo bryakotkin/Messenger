@@ -13,11 +13,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     var window: UIWindow?
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
-        let profileVC = ProfileViewController()
-        profileVC.title = "My profile"
-        
-        let navigationVC = UINavigationController(rootViewController: profileVC)
-        navigationVC.navigationBar.prefersLargeTitles = true
+        let conversationsListVC = ConversationsListViewController()
+        let navigationVC = UINavigationController(rootViewController: conversationsListVC)
         
         window = UIWindow(frame: UIScreen.main.bounds)
         window?.rootViewController = navigationVC

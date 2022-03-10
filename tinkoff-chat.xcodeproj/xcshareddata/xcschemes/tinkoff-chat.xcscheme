@@ -53,7 +53,7 @@
       <EnvironmentVariables>
          <EnvironmentVariable
             key = "logger"
-            value = "show"
+            value = "show1"
             isEnabled = "YES">
          </EnvironmentVariable>
       </EnvironmentVariables>

@@ -25,15 +25,15 @@ class ProfileViewController: UIViewController {
         
         mainView.delegate = self
         
-        // Значения нулевые, потому что view добавлена в иерархию, но констрейнты еще не посчитаны
-        print(#function, mainView.editButton.frame)
+//        Значения нулевые, потому что view добавлена в иерархию, но констрейнты еще не посчитаны
+//        print(#function, mainView.editButton.frame)
     }
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         
-        // Значения размеров и положение не нулевые, потому что всё посчитано и отображено пользователю
-        print(#function, mainView.editButton.frame)
+//        Значения размеров и положение не нулевые, потому что всё посчитано и отображено пользователю
+//        print(#function, mainView.editButton.frame)
     }
     
     override func viewDidLayoutSubviews() {

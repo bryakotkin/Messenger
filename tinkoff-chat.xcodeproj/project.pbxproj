@@ -9,6 +9,17 @@
 /* Begin PBXBuildFile section */
 		111FE23C27D0F41C003D9098 /* UIButton+Color.swift in Sources */ = {isa = PBXBuildFile; fileRef = 111FE23B27D0F41C003D9098 /* UIButton+Color.swift */; };
 		111FE23E27D10872003D9098 /* UIViewController+HideKeyboard.swift in Sources */ = {isa = PBXBuildFile; fileRef = 111FE23D27D10872003D9098 /* UIViewController+HideKeyboard.swift */; };
+		116E9DF327D9CF6C003AF977 /* ConversationsListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 116E9DF227D9CF6C003AF977 /* ConversationsListViewController.swift */; };
+		116E9DF527D9D03C003AF977 /* ConversationsListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 116E9DF427D9D03C003AF977 /* ConversationsListView.swift */; };
+		116E9DF727D9D20B003AF977 /* ConversationListCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 116E9DF627D9D20B003AF977 /* ConversationListCell.swift */; };
+		116E9DF927D9D344003AF977 /* ConversationListCellModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 116E9DF827D9D344003AF977 /* ConversationListCellModel.swift */; };
+		116E9DFB27D9D3CE003AF977 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 116E9DFA27D9D3CE003AF977 /* Constants.swift */; };
+		116E9DFE27DA0586003AF977 /* ConversationModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 116E9DFD27DA0586003AF977 /* ConversationModel.swift */; };
+		116E9E0027DA0762003AF977 /* DataSourceManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 116E9DFF27DA0762003AF977 /* DataSourceManager.swift */; };
+		116E9E0627DA23FC003AF977 /* ConversationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 116E9E0527DA23FC003AF977 /* ConversationViewController.swift */; };
+		116E9E0827DA2425003AF977 /* ConversationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 116E9E0727DA2425003AF977 /* ConversationView.swift */; };
+		116E9E0A27DA25F6003AF977 /* ConversationViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 116E9E0927DA25F6003AF977 /* ConversationViewCell.swift */; };
+		116E9E0C27DA294D003AF977 /* ConversationCellModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 116E9E0B27DA294D003AF977 /* ConversationCellModel.swift */; };
 		11A8556E27C807FE0005514D /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11A8556D27C807FE0005514D /* ProfileViewController.swift */; };
 		11A8557027C80F720005514D /* ProfileView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11A8556F27C80F720005514D /* ProfileView.swift */; };
 		11A8557227C813020005514D /* UIColor+HEX.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11A8557127C813020005514D /* UIColor+HEX.swift */; };
@@ -22,6 +33,17 @@
 /* Begin PBXFileReference section */
 		111FE23B27D0F41C003D9098 /* UIButton+Color.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIButton+Color.swift"; sourceTree = "<group>"; };
 		111FE23D27D10872003D9098 /* UIViewController+HideKeyboard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewController+HideKeyboard.swift"; sourceTree = "<group>"; };
+		116E9DF227D9CF6C003AF977 /* ConversationsListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConversationsListViewController.swift; sourceTree = "<group>"; };
+		116E9DF427D9D03C003AF977 /* ConversationsListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConversationsListView.swift; sourceTree = "<group>"; };
+		116E9DF627D9D20B003AF977 /* ConversationListCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConversationListCell.swift; sourceTree = "<group>"; };
+		116E9DF827D9D344003AF977 /* ConversationListCellModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConversationListCellModel.swift; sourceTree = "<group>"; };
+		116E9DFA27D9D3CE003AF977 /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
+		116E9DFD27DA0586003AF977 /* ConversationModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConversationModel.swift; sourceTree = "<group>"; };
+		116E9DFF27DA0762003AF977 /* DataSourceManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataSourceManager.swift; sourceTree = "<group>"; };
+		116E9E0527DA23FC003AF977 /* ConversationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConversationViewController.swift; sourceTree = "<group>"; };
+		116E9E0727DA2425003AF977 /* ConversationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConversationView.swift; sourceTree = "<group>"; };
+		116E9E0927DA25F6003AF977 /* ConversationViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConversationViewCell.swift; sourceTree = "<group>"; };
+		116E9E0B27DA294D003AF977 /* ConversationCellModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConversationCellModel.swift; sourceTree = "<group>"; };
 		11A8556D27C807FE0005514D /* ProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewController.swift; sourceTree = "<group>"; };
 		11A8556F27C80F720005514D /* ProfileView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileView.swift; sourceTree = "<group>"; };
 		11A8557127C813020005514D /* UIColor+HEX.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIColor+HEX.swift"; sourceTree = "<group>"; };
@@ -45,6 +67,68 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		116E9DEF27D9CEBA003AF977 /* ConversationsList */ = {
+			isa = PBXGroup;
+			children = (
+				116E9DF027D9CF48003AF977 /* Model */,
+				116E9DF127D9CF4D003AF977 /* View */,
+				116E9DF227D9CF6C003AF977 /* ConversationsListViewController.swift */,
+			);
+			path = ConversationsList;
+			sourceTree = "<group>";
+		};
+		116E9DF027D9CF48003AF977 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				116E9DF827D9D344003AF977 /* ConversationListCellModel.swift */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		116E9DF127D9CF4D003AF977 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				116E9DF427D9D03C003AF977 /* ConversationsListView.swift */,
+				116E9DF627D9D20B003AF977 /* ConversationListCell.swift */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		116E9DFC27DA0566003AF977 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				116E9DFD27DA0586003AF977 /* ConversationModel.swift */,
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
+		116E9E0127DA23C4003AF977 /* Conversation */ = {
+			isa = PBXGroup;
+			children = (
+				116E9E0227DA23CC003AF977 /* Model */,
+				116E9E0327DA23D4003AF977 /* View */,
+				116E9E0527DA23FC003AF977 /* ConversationViewController.swift */,
+			);
+			path = Conversation;
+			sourceTree = "<group>";
+		};
+		116E9E0227DA23CC003AF977 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				116E9E0B27DA294D003AF977 /* ConversationCellModel.swift */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		116E9E0327DA23D4003AF977 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				116E9E0727DA2425003AF977 /* ConversationView.swift */,
+				116E9E0927DA25F6003AF977 /* ConversationViewCell.swift */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
 		11A8556827C807840005514D /* Profile */ = {
 			isa = PBXGroup;
 			children = (
@@ -74,6 +158,8 @@
 			isa = PBXGroup;
 			children = (
 				11CC1EBE27C69DC200450552 /* Logger.swift */,
+				116E9DFA27D9D3CE003AF977 /* Constants.swift */,
+				116E9DFF27DA0762003AF977 /* DataSourceManager.swift */,
 			);
 			path = Services;
 			sourceTree = "<group>";
@@ -81,6 +167,8 @@
 		11CC1EBC27C69D5400450552 /* Modules */ = {
 			isa = PBXGroup;
 			children = (
+				116E9E0127DA23C4003AF977 /* Conversation */,
+				116E9DEF27D9CEBA003AF977 /* ConversationsList */,
 				11A8556827C807840005514D /* Profile */,
 				11DEFF4D27BEEDA800688EE4 /* AppDelegate.swift */,
 			);
@@ -117,6 +205,7 @@
 		11DEFF4C27BEEDA800688EE4 /* tinkoff-chat */ = {
 			isa = PBXGroup;
 			children = (
+				116E9DFC27DA0566003AF977 /* Models */,
 				11CC1EBD27C69D5E00450552 /* Extensions */,
 				11CC1EBB27C69D4B00450552 /* Services */,
 				11CC1EBC27C69D5400450552 /* Modules */,
@@ -199,12 +288,23 @@
 			files = (
 				11A8557027C80F720005514D /* ProfileView.swift in Sources */,
 				111FE23E27D10872003D9098 /* UIViewController+HideKeyboard.swift in Sources */,
+				116E9DF927D9D344003AF977 /* ConversationListCellModel.swift in Sources */,
+				116E9E0A27DA25F6003AF977 /* ConversationViewCell.swift in Sources */,
+				116E9DF727D9D20B003AF977 /* ConversationListCell.swift in Sources */,
+				116E9DF327D9CF6C003AF977 /* ConversationsListViewController.swift in Sources */,
 				11CC1EBF27C69DC200450552 /* Logger.swift in Sources */,
 				11A8557427C8188D0005514D /* UIView+Nib.swift in Sources */,
+				116E9DFB27D9D3CE003AF977 /* Constants.swift in Sources */,
+				116E9DFE27DA0586003AF977 /* ConversationModel.swift in Sources */,
 				11A8556E27C807FE0005514D /* ProfileViewController.swift in Sources */,
+				116E9E0627DA23FC003AF977 /* ConversationViewController.swift in Sources */,
+				116E9E0827DA2425003AF977 /* ConversationView.swift in Sources */,
 				111FE23C27D0F41C003D9098 /* UIButton+Color.swift in Sources */,
+				116E9E0C27DA294D003AF977 /* ConversationCellModel.swift in Sources */,
+				116E9DF527D9D03C003AF977 /* ConversationsListView.swift in Sources */,
 				11DEFF4E27BEEDA800688EE4 /* AppDelegate.swift in Sources */,
 				11A8557227C813020005514D /* UIColor+HEX.swift in Sources */,
+				116E9E0027DA0762003AF977 /* DataSourceManager.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
