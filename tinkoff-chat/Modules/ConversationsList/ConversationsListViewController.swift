@@ -27,13 +27,17 @@ class ConversationsListViewController: UIViewController {
         mainView.tableView.dataSource = self
         
         setupNavigationItem()
+        updateTheme()
     }
     
     private func setupNavigationItem() {
         guard let profileImage = UIImage(systemName: "person") else { return }
+        guard let settingsImage = UIImage(systemName: "gearshape") else { return }
         let profileButton = UIBarButtonItem(image: profileImage, style: .plain, target: self, action: #selector(showProfileVC))
+        let settingButton = UIBarButtonItem(image: settingsImage, style: .plain, target: self, action: #selector(showThemesVC))
         
         navigationItem.rightBarButtonItem = profileButton
+        navigationItem.leftBarButtonItem = settingButton
     }
     
     @objc private func showProfileVC() {
@@ -42,6 +46,33 @@ class ConversationsListViewController: UIViewController {
         let navigationVC = UINavigationController(rootViewController: profileVC)
         
         show(navigationVC, sender: self)
+    }
+    
+    @objc private func showThemesVC() {
+        let themesVC = ThemesViewController()
+        themesVC.title = "Settings"
+        themesVC.delegate = self
+        
+        themesVC.onComplition = { [weak self] theme in
+            ThemeManager.shared.saveCurrentTheme(theme)
+            self?.updateTheme()
+        }
+        
+        show(themesVC, sender: self)
+    }
+    
+    private func updateTheme() {
+        let theme = ThemeManager.shared.currentTheme
+        
+        UITableView.appearance().backgroundColor = theme?.backgroundColor
+        UITableViewHeaderFooterView.appearance().tintColor = theme?.backgroundColor
+        UILabel.appearance(whenContainedInInstancesOf: [UITableViewHeaderFooterView.self]).textColor = theme?.labelColor
+        navigationController?.navigationBar.barTintColor = theme?.backgroundColor
+        navigationController?.navigationBar.titleTextAttributes = [
+            NSAttributedString.Key.foregroundColor: theme?.titleControllerColor ?? .black
+        ]
+        
+        mainView.tableView.reloadData()
     }
 }
 
@@ -96,10 +127,19 @@ extension ConversationsListViewController: UITableViewDataSource {
         )
         
         cell.configure(model: model)
+        cell.updateTheme()
         
         return cell
     }
 }
 
+// MARK: - ConversationsListViewController: ThemesPickerDelegate
 
+extension ConversationsListViewController: ThemesPickerDelegate {
+    
+    func configureTheme(_ theme: Themes) {
+        ThemeManager.shared.saveCurrentTheme(theme)
+        updateTheme()
+    }
+}
 

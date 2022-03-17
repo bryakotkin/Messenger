@@ -43,6 +43,8 @@ class ProfileViewController: UIViewController {
     private func setupNavigationBar() {
         let cancelButton = UIBarButtonItem(barButtonSystemItem: .cancel, target: self, action: #selector(cancelButtonAction))
         navigationItem.rightBarButtonItem = cancelButton
+        
+        navigationController?.navigationBar.titleTextAttributes = [NSAttributedString.Key.foregroundColor: ThemeManager.shared.currentTheme?.titleControllerColor ?? .black]
     }
     
     private func showImagePicker(type: UIImagePickerController.SourceType) {

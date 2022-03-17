@@ -13,6 +13,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     var window: UIWindow?
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
+        extractTheme()
+        
         let conversationsListVC = ConversationsListViewController()
         let navigationVC = UINavigationController(rootViewController: conversationsListVC)
         
@@ -23,6 +25,15 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         Logger.printAppStatus(.notrunning, .inactive, #function)
         
         return true
+    }
+    
+    func extractTheme() {
+        if let theme = ThemeManager.shared.theme {
+            ThemeManager.shared.saveCurrentTheme(theme)
+        }
+        else {
+            ThemeManager.shared.saveCurrentTheme(.classic)
+        }
     }
     
     func applicationDidBecomeActive(_ application: UIApplication) {

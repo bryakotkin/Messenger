@@ -36,22 +36,28 @@ class ConversationViewCell: UITableViewCell {
         }
     }
     
-    var isComming: Bool? {
-        didSet {
-            if let isComming = isComming, !isComming {
-                cloudView.backgroundColor = .fromHex(hex: 0xDCF7C5)
-                cloudViewRightConstraint?.isActive = true
-            }
-            else {
-                cloudView.backgroundColor = .fromHex(hex: 0xDFDFDF)
-                cloudViewLeftConstraint?.isActive = true
-            }
-        }
-    }
+    var isComming: Bool?
     
     func configure(model: ConversationCellModel) {
         message = model.text
         isComming = model.isComming
+    }
+    
+    func updateTheme() {
+        let theme = ThemeManager.shared.currentTheme
+        
+        if let isComming = isComming, !isComming {
+            cloudView.backgroundColor = theme?.cloudColor
+            messageLabel.textColor = theme?.labelColorOutgoing
+            cloudViewRightConstraint?.isActive = true
+        }
+        else {
+            cloudView.backgroundColor = theme?.cloudColorIncoming
+            messageLabel.textColor = theme?.labelColorIncomming
+            cloudViewLeftConstraint?.isActive = true
+        }
+        
+        backgroundColor = theme?.backgroundColor
     }
     
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
