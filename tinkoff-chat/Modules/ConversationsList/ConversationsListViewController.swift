@@ -31,13 +31,25 @@ class ConversationsListViewController: UIViewController {
     }
     
     private func setupNavigationItem() {
-        guard let profileImage = UIImage(systemName: "person") else { return }
-        guard let settingsImage = UIImage(systemName: "gearshape") else { return }
-        let profileButton = UIBarButtonItem(image: profileImage, style: .plain, target: self, action: #selector(showProfileVC))
-        let settingButton = UIBarButtonItem(image: settingsImage, style: .plain, target: self, action: #selector(showThemesVC))
+        var profileButton: UIBarButtonItem?
+        var settingsButton: UIBarButtonItem?
+        
+        if let profileImage = UIImage(systemName: "person") {
+            profileButton = UIBarButtonItem(image: profileImage, style: .plain, target: self, action: #selector(showProfileVC))
+        }
+        else {
+            profileButton = UIBarButtonItem(title: "Profile", style: .plain, target: self, action: #selector(showProfileVC))
+        }
+        
+        if let settingsImage = UIImage(systemName: "gearshape") {
+            settingsButton = UIBarButtonItem(image: settingsImage, style: .plain, target: self, action: #selector(showThemesVC))
+        }
+        else {
+            settingsButton = UIBarButtonItem(title: "Settings", style: .plain, target: self, action: #selector(showThemesVC))
+        }
         
         navigationItem.rightBarButtonItem = profileButton
-        navigationItem.leftBarButtonItem = settingButton
+        navigationItem.leftBarButtonItem = settingsButton
     }
     
     @objc private func showProfileVC() {

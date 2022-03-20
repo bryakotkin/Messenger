@@ -52,17 +52,20 @@ class ConversationListCell: UITableViewCell {
     
     var date: Date? {
         didSet {
-            guard let date = date else { return }
-            
-            if Calendar.current.isDateInToday(date) {
-                dateFormatter.dateFormat = "HH:mm"
+            if let date = date {
+                if Calendar.current.isDateInToday(date) {
+                    dateFormatter.dateFormat = "HH:mm"
+                }
+                else {
+                    dateFormatter.dateFormat = "dd/MM/YYYY"
+                }
+                
+                let dateString = dateFormatter.string(from: date)
+                dateLabel.text = dateString
             }
             else {
-                dateFormatter.dateFormat = "dd/MM/YYYY"
+                dateLabel.text = ""
             }
-            
-            let dateString = dateFormatter.string(from: date)
-            dateLabel.text = dateString
         }
     }
     
