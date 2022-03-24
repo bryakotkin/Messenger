@@ -10,6 +10,7 @@ import UIKit
 class ProfileViewController: UIViewController {
     
     var prevProfile: Profile?
+    var dataManager: MultithreadingManager = GCDManager()
     
     var mainView: ProfileView {
         return view as! ProfileView
@@ -22,7 +23,7 @@ class ProfileViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        getDataByGCD()
+        getData()
     
         self.hideKeyboardWhenTappedAround()
         setupNavigationBar()
@@ -121,16 +122,13 @@ extension ProfileViewController: ProfileViewProtocol {
     }
     
     func gcdButtonAction() {
-        let username = mainView.usernameTextField.text
-        let description = mainView.descriptionTextView.text
-        let image = mainView.userImageView.image
-        
-        let profile = Profile(username: username, description: description, image: image)
-        saveDataByGCD(profile)
+        dataManager = GCDManager()
+        saveData()
     }
     
     func operationButtonAction() {
-        print(#function)
+        dataManager = OperationsManager()
+        saveData()
     }
 }
 
@@ -221,14 +219,20 @@ extension ProfileViewController: UITextViewDelegate {
 // MARK: - GCD Work
 
 extension ProfileViewController {
-    func saveDataByGCD(_ profile: Profile) {
+    func saveData() {
+        let username = mainView.usernameTextField.text
+        let description = mainView.descriptionTextView.text
+        let image = mainView.userImageView.image
+        
+        let profile = Profile(username: username, description: description, image: image)
+        
         mainView.activityIndicator.startAnimating()
         isEnabledFields(false)
         isEnabledGCDOperationButtons(false)
         
         let alertController = UIAlertController(title: nil, message: nil, preferredStyle: .alert)
         let retryAction = UIAlertAction(title: "Повторить", style: .destructive) { [weak self] _ in
-            self?.saveDataByGCD(profile)
+            self?.saveData()
         }
         let cancelAction = UIAlertAction(title: "Ok", style: .cancel)
         
@@ -236,7 +240,7 @@ extension ProfileViewController {
         let isDescriptionNew = isTextViewHaveNewValues()
         let isImageNew = isImageNew()
         
-        GCDManager.saveData(profile, flags: (isUsernameNew, isDescriptionNew, isImageNew)) { [weak self] isSaved in
+        dataManager.saveData(profile, flags: (isUsernameNew, isDescriptionNew, isImageNew)) { [weak self] isSaved in
             self?.mainView.activityIndicator.stopAnimating()
             alertController.addAction(cancelAction)
             
@@ -262,9 +266,9 @@ extension ProfileViewController {
         }
     }
     
-    func getDataByGCD() {
+    func getData() {
         isEnabledEditButtons(false)
-        GCDManager.getData { [weak self] profile in
+        dataManager.getData { [weak self] profile in
             self?.isEnabledEditButtons(true)
             self?.prevProfile = profile
             self?.setupFields()

@@ -11,13 +11,10 @@ class WriteOperation: Operation {
     
     var profile: Profile?
     var flags: ProfileFlags?
-    
+    var isSaved = false
     
     override func main() {
-        if profile == nil || flags == nil {
-            return
-        }
-        
-//        ProfileDataManager.saveObjectToFile(profile, flags: flags)
+        guard let profile = profile, let flags = flags else { return }
+        isSaved = ProfileDataManager.saveObjectToFile(profile, flags: flags)
     }
 }

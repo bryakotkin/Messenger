@@ -29,6 +29,9 @@
 		11873E6E27E3322F0072FE5B /* DayTheme.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11873E6D27E3322F0072FE5B /* DayTheme.swift */; };
 		11873E7327E333A90072FE5B /* ThemesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11873E7227E333A90072FE5B /* ThemesViewController.swift */; };
 		11873E7527E333DD0072FE5B /* ThemesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11873E7427E333DD0072FE5B /* ThemesView.swift */; };
+		119EF9F127ECF72D00EA3378 /* OperationsManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 119EF9F027ECF72D00EA3378 /* OperationsManager.swift */; };
+		119EF9F327ECFB2500EA3378 /* ReadOperation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 119EF9F227ECFB2500EA3378 /* ReadOperation.swift */; };
+		119EF9F527ECFF5000EA3378 /* MultithreadingManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 119EF9F427ECFF5000EA3378 /* MultithreadingManager.swift */; };
 		11A8556E27C807FE0005514D /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11A8556D27C807FE0005514D /* ProfileViewController.swift */; };
 		11A8557027C80F720005514D /* ProfileView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11A8556F27C80F720005514D /* ProfileView.swift */; };
 		11A8557227C813020005514D /* UIColor+HEX.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11A8557127C813020005514D /* UIColor+HEX.swift */; };
@@ -68,6 +71,9 @@
 		11873E6D27E3322F0072FE5B /* DayTheme.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DayTheme.swift; sourceTree = "<group>"; };
 		11873E7227E333A90072FE5B /* ThemesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThemesViewController.swift; sourceTree = "<group>"; };
 		11873E7427E333DD0072FE5B /* ThemesView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThemesView.swift; sourceTree = "<group>"; };
+		119EF9F027ECF72D00EA3378 /* OperationsManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OperationsManager.swift; sourceTree = "<group>"; };
+		119EF9F227ECFB2500EA3378 /* ReadOperation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReadOperation.swift; sourceTree = "<group>"; };
+		119EF9F427ECFF5000EA3378 /* MultithreadingManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MultithreadingManager.swift; sourceTree = "<group>"; };
 		11A8556D27C807FE0005514D /* ProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewController.swift; sourceTree = "<group>"; };
 		11A8556F27C80F720005514D /* ProfileView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileView.swift; sourceTree = "<group>"; };
 		11A8557127C813020005514D /* UIColor+HEX.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIColor+HEX.swift"; sourceTree = "<group>"; };
@@ -101,6 +107,7 @@
 			isa = PBXGroup;
 			children = (
 				116DB0C527ECBAA100FC9E49 /* WriteOperation.swift */,
+				119EF9F227ECFB2500EA3378 /* ReadOperation.swift */,
 			);
 			path = Operations;
 			sourceTree = "<group>";
@@ -243,6 +250,8 @@
 				116E9DFF27DA0762003AF977 /* ConversationsDataManager.swift */,
 				11E717F227EADF4A00E963E6 /* ProfileDataManager.swift */,
 				116DB0C027EC6DD000FC9E49 /* GCDManager.swift */,
+				119EF9F027ECF72D00EA3378 /* OperationsManager.swift */,
+				119EF9F427ECFF5000EA3378 /* MultithreadingManager.swift */,
 			);
 			path = Services;
 			sourceTree = "<group>";
@@ -372,6 +381,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				11A8557027C80F720005514D /* ProfileView.swift in Sources */,
+				119EF9F127ECF72D00EA3378 /* OperationsManager.swift in Sources */,
 				111FE23E27D10872003D9098 /* UIViewController+HideKeyboard.swift in Sources */,
 				116E9DF927D9D344003AF977 /* ConversationListCellModel.swift in Sources */,
 				116E9E0A27DA25F6003AF977 /* ConversationViewCell.swift in Sources */,
@@ -385,6 +395,7 @@
 				11E717FA27EAE1DA00E963E6 /* Profile.swift in Sources */,
 				11873E6527E32CFD0072FE5B /* CustomColors.swift in Sources */,
 				11CC1EBF27C69DC200450552 /* Logger.swift in Sources */,
+				119EF9F327ECFB2500EA3378 /* ReadOperation.swift in Sources */,
 				11873E7527E333DD0072FE5B /* ThemesView.swift in Sources */,
 				11A8557427C8188D0005514D /* UIView+Nib.swift in Sources */,
 				11873E6E27E3322F0072FE5B /* DayTheme.swift in Sources */,
@@ -393,6 +404,7 @@
 				116E9DFE27DA0586003AF977 /* Conversation.swift in Sources */,
 				11A8556E27C807FE0005514D /* ProfileViewController.swift in Sources */,
 				116E9E0627DA23FC003AF977 /* ConversationViewController.swift in Sources */,
+				119EF9F527ECFF5000EA3378 /* MultithreadingManager.swift in Sources */,
 				11E717F327EADF4A00E963E6 /* ProfileDataManager.swift in Sources */,
 				116E9E0827DA2425003AF977 /* ConversationView.swift in Sources */,
 				116DB0C127EC6DD000FC9E49 /* GCDManager.swift in Sources */,
