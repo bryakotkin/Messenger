@@ -10,6 +10,7 @@ import UIKit
 
 struct CustomColors {
     static let lightBlue: UIColor = .fromHex(hex: 0x007AFF)
+    static let lightBlueAlpha: UIColor = .fromHex(hex: 0x007AFF, alpha: 0.5)
     static let lightBlue2: UIColor = .fromHex(hex: 0x10ADDD)
     static let lightGrey: UIColor = .fromHex(hex: 0xF6F6F6)
     static let lightGrey2: UIColor = .fromHex(hex: 0xDFDFDF)
