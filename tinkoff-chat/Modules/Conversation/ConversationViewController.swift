@@ -52,6 +52,7 @@ extension ConversationViewController: UITableViewDataSource {
         )
         
         cell.configure(model: model)
+        cell.updateTheme()
         
         return cell
     }

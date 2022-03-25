@@ -22,7 +22,7 @@ class ConversationListCell: UITableViewCell {
         let label = UILabel()
         label.numberOfLines = 2
         label.font = .systemFont(ofSize: 18)
-        label.textColor = .fromHex(hex: 0x3C3C43, alpha: 0.6)
+        label.textColor = CustomColors.lightGrey3
         label.translatesAutoresizingMaskIntoConstraints = false
         
         return label
@@ -52,17 +52,20 @@ class ConversationListCell: UITableViewCell {
     
     var date: Date? {
         didSet {
-            guard let date = date else { return }
-            
-            if Calendar.current.isDateInToday(date) {
-                dateFormatter.dateFormat = "HH:mm"
+            if let date = date {
+                if Calendar.current.isDateInToday(date) {
+                    dateFormatter.dateFormat = "HH:mm"
+                }
+                else {
+                    dateFormatter.dateFormat = "dd/MM/YYYY"
+                }
+                
+                let dateString = dateFormatter.string(from: date)
+                dateLabel.text = dateString
             }
             else {
-                dateFormatter.dateFormat = "dd/MM/YYYY"
+                dateLabel.text = ""
             }
-            
-            let dateString = dateFormatter.string(from: date)
-            dateLabel.text = dateString
         }
     }
     
@@ -79,16 +82,7 @@ class ConversationListCell: UITableViewCell {
         }
     }
     
-    var isOnline: Bool? {
-        didSet {
-            if let isOnline = isOnline, isOnline {
-                backgroundColor = .fromHex(hex: 0xFFFACF)
-            }
-            else {
-                backgroundColor = .systemBackground
-            }
-        }
-    }
+    var isOnline: Bool?
     
     var hasUnreadMessages: Bool? {
         didSet {
@@ -106,6 +100,17 @@ class ConversationListCell: UITableViewCell {
         message = model.message
         date = model.date
         isOnline = model.online
+    }
+    
+    func updateTheme() {
+        let theme = ThemeManager.shared.currentTheme
+        let isOnline: Bool = isOnline ?? false
+        let labelColor = isOnline ? theme?.labelColorOnline : theme?.labelColor
+        
+        titleLabel.textColor = labelColor
+        dateLabel.textColor = labelColor
+        messageLabel.textColor = labelColor
+        backgroundColor = isOnline ? theme?.backgroundColorOnline : theme?.backgroundColor
     }
     
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {

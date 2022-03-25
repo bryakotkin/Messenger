@@ -49,7 +49,7 @@ class ProfileView: UIView {
     let editButton: UIButton = {
         let button = UIButton()
         button.setTitle("Edit", for: .normal)
-        button.setTitleColor(.fromHex(hex: 0x007AFF), for: .normal)
+        button.setTitleColor(CustomColors.lightBlue, for: .normal)
         button.titleLabel?.font = .systemFont(ofSize: 16, weight: .semibold)
         button.translatesAutoresizingMaskIntoConstraints = false
         
@@ -59,9 +59,9 @@ class ProfileView: UIView {
     let saveButton: UIButton = {
         let button = UIButton()
         button.setTitle("Save", for: .normal)
-        button.setTitleColor(.fromHex(hex: 0x007AFF), for: .normal)
+        button.setTitleColor(CustomColors.lightBlue, for: .normal)
         button.titleLabel?.font = .systemFont(ofSize: 19, weight: .semibold)
-        button.backgroundColor = .fromHex(hex: 0xF6F6F6)
+        button.backgroundColor = CustomColors.lightGrey
         button.translatesAutoresizingMaskIntoConstraints = false
         button.layer.cornerRadius = 10
         
@@ -70,8 +70,6 @@ class ProfileView: UIView {
     
     override init(frame: CGRect) {
         super.init(frame: frame)
-        
-        backgroundColor = .systemBackground
         
         addSubview(userImageView)
         addSubview(usernameLabel)
@@ -82,11 +80,21 @@ class ProfileView: UIView {
         editButton.addTarget(self, action: #selector(editButtonAction), for: .touchUpInside)
         saveButton.addTarget(self, action: #selector(saveButtonAction), for: .touchUpInside)
         
+        updateTheme()
         setupConstraints()
     }
     
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
+    }
+    
+    private func updateTheme() {
+        let theme = ThemeManager.shared.currentTheme
+        
+        usernameLabel.textColor = theme?.labelColor
+        userDescription.textColor = theme?.labelColor
+        userDescription.backgroundColor = theme?.backgroundColor
+        backgroundColor = theme?.backgroundColor
     }
     
     private func setupConstraints() {

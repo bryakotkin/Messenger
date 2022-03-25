@@ -20,11 +20,20 @@
 		116E9E0827DA2425003AF977 /* ConversationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 116E9E0727DA2425003AF977 /* ConversationView.swift */; };
 		116E9E0A27DA25F6003AF977 /* ConversationViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 116E9E0927DA25F6003AF977 /* ConversationViewCell.swift */; };
 		116E9E0C27DA294D003AF977 /* ConversationCellModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 116E9E0B27DA294D003AF977 /* ConversationCellModel.swift */; };
+		11873E6527E32CFD0072FE5B /* CustomColors.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11873E6427E32CFD0072FE5B /* CustomColors.swift */; };
+		11873E6827E32FE70072FE5B /* Theme.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11873E6727E32FE70072FE5B /* Theme.swift */; };
+		11873E6A27E3313B0072FE5B /* ClassicTheme.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11873E6927E3313B0072FE5B /* ClassicTheme.swift */; };
+		11873E6C27E331DF0072FE5B /* NightTheme.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11873E6B27E331DF0072FE5B /* NightTheme.swift */; };
+		11873E6E27E3322F0072FE5B /* DayTheme.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11873E6D27E3322F0072FE5B /* DayTheme.swift */; };
+		11873E7327E333A90072FE5B /* ThemesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11873E7227E333A90072FE5B /* ThemesViewController.swift */; };
+		11873E7527E333DD0072FE5B /* ThemesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11873E7427E333DD0072FE5B /* ThemesView.swift */; };
 		11A8556E27C807FE0005514D /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11A8556D27C807FE0005514D /* ProfileViewController.swift */; };
 		11A8557027C80F720005514D /* ProfileView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11A8556F27C80F720005514D /* ProfileView.swift */; };
 		11A8557227C813020005514D /* UIColor+HEX.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11A8557127C813020005514D /* UIColor+HEX.swift */; };
 		11A8557427C8188D0005514D /* UIView+Nib.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11A8557327C8188D0005514D /* UIView+Nib.swift */; };
 		11CC1EBF27C69DC200450552 /* Logger.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11CC1EBE27C69DC200450552 /* Logger.swift */; };
+		11D7FA7227E358D5003A3303 /* ThemeManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11D7FA7127E358D4003A3303 /* ThemeManager.swift */; };
+		11D7FA7427E36463003A3303 /* Themes.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11D7FA7327E36463003A3303 /* Themes.swift */; };
 		11DEFF4E27BEEDA800688EE4 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11DEFF4D27BEEDA800688EE4 /* AppDelegate.swift */; };
 		11DEFF5727BEEDA900688EE4 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 11DEFF5627BEEDA900688EE4 /* Assets.xcassets */; };
 		11DEFF5A27BEEDA900688EE4 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 11DEFF5827BEEDA900688EE4 /* LaunchScreen.storyboard */; };
@@ -44,11 +53,20 @@
 		116E9E0727DA2425003AF977 /* ConversationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConversationView.swift; sourceTree = "<group>"; };
 		116E9E0927DA25F6003AF977 /* ConversationViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConversationViewCell.swift; sourceTree = "<group>"; };
 		116E9E0B27DA294D003AF977 /* ConversationCellModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConversationCellModel.swift; sourceTree = "<group>"; };
+		11873E6427E32CFD0072FE5B /* CustomColors.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomColors.swift; sourceTree = "<group>"; };
+		11873E6727E32FE70072FE5B /* Theme.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Theme.swift; sourceTree = "<group>"; };
+		11873E6927E3313B0072FE5B /* ClassicTheme.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClassicTheme.swift; sourceTree = "<group>"; };
+		11873E6B27E331DF0072FE5B /* NightTheme.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NightTheme.swift; sourceTree = "<group>"; };
+		11873E6D27E3322F0072FE5B /* DayTheme.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DayTheme.swift; sourceTree = "<group>"; };
+		11873E7227E333A90072FE5B /* ThemesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThemesViewController.swift; sourceTree = "<group>"; };
+		11873E7427E333DD0072FE5B /* ThemesView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThemesView.swift; sourceTree = "<group>"; };
 		11A8556D27C807FE0005514D /* ProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewController.swift; sourceTree = "<group>"; };
 		11A8556F27C80F720005514D /* ProfileView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileView.swift; sourceTree = "<group>"; };
 		11A8557127C813020005514D /* UIColor+HEX.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIColor+HEX.swift"; sourceTree = "<group>"; };
 		11A8557327C8188D0005514D /* UIView+Nib.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+Nib.swift"; sourceTree = "<group>"; };
 		11CC1EBE27C69DC200450552 /* Logger.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Logger.swift; sourceTree = "<group>"; };
+		11D7FA7127E358D4003A3303 /* ThemeManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThemeManager.swift; sourceTree = "<group>"; };
+		11D7FA7327E36463003A3303 /* Themes.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Themes.swift; sourceTree = "<group>"; };
 		11DEFF4A27BEEDA800688EE4 /* tinkoff-chat.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "tinkoff-chat.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		11DEFF4D27BEEDA800688EE4 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		11DEFF5627BEEDA900688EE4 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -97,7 +115,10 @@
 		116E9DFC27DA0566003AF977 /* Models */ = {
 			isa = PBXGroup;
 			children = (
+				11873E6627E32FCA0072FE5B /* Themes */,
+				116E9DFA27D9D3CE003AF977 /* Constants.swift */,
 				116E9DFD27DA0586003AF977 /* ConversationModel.swift */,
+				11873E6427E32CFD0072FE5B /* CustomColors.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -129,6 +150,43 @@
 			path = View;
 			sourceTree = "<group>";
 		};
+		11873E6627E32FCA0072FE5B /* Themes */ = {
+			isa = PBXGroup;
+			children = (
+				11D7FA7327E36463003A3303 /* Themes.swift */,
+				11873E6727E32FE70072FE5B /* Theme.swift */,
+				11873E6927E3313B0072FE5B /* ClassicTheme.swift */,
+				11873E6D27E3322F0072FE5B /* DayTheme.swift */,
+				11873E6B27E331DF0072FE5B /* NightTheme.swift */,
+			);
+			path = Themes;
+			sourceTree = "<group>";
+		};
+		11873E6F27E333490072FE5B /* Themes */ = {
+			isa = PBXGroup;
+			children = (
+				11873E7127E333850072FE5B /* Model */,
+				11873E7027E333800072FE5B /* View */,
+				11873E7227E333A90072FE5B /* ThemesViewController.swift */,
+			);
+			path = Themes;
+			sourceTree = "<group>";
+		};
+		11873E7027E333800072FE5B /* View */ = {
+			isa = PBXGroup;
+			children = (
+				11873E7427E333DD0072FE5B /* ThemesView.swift */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		11873E7127E333850072FE5B /* Model */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
 		11A8556827C807840005514D /* Profile */ = {
 			isa = PBXGroup;
 			children = (
@@ -158,8 +216,8 @@
 			isa = PBXGroup;
 			children = (
 				11CC1EBE27C69DC200450552 /* Logger.swift */,
-				116E9DFA27D9D3CE003AF977 /* Constants.swift */,
 				116E9DFF27DA0762003AF977 /* DataSourceManager.swift */,
+				11D7FA7127E358D4003A3303 /* ThemeManager.swift */,
 			);
 			path = Services;
 			sourceTree = "<group>";
@@ -167,6 +225,7 @@
 		11CC1EBC27C69D5400450552 /* Modules */ = {
 			isa = PBXGroup;
 			children = (
+				11873E6F27E333490072FE5B /* Themes */,
 				116E9E0127DA23C4003AF977 /* Conversation */,
 				116E9DEF27D9CEBA003AF977 /* ConversationsList */,
 				11A8556827C807840005514D /* Profile */,
@@ -290,19 +349,28 @@
 				111FE23E27D10872003D9098 /* UIViewController+HideKeyboard.swift in Sources */,
 				116E9DF927D9D344003AF977 /* ConversationListCellModel.swift in Sources */,
 				116E9E0A27DA25F6003AF977 /* ConversationViewCell.swift in Sources */,
+				11873E7327E333A90072FE5B /* ThemesViewController.swift in Sources */,
 				116E9DF727D9D20B003AF977 /* ConversationListCell.swift in Sources */,
 				116E9DF327D9CF6C003AF977 /* ConversationsListViewController.swift in Sources */,
+				11873E6827E32FE70072FE5B /* Theme.swift in Sources */,
+				11873E6527E32CFD0072FE5B /* CustomColors.swift in Sources */,
 				11CC1EBF27C69DC200450552 /* Logger.swift in Sources */,
+				11873E7527E333DD0072FE5B /* ThemesView.swift in Sources */,
 				11A8557427C8188D0005514D /* UIView+Nib.swift in Sources */,
+				11873E6E27E3322F0072FE5B /* DayTheme.swift in Sources */,
 				116E9DFB27D9D3CE003AF977 /* Constants.swift in Sources */,
+				11D7FA7227E358D5003A3303 /* ThemeManager.swift in Sources */,
 				116E9DFE27DA0586003AF977 /* ConversationModel.swift in Sources */,
 				11A8556E27C807FE0005514D /* ProfileViewController.swift in Sources */,
 				116E9E0627DA23FC003AF977 /* ConversationViewController.swift in Sources */,
 				116E9E0827DA2425003AF977 /* ConversationView.swift in Sources */,
 				111FE23C27D0F41C003D9098 /* UIButton+Color.swift in Sources */,
 				116E9E0C27DA294D003AF977 /* ConversationCellModel.swift in Sources */,
+				11D7FA7427E36463003A3303 /* Themes.swift in Sources */,
+				11873E6C27E331DF0072FE5B /* NightTheme.swift in Sources */,
 				116E9DF527D9D03C003AF977 /* ConversationsListView.swift in Sources */,
 				11DEFF4E27BEEDA800688EE4 /* AppDelegate.swift in Sources */,
+				11873E6A27E3313B0072FE5B /* ClassicTheme.swift in Sources */,
 				11A8557227C813020005514D /* UIColor+HEX.swift in Sources */,
 				116E9E0027DA0762003AF977 /* DataSourceManager.swift in Sources */,
 			);
