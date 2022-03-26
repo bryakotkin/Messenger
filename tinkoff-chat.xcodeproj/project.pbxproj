@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		111FE23C27D0F41C003D9098 /* UIButton+Color.swift in Sources */ = {isa = PBXBuildFile; fileRef = 111FE23B27D0F41C003D9098 /* UIButton+Color.swift */; };
 		111FE23E27D10872003D9098 /* UIViewController+HideKeyboard.swift in Sources */ = {isa = PBXBuildFile; fileRef = 111FE23D27D10872003D9098 /* UIViewController+HideKeyboard.swift */; };
+		112BA6E227EF8CAE00829CCC /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 112BA6E127EF8CAE00829CCC /* GoogleService-Info.plist */; };
 		116DB0C127EC6DD000FC9E49 /* GCDManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 116DB0C027EC6DD000FC9E49 /* GCDManager.swift */; };
 		116DB0C627ECBAA100FC9E49 /* WriteOperation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 116DB0C527ECBAA100FC9E49 /* WriteOperation.swift */; };
 		116E9DF327D9CF6C003AF977 /* ConversationsListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 116E9DF227D9CF6C003AF977 /* ConversationsListViewController.swift */; };
@@ -46,11 +47,14 @@
 		11E717F827EAE16200E963E6 /* JSONSerialization+JSONFile.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11E717F727EAE16200E963E6 /* JSONSerialization+JSONFile.swift */; };
 		11E717FA27EAE1DA00E963E6 /* Profile.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11E717F927EAE1DA00E963E6 /* Profile.swift */; };
 		11E717FE27EAE49500E963E6 /* Message.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11E717FD27EAE49500E963E6 /* Message.swift */; };
+		A73332455F47B49AB2820C8A /* Pods_tinkoff_chat.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8EA2C152E6311E94EAA2803A /* Pods_tinkoff_chat.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		01ACE05962374C353934854E /* Pods-tinkoff-chat.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-tinkoff-chat.release.xcconfig"; path = "Target Support Files/Pods-tinkoff-chat/Pods-tinkoff-chat.release.xcconfig"; sourceTree = "<group>"; };
 		111FE23B27D0F41C003D9098 /* UIButton+Color.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIButton+Color.swift"; sourceTree = "<group>"; };
 		111FE23D27D10872003D9098 /* UIViewController+HideKeyboard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewController+HideKeyboard.swift"; sourceTree = "<group>"; };
+		112BA6E127EF8CAE00829CCC /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		116DB0C027EC6DD000FC9E49 /* GCDManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GCDManager.swift; sourceTree = "<group>"; };
 		116DB0C527ECBAA100FC9E49 /* WriteOperation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WriteOperation.swift; sourceTree = "<group>"; };
 		116E9DF227D9CF6C003AF977 /* ConversationsListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConversationsListViewController.swift; sourceTree = "<group>"; };
@@ -90,6 +94,8 @@
 		11E717F727EAE16200E963E6 /* JSONSerialization+JSONFile.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "JSONSerialization+JSONFile.swift"; sourceTree = "<group>"; };
 		11E717F927EAE1DA00E963E6 /* Profile.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Profile.swift; sourceTree = "<group>"; };
 		11E717FD27EAE49500E963E6 /* Message.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Message.swift; sourceTree = "<group>"; };
+		8EA2C152E6311E94EAA2803A /* Pods_tinkoff_chat.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_tinkoff_chat.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		D6D93988BE43974F0F7D105D /* Pods-tinkoff-chat.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-tinkoff-chat.debug.xcconfig"; path = "Target Support Files/Pods-tinkoff-chat/Pods-tinkoff-chat.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -97,6 +103,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				A73332455F47B49AB2820C8A /* Pods_tinkoff_chat.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -285,6 +292,8 @@
 			children = (
 				11DEFF4C27BEEDA800688EE4 /* tinkoff-chat */,
 				11DEFF4B27BEEDA800688EE4 /* Products */,
+				37D5EDBDD391DF82820D466A /* Pods */,
+				A700436FC00F89592514DA41 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -306,8 +315,26 @@
 				11DEFF5627BEEDA900688EE4 /* Assets.xcassets */,
 				11DEFF5827BEEDA900688EE4 /* LaunchScreen.storyboard */,
 				11DEFF5B27BEEDA900688EE4 /* Info.plist */,
+				112BA6E127EF8CAE00829CCC /* GoogleService-Info.plist */,
 			);
 			path = "tinkoff-chat";
+			sourceTree = "<group>";
+		};
+		37D5EDBDD391DF82820D466A /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				D6D93988BE43974F0F7D105D /* Pods-tinkoff-chat.debug.xcconfig */,
+				01ACE05962374C353934854E /* Pods-tinkoff-chat.release.xcconfig */,
+			);
+			path = Pods;
+			sourceTree = "<group>";
+		};
+		A700436FC00F89592514DA41 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				8EA2C152E6311E94EAA2803A /* Pods_tinkoff_chat.framework */,
+			);
+			name = Frameworks;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -317,9 +344,12 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 11DEFF5E27BEEDA900688EE4 /* Build configuration list for PBXNativeTarget "tinkoff-chat" */;
 			buildPhases = (
+				5FC045E14ECE6A338E3D1853 /* [CP] Check Pods Manifest.lock */,
 				11DEFF4627BEEDA800688EE4 /* Sources */,
 				11DEFF4727BEEDA800688EE4 /* Frameworks */,
 				11DEFF4827BEEDA800688EE4 /* Resources */,
+				92FB260ACFBAC7CFC6320EE7 /* [CP] Embed Pods Frameworks */,
+				1195AD2C27EFA67A004A2EB0 /* Run Script */,
 			);
 			buildRules = (
 			);
@@ -370,10 +400,71 @@
 			files = (
 				11DEFF5A27BEEDA900688EE4 /* LaunchScreen.storyboard in Resources */,
 				11DEFF5727BEEDA900688EE4 /* Assets.xcassets in Resources */,
+				112BA6E227EF8CAE00829CCC /* GoogleService-Info.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		1195AD2C27EFA67A004A2EB0 /* Run Script */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+			);
+			name = "Run Script";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "# Type a script or drag a script file from your workspace to insert its path.\n${PODS_ROOT}/SwiftLint/swiftlint --config ${SRCROOT}/.swiftlint.yml\n";
+		};
+		5FC045E14ECE6A338E3D1853 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-tinkoff-chat-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		92FB260ACFBAC7CFC6320EE7 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-tinkoff-chat/Pods-tinkoff-chat-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-tinkoff-chat/Pods-tinkoff-chat-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-tinkoff-chat/Pods-tinkoff-chat-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		11DEFF4627BEEDA800688EE4 /* Sources */ = {
@@ -552,14 +643,18 @@
 		};
 		11DEFF5F27BEEDA900688EE4 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = D6D93988BE43974F0F7D105D /* Pods-tinkoff-chat.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
-				CODE_SIGN_STYLE = Automatic;
+				CODE_SIGN_IDENTITY = "Apple Development";
+				CODE_SIGN_STYLE = Manual;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = UA2ZXG4WK9;
+				DEVELOPMENT_TEAM = "";
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = "tinkoff-chat/Info.plist";
+				INFOPLIST_KEY_NSCameraUsageDescription = "Camera use";
+				INFOPLIST_KEY_NSPhotoLibraryUsageDescription = "Library use";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
@@ -570,8 +665,9 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = "com.tinkoff-chat";
+				PRODUCT_BUNDLE_IDENTIFIER = ru.tinkoff.TinkoffChat;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = 1;
@@ -580,14 +676,18 @@
 		};
 		11DEFF6027BEEDA900688EE4 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 01ACE05962374C353934854E /* Pods-tinkoff-chat.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
-				CODE_SIGN_STYLE = Automatic;
+				CODE_SIGN_IDENTITY = "Apple Development";
+				CODE_SIGN_STYLE = Manual;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = UA2ZXG4WK9;
+				DEVELOPMENT_TEAM = "";
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = "tinkoff-chat/Info.plist";
+				INFOPLIST_KEY_NSCameraUsageDescription = "Camera use";
+				INFOPLIST_KEY_NSPhotoLibraryUsageDescription = "Library use";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
@@ -598,8 +698,9 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = "com.tinkoff-chat";
+				PRODUCT_BUNDLE_IDENTIFIER = ru.tinkoff.TinkoffChat;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = 1;

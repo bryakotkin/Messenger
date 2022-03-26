@@ -50,8 +50,7 @@ class ConversationViewCell: UITableViewCell {
             cloudView.backgroundColor = theme?.cloudColor
             messageLabel.textColor = theme?.labelColorOutgoing
             cloudViewRightConstraint?.isActive = true
-        }
-        else {
+        } else {
             cloudView.backgroundColor = theme?.cloudColorIncoming
             messageLabel.textColor = theme?.labelColorIncomming
             cloudViewLeftConstraint?.isActive = true
@@ -93,7 +92,7 @@ class ConversationViewCell: UITableViewCell {
             cloudView.topAnchor.constraint(equalTo: topAnchor, constant: 5),
             cloudView.bottomAnchor.constraint(equalTo: bottomAnchor, constant: -5),
             cloudView.heightAnchor.constraint(equalTo: messageLabel.heightAnchor, constant: 20),
-            cloudView.widthAnchor.constraint(lessThanOrEqualTo: widthAnchor, multiplier: 3/4, constant: -20)
+            cloudView.widthAnchor.constraint(lessThanOrEqualTo: widthAnchor, multiplier: 3 / 4, constant: -20)
         ]
         
         messageLabel.setContentCompressionResistancePriority(.defaultHigh, for: .horizontal)

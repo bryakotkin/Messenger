@@ -22,7 +22,7 @@ class ConversationsDataManager {
         )
         
         messages1.append(
-            Message(text: "Хорошо, где ты сейчас учишьсяjasndjansdjnasjdnasjdnjasndjasndjnasjdnasjdnjasndjasndeyrheyryehryehry?",
+            Message(text: "Хорошо, где ты сейчас учишься?",
                     date: dateFormatter.date(from: "2021-12-05 14:15"),
                     isIncoming: false)
         )
@@ -43,6 +43,7 @@ class ConversationsDataManager {
         messages2.removeLast()
         
         var conversations: [[Conversation]] = [[], []]
+        // swiftlint:disable:next line_length
         let names = ["Cаша А", "Никита А", "Коля A", "Максим А", "Иван A", "Егор А", "Юля А", "Оля А", "Артем А", "Георгий А", "Эдуард А", "Cаша Б", "Никита Б", "Коля Б", "Максим Б", "Иван Б", "Егор Б", "Юля Б", "Оля Б", "Артем Б", "Георгий Б"]
         var isOnline = true
         
@@ -51,8 +52,7 @@ class ConversationsDataManager {
             let messages = isOnline ? messages1 : messages2
             if i % 2 == 0 {
                 conversations[index].append(Conversation(name: element, messages: messages, online: isOnline, hasUnreadMessages: isOnline))
-            }
-            else {
+            } else {
                 conversations[index].append(Conversation(name: element, messages: nil, online: isOnline, hasUnreadMessages: !isOnline))
                 isOnline = !isOnline
             }

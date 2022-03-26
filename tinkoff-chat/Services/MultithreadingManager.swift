@@ -8,6 +8,6 @@
 import Foundation
 
 protocol MultithreadingManager {
-    func saveData(_ profile: Profile, flags: ProfileFlags, completionHandler: @escaping (Bool) -> ())
-    func getData(completionHandler: @escaping (Profile) -> ()) 
+    func saveData(_ profile: Profile, flags: ProfileFlags, completionHandler: @escaping (Bool) -> Void)
+    func getData(completionHandler: @escaping (Profile) -> Void) 
 }

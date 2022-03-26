@@ -55,15 +55,13 @@ class ConversationListCell: UITableViewCell {
             if let date = date {
                 if Calendar.current.isDateInToday(date) {
                     dateFormatter.dateFormat = "HH:mm"
-                }
-                else {
+                } else {
                     dateFormatter.dateFormat = "dd/MM/YYYY"
                 }
                 
                 let dateString = dateFormatter.string(from: date)
                 dateLabel.text = dateString
-            }
-            else {
+            } else {
                 dateLabel.text = ""
             }
         }
@@ -73,8 +71,7 @@ class ConversationListCell: UITableViewCell {
         didSet {
             if let message = message {
                 messageLabel.text = message
-            }
-            else {
+            } else {
                 messageLabel.font = UIFont(name: "Helvetica Neue", size: 18)
                 messageLabel.text = "Not message yet."
                 hasUnreadMessages = false
@@ -169,4 +166,3 @@ class ConversationListCell: UITableViewCell {
         NSLayoutConstraint.activate(constraints)
     }
 }
-

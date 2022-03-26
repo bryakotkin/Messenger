@@ -23,8 +23,7 @@ class ProfileDataManager {
             if flags.2 {
                 isSaved = try JSONSerialization.save(jsonObject: profile.image?.pngData(), toFilename: Constants.profileImage.rawValue)
             }
-        }
-        catch {
+        } catch {
             isSaved = false
         }
         

@@ -30,8 +30,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     func extractTheme() {
         if let theme = ThemeManager.shared.theme {
             ThemeManager.shared.saveCurrentTheme(theme)
-        }
-        else {
+        } else {
             ThemeManager.shared.saveCurrentTheme(.classic)
         }
     }
@@ -56,4 +55,3 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         Logger.printAppStatus(.background, .terminated, #function)
     }
 }
-

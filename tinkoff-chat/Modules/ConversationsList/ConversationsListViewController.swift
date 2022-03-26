@@ -12,8 +12,8 @@ class ConversationsListViewController: UIViewController {
     let conversations = ConversationsDataManager.getConversations()
     let sections = ["Online", "History"]
     
-    var mainView: ConversationsListView {
-        return view as! ConversationsListView
+    var mainView: ConversationsListView? {
+        return view as? ConversationsListView
     }
     
     override func loadView() {
@@ -21,10 +21,12 @@ class ConversationsListViewController: UIViewController {
     }
     
     override func viewDidLoad() {
+        super.viewDidLoad()
+        
         title = "Tinkoff Chat"
         
-        mainView.tableView.delegate = self
-        mainView.tableView.dataSource = self
+        mainView?.tableView.delegate = self
+        mainView?.tableView.dataSource = self
         
         setupNavigationItem()
         updateTheme()
@@ -36,15 +38,13 @@ class ConversationsListViewController: UIViewController {
         
         if let profileImage = UIImage(systemName: "person") {
             profileButton = UIBarButtonItem(image: profileImage, style: .plain, target: self, action: #selector(showProfileVC))
-        }
-        else {
+        } else {
             profileButton = UIBarButtonItem(title: "Profile", style: .plain, target: self, action: #selector(showProfileVC))
         }
         
         if let settingsImage = UIImage(systemName: "gearshape") {
             settingsButton = UIBarButtonItem(image: settingsImage, style: .plain, target: self, action: #selector(showThemesVC))
-        }
-        else {
+        } else {
             settingsButton = UIBarButtonItem(title: "Settings", style: .plain, target: self, action: #selector(showThemesVC))
         }
         
@@ -84,7 +84,7 @@ class ConversationsListViewController: UIViewController {
             NSAttributedString.Key.foregroundColor: theme?.titleControllerColor ?? .black
         ]
         
-        mainView.tableView.reloadData()
+        mainView?.tableView.reloadData()
     }
 }
 
@@ -100,7 +100,7 @@ extension ConversationsListViewController: UITableViewDelegate {
         conversationVC.messages = model.messages
         
         navigationController?.pushViewController(conversationVC, animated: true)
-        mainView.tableView.deselectRow(at: indexPath, animated: true)
+        mainView?.tableView.deselectRow(at: indexPath, animated: true)
     }
 }
 
@@ -125,7 +125,10 @@ extension ConversationsListViewController: UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        guard let cell = tableView.dequeueReusableCell(withIdentifier: Constants.conversationCell.rawValue, for: indexPath) as? ConversationListCell else { return UITableViewCell() }
+        guard let cell = tableView.dequeueReusableCell(
+            withIdentifier: Constants.conversationCell.rawValue,
+            for: indexPath
+        ) as? ConversationListCell else { return UITableViewCell() }
         
         let data = conversations[indexPath.section][indexPath.row]
         let message: Message? = data.messages?.last
@@ -154,4 +157,3 @@ extension ConversationsListViewController: ThemesPickerDelegate {
         updateTheme()
     }
 }
-
