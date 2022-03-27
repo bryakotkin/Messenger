@@ -10,4 +10,7 @@ import Foundation
 enum Constants: String {
     case conversationListCell
     case conversationCell
+    case profileUsername
+    case profileDescription
+    case profileImage
 }

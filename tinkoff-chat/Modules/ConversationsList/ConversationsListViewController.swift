@@ -9,7 +9,7 @@ import UIKit
 
 class ConversationsListViewController: UIViewController {
     
-    let conversations = DataSourceManager.getConversations()
+    let conversations = ConversationsDataManager.getConversations()
     let sections = ["Online", "History"]
     
     var mainView: ConversationsListView {
