@@ -6,13 +6,18 @@
 //
 
 import UIKit
+import Firebase
 
 @main
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
     var window: UIWindow?
+    var firebaseManager: FirebaseManager?
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
+        FirebaseApp.configure()
+        firebaseManager = FirebaseManager()
+        
         extractTheme()
         
         let conversationsListVC = ConversationsListViewController()

@@ -8,7 +8,7 @@
 import Foundation
 
 class Logger {
-    
+
     enum ApplicationState: String {
         case notrunning
         case inactive

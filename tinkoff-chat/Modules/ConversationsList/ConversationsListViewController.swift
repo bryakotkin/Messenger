@@ -9,8 +9,9 @@ import UIKit
 
 class ConversationsListViewController: UIViewController {
     
-    let conversations = ConversationsDataManager.getConversations()
-    let sections = ["Online", "History"]
+    var channels: Channels = []
+    let sectionName = "Channels"
+    let firebaseManager = (UIApplication.shared.delegate as? AppDelegate)?.firebaseManager
     
     var mainView: ConversationsListView? {
         return view as? ConversationsListView
@@ -28,6 +29,7 @@ class ConversationsListViewController: UIViewController {
         mainView?.tableView.delegate = self
         mainView?.tableView.dataSource = self
         
+        fetchChannels()
         setupNavigationItem()
         updateTheme()
     }
@@ -88,16 +90,26 @@ class ConversationsListViewController: UIViewController {
     }
 }
 
+// MARK: - Firebase logic
+
+extension ConversationsListViewController {
+    func fetchChannels() {
+        firebaseManager?.listeningChannels { [weak self] channels in
+            self?.channels = channels
+            self?.mainView?.tableView.reloadData()
+        }
+    }
+}
+
 // MARK: - ConversationsListViewController: UITableViewDelegate
 
 extension ConversationsListViewController: UITableViewDelegate {
-    
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        let model = conversations[indexPath.section][indexPath.row]
+        let model = channels[indexPath.row]
         
         let conversationVC = ConversationViewController()
         conversationVC.title = model.name
-        conversationVC.messages = model.messages
+        conversationVC.channel = model
         
         navigationController?.pushViewController(conversationVC, animated: true)
         mainView?.tableView.deselectRow(at: indexPath, animated: true)
@@ -107,21 +119,12 @@ extension ConversationsListViewController: UITableViewDelegate {
 // MARK: - ConversationsListViewController: UITableViewDataSource
 
 extension ConversationsListViewController: UITableViewDataSource {
-    
-    func numberOfSections(in tableView: UITableView) -> Int {
-        return sections.count
-    }
-    
     func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
-        return sections[section]
+        return sectionName
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return conversations[section].count
-    }
-    
-    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return 100
+        return channels.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -130,18 +133,9 @@ extension ConversationsListViewController: UITableViewDataSource {
             for: indexPath
         ) as? ConversationListCell else { return UITableViewCell() }
         
-        let data = conversations[indexPath.section][indexPath.row]
-        let message: Message? = data.messages?.last
+        let channel = channels[indexPath.row]
         
-        let model = ConversationListCellModel(
-            name: data.name,
-            message: message?.text,
-            date: message?.date,
-            online: data.online,
-            hasUnreadMessages: data.hasUnreadMessages
-        )
-        
-        cell.configure(model: model)
+        cell.configure(model: channel)
         cell.updateTheme()
         
         return cell
@@ -151,7 +145,6 @@ extension ConversationsListViewController: UITableViewDataSource {
 // MARK: - ConversationsListViewController: ThemesPickerDelegate
 
 extension ConversationsListViewController: ThemesPickerDelegate {
-    
     func configureTheme(_ theme: Themes) {
         ThemeManager.shared.saveCurrentTheme(theme)
         updateTheme()

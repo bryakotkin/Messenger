@@ -8,7 +8,6 @@
 import Foundation
 
 extension JSONSerialization {
-    
     static func loadJSON<T: Decodable>(withFilename filename: String, type: T.Type) throws -> T? {
         let fm = FileManager.default
         let urls = fm.urls(for: .documentDirectory, in: .userDomainMask)

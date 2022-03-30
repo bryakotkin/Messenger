@@ -20,7 +20,7 @@ class ConversationListCell: UITableViewCell {
     
     private let messageLabel: UILabel = {
         let label = UILabel()
-        label.numberOfLines = 2
+        label.numberOfLines = 1
         label.font = .systemFont(ofSize: 18)
         label.textColor = CustomColors.lightGrey3
         label.translatesAutoresizingMaskIntoConstraints = false
@@ -91,12 +91,10 @@ class ConversationListCell: UITableViewCell {
         }
     }
     
-    func configure(model: ConversationListCellModel) {
-        hasUnreadMessages = model.hasUnreadMessages
+    func configure(model: Channel) {
         title = model.name
-        message = model.message
-        date = model.date
-        isOnline = model.online
+        message = model.lastMessage
+        date = model.lastActivity
     }
     
     func updateTheme() {
@@ -132,8 +130,8 @@ class ConversationListCell: UITableViewCell {
 
         let titleLabelConstraint = [
             titleLabel.leftAnchor.constraint(equalTo: leftAnchor, constant: 15),
-            titleLabel.topAnchor.constraint(equalTo: topAnchor, constant: 17),
-            titleLabel.rightAnchor.constraint(equalTo: dateLabel.leftAnchor)
+            titleLabel.topAnchor.constraint(equalTo: topAnchor, constant: 15),
+            titleLabel.rightAnchor.constraint(equalTo: dateLabel.leftAnchor, constant: -5)
         ]
         
         let dateLabelConstraint = [
@@ -142,7 +140,7 @@ class ConversationListCell: UITableViewCell {
         ]
         
         let messageLabelConstraint = [
-            messageLabel.topAnchor.constraint(equalTo: titleLabel.bottomAnchor),
+            messageLabel.topAnchor.constraint(equalTo: titleLabel.bottomAnchor, constant: 5),
             messageLabel.leftAnchor.constraint(equalTo: titleLabel.leftAnchor),
             messageLabel.rightAnchor.constraint(equalTo: dateLabel.rightAnchor),
             messageLabel.bottomAnchor.constraint(equalTo: bottomAnchor, constant: -15)

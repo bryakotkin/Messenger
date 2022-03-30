@@ -8,7 +8,7 @@
 import Foundation
 
 class ThemeManager {
-    
+
     static let shared: ThemeManager = ThemeManager()
     
     private let defaults = UserDefaults.standard
