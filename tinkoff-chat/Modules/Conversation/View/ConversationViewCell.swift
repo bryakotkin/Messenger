@@ -53,20 +53,18 @@ class ConversationViewCell: UITableViewCell {
         }
     }
     
-    var isComming: Bool = true
+    var isComming = true
+    var isBlank = true
     
     func configure(model: Message) {
         message = model.content
         isComming = model.senderId != deviceId
         name = isComming ? model.senderName : ""
         
-        cloudViewLeftConstraint?.isActive = isComming
-        cloudViewRightConstraint?.isActive = !isComming
-        
-        let isBlank: Bool = name?.isBlank ?? true
-        messageLabelTopConstraintToNameLabel?.constant = isBlank ? 0 : 5
-        nameLabelHeightConstraint?.isActive = isBlank
+        isBlank = name?.isBlank ?? true
         nameLabel.isHidden = !isComming
+        
+        setNeedsUpdateConstraints()
     }
     
     func updateTheme() {
@@ -100,9 +98,9 @@ class ConversationViewCell: UITableViewCell {
     }
     
     private func setupSubviews() {
-        addSubview(cloudView)
-        addSubview(messageLabel)
-        addSubview(nameLabel)
+        contentView.addSubview(cloudView)
+        contentView.addSubview(messageLabel)
+        contentView.addSubview(nameLabel)
     }
     
     private func setupConstraints() {
@@ -121,13 +119,18 @@ class ConversationViewCell: UITableViewCell {
         ]
         
         let cloudViewConstraint = [
-            cloudView.topAnchor.constraint(equalTo: topAnchor, constant: 5),
-            cloudView.bottomAnchor.constraint(equalTo: bottomAnchor, constant: -5),
-            cloudView.widthAnchor.constraint(lessThanOrEqualTo: widthAnchor, multiplier: 3 / 4, constant: -15)
+            cloudView.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 5),
+            cloudView.bottomAnchor.constraint(equalTo: contentView.bottomAnchor, constant: -5),
+            cloudView.widthAnchor.constraint(lessThanOrEqualTo: contentView.widthAnchor, multiplier: 3 / 4, constant: -15)
         ]
         
-        cloudViewLeftConstraint = cloudView.leftAnchor.constraint(equalTo: leftAnchor, constant: 15)
-        cloudViewRightConstraint = cloudView.rightAnchor.constraint(equalTo: rightAnchor, constant: -15)
+        nameLabel.setContentHuggingPriority(.defaultHigh, for: .vertical)
+        messageLabel.setContentHuggingPriority(.defaultLow, for: .vertical)
+        nameLabel.setContentCompressionResistancePriority(.defaultHigh, for: .vertical)
+        messageLabel.setContentCompressionResistancePriority(.defaultLow, for: .vertical)
+        
+        cloudViewLeftConstraint = cloudView.leftAnchor.constraint(equalTo: contentView.leftAnchor, constant: 15)
+        cloudViewRightConstraint = cloudView.rightAnchor.constraint(equalTo: contentView.rightAnchor, constant: -15)
         nameLabelHeightConstraint = nameLabel.heightAnchor.constraint(equalToConstant: 0)
         messageLabelTopConstraintToNameLabel = messageLabel.topAnchor.constraint(equalTo: nameLabel.bottomAnchor)
         
@@ -138,5 +141,15 @@ class ConversationViewCell: UITableViewCell {
         constraints.append(contentsOf: nameLabelConstraint)
         
         NSLayoutConstraint.activate(constraints)
+    }
+    
+    override func updateConstraints() {
+        cloudViewLeftConstraint?.isActive = isComming
+        cloudViewRightConstraint?.isActive = !isComming
+        
+        messageLabelTopConstraintToNameLabel?.constant = isBlank ? 0 : 5
+        nameLabelHeightConstraint?.isActive = isBlank
+        
+        super.updateConstraints()
     }
 }

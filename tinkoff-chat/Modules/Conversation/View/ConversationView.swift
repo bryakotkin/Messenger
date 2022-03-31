@@ -106,10 +106,10 @@ class ConversationView: UIView {
         
         backgroundColor = theme?.backgroundColor
         backgroundView.backgroundColor = theme?.backgroundColor
-        messageTextView.layer.borderColor = theme?.labelColor.cgColor
+        messageTextView.layer.borderColor = theme?.cloudColorIncoming.cgColor
         messageTextView.layer.borderWidth = 1
-        messageTextView.backgroundColor = theme?.backgroundColor
-        messageTextView.textColor = theme?.labelColor
+        messageTextView.backgroundColor = theme?.cloudColorIncoming.withAlphaComponent(0.8)
+        messageTextView.textColor = theme?.labelColorIncomming
     }
     
     private func setupConstraints() {
