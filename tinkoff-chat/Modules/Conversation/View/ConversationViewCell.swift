@@ -11,7 +11,7 @@ class ConversationViewCell: UITableViewCell {
     
     let cloudView: UIView = {
         let view = UIView()
-        view.layer.cornerRadius = 15
+        view.layer.cornerRadius = 10
         view.layer.masksToBounds = true
         view.translatesAutoresizingMaskIntoConstraints = false
         
@@ -57,7 +57,7 @@ class ConversationViewCell: UITableViewCell {
     var isBlank = true
     
     func configure(model: Message) {
-        message = model.content
+        message = model.content.isBlank ? "The message disappeared without a trace 🙃" : model.content
         isComming = model.senderId != deviceId
         name = isComming ? model.senderName : ""
         
