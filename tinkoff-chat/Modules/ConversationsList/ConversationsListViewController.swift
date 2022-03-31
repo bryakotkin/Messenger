@@ -72,7 +72,7 @@ class ConversationsListViewController: UIViewController {
     }
     
     @objc private func showNewChannelAlert() {
-        let alertController = UIAlertController(title: "Создать канала", message: "Введите название канала", preferredStyle: .alert)
+        let alertController = UIAlertController(title: "Создать канал", message: "Введите название канала", preferredStyle: .alert)
         alertController.addTextField { textField in
             textField.placeholder = "Название"
         }

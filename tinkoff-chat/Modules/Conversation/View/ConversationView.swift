@@ -23,7 +23,6 @@ class ConversationView: UIView {
     }
     
     private var maxHeight: CGFloat = UIScreen.main.bounds.width / 2
-    private var isFirst = true
     
     let tableView: UITableView = {
         let tableView = UITableView()
@@ -170,12 +169,7 @@ extension ConversationView: UITextViewDelegate {
             messageTextViewHeightConstraint?.constant = estimatedSize.height
             isOverised = false
         } else {
-            if isFirst {
-                maxHeight = textView.contentSize.height
-                isFirst = false
-            }
             isOverised = true
-            messageTextViewHeightConstraint?.constant = maxHeight
         }
 
         sendButton.isEnabled = !textView.text.isBlank
@@ -209,6 +203,7 @@ extension ConversationView {
         delegate?.sendButtonEvent(messageTextView.text)
         messageTextView.text = ""
         isOverised = false
+        messageTextView.contentSize.height = 0
         textViewDidChange(messageTextView)
     }
 }

@@ -120,30 +120,31 @@ class ConversationListCell: UITableViewCell {
     }
     
     private func setupSubviews() {
-        addSubview(titleLabel)
-        addSubview(dateLabel)
-        addSubview(messageLabel)
+        contentView.addSubview(titleLabel)
+        contentView.addSubview(dateLabel)
+        contentView.addSubview(messageLabel)
     }
     
     private func setupConstraints() {
         var constraints: [NSLayoutConstraint] = []
 
         let titleLabelConstraint = [
-            titleLabel.leftAnchor.constraint(equalTo: leftAnchor, constant: 15),
-            titleLabel.topAnchor.constraint(equalTo: topAnchor, constant: 15),
+            titleLabel.leftAnchor.constraint(equalTo: contentView.leftAnchor, constant: 15),
+            titleLabel.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 15),
             titleLabel.rightAnchor.constraint(equalTo: dateLabel.leftAnchor, constant: -5)
         ]
         
         let dateLabelConstraint = [
-            dateLabel.topAnchor.constraint(equalTo: titleLabel.topAnchor),
-            dateLabel.rightAnchor.constraint(equalTo: rightAnchor, constant: -15)
+            dateLabel.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 15),
+            dateLabel.rightAnchor.constraint(equalTo: contentView.rightAnchor, constant: -15),
+            dateLabel.bottomAnchor.constraint(equalTo: messageLabel.topAnchor, constant: -5)
         ]
         
         let messageLabelConstraint = [
             messageLabel.topAnchor.constraint(equalTo: titleLabel.bottomAnchor, constant: 5),
             messageLabel.leftAnchor.constraint(equalTo: titleLabel.leftAnchor),
             messageLabel.rightAnchor.constraint(equalTo: dateLabel.rightAnchor),
-            messageLabel.bottomAnchor.constraint(equalTo: bottomAnchor, constant: -15)
+            messageLabel.bottomAnchor.constraint(equalTo: contentView.bottomAnchor, constant: -15)
         ]
         
         titleLabel.setContentHuggingPriority(.defaultLow, for: .horizontal)
@@ -153,9 +154,9 @@ class ConversationListCell: UITableViewCell {
         titleLabel.setContentCompressionResistancePriority(.defaultHigh, for: .vertical)
         dateLabel.setContentCompressionResistancePriority(.defaultHigh, for: .vertical)
         messageLabel.setContentCompressionResistancePriority(.defaultLow, for: .vertical)
-        dateLabel.setContentHuggingPriority(.defaultHigh, for: .vertical)
-        titleLabel.setContentHuggingPriority(.defaultHigh, for: .vertical)
-        messageLabel.setContentHuggingPriority(.defaultLow, for: .vertical)
+        dateLabel.setContentHuggingPriority(.defaultLow, for: .vertical)
+        titleLabel.setContentHuggingPriority(.defaultLow, for: .vertical)
+        messageLabel.setContentHuggingPriority(.defaultHigh, for: .vertical)
         
         constraints.append(contentsOf: titleLabelConstraint)
         constraints.append(contentsOf: dateLabelConstraint)
