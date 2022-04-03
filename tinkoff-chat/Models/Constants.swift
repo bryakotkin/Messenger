@@ -6,6 +6,7 @@
 //
 
 import Foundation
+import UIKit
 
 enum Constants: String {
     case conversationListCell
@@ -13,4 +14,8 @@ enum Constants: String {
     case profileUsername
     case profileDescription
     case profileImage
+    case channels
+    case messages
 }
+
+let deviceId = UIDevice.current.identifierForVendor?.uuidString

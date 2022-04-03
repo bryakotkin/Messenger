@@ -12,8 +12,8 @@ class ProfileViewController: UIViewController {
     var prevProfile: Profile?
     var dataManager: MultithreadingManager = GCDManager()
     
-    var mainView: ProfileView {
-        return view as! ProfileView
+    var mainView: ProfileView? {
+        return view as? ProfileView
     }
     
     override func loadView() {
@@ -29,36 +29,39 @@ class ProfileViewController: UIViewController {
         setupNavigationBar()
         isHiddenCancelGCDOperationButtons(true)
         
-        mainView.delegate = self
-        mainView.usernameTextField.delegate = self
-        mainView.descriptionTextView.delegate = self
+        mainView?.delegate = self
+        mainView?.usernameTextField.delegate = self
+        mainView?.descriptionTextView.delegate = self
         
 //        Значения нулевые, потому что view добавлена в иерархию, но констрейнты еще не посчитаны
-//        print(#function, mainView.editButton.frame)
+//        print(#function, mainView?.editButton.frame)
     }
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         
 //        Значения размеров и положение не нулевые, потому что всё посчитано и отображено пользователю
-//        print(#function, mainView.editButton.frame)
+//        print(#function, mainView?.editButton.frame)
     }
     
     override func viewDidLayoutSubviews() {
-        mainView.userImageView.layer.cornerRadius = mainView.userImageView.bounds.width / 2
+        guard let width = mainView?.userImageView.bounds.width else { return }
+        mainView?.userImageView.layer.cornerRadius = width / 2
     }
     
     private func setupNavigationBar() {
         let cancelButton = UIBarButtonItem(barButtonSystemItem: .cancel, target: self, action: #selector(cancelBarButtonAction))
         navigationItem.rightBarButtonItem = cancelButton
         
-        navigationController?.navigationBar.titleTextAttributes = [NSAttributedString.Key.foregroundColor: ThemeManager.shared.currentTheme?.titleControllerColor ?? .black]
+        navigationController?.navigationBar.titleTextAttributes = [
+            NSAttributedString.Key.foregroundColor: ThemeManager.shared.currentTheme?.titleControllerColor ?? .black
+        ]
     }
     
     private func setupFields() {
-        mainView.usernameTextField.text = prevProfile?.username
-        mainView.descriptionTextView.text = prevProfile?.description
-        mainView.userImageView.image = prevProfile?.image
+        mainView?.usernameTextField.text = prevProfile?.username
+        mainView?.descriptionTextView.text = prevProfile?.description
+        mainView?.userImageView.image = prevProfile?.image
         
         isEnabledFields(false)
     }
@@ -87,11 +90,11 @@ extension ProfileViewController: ProfileViewProtocol {
     func editImageButtonAction() {
         let alert = UIAlertController(title: nil, message: "Выберите изображение профиля", preferredStyle: .actionSheet)
                 
-        let galeryAction = UIAlertAction(title: "Установить из галлереи", style: .default) { action in
+        let galeryAction = UIAlertAction(title: "Установить из галлереи", style: .default) { _ in
             self.showImagePicker(type: .photoLibrary)
         }
                 
-        let cameraAction = UIAlertAction(title: "Сделать фото", style: .default) { action in
+        let cameraAction = UIAlertAction(title: "Сделать фото", style: .default) { _ in
             self.showImagePicker(type: .camera)
         }
                 
@@ -106,7 +109,7 @@ extension ProfileViewController: ProfileViewProtocol {
     
     func editButtonAction() {
         isEnabledFields(true)
-        mainView.usernameTextField.becomeFirstResponder()
+        mainView?.usernameTextField.becomeFirstResponder()
         isHiddenCancelGCDOperationButtons(false)
         isEnabledGCDOperationButtons(false)
     }
@@ -117,8 +120,8 @@ extension ProfileViewController: ProfileViewProtocol {
     }
     
     func isEnabledEditButtons(_ isEnabled: Bool) {
-        mainView.editImageButton.isEnabled = isEnabled
-        mainView.editButton.isEnabled = isEnabled
+        mainView?.editImageButton.isEnabled = isEnabled
+        mainView?.editButton.isEnabled = isEnabled
     }
     
     func gcdButtonAction() {
@@ -136,12 +139,12 @@ extension ProfileViewController: ProfileViewProtocol {
 
 extension ProfileViewController {
     func isEnabledFields(_ isEnabled: Bool) {
-        mainView.usernameTextField.isEnabled = isEnabled
-        mainView.descriptionTextView.isUserInteractionEnabled = isEnabled
+        mainView?.usernameTextField.isEnabled = isEnabled
+        mainView?.descriptionTextView.isUserInteractionEnabled = isEnabled
     }
     
     func isTextFieldHaveNewValue() -> Bool {
-        let username = mainView.usernameTextField.text
+        let username = mainView?.usernameTextField.text
         
         if username == prevProfile?.username {
             return false
@@ -150,7 +153,7 @@ extension ProfileViewController {
     }
     
     func isTextViewHaveNewValues() -> Bool {
-        let desctiption = mainView.descriptionTextView.text
+        let desctiption = mainView?.descriptionTextView.text
         
         if desctiption == prevProfile?.description {
             return false
@@ -159,7 +162,7 @@ extension ProfileViewController {
     }
     
     func isImageNew() -> Bool {
-        guard let newImg = mainView.userImageView.image else { return false }
+        guard let newImg = mainView?.userImageView.image else { return false }
         guard let prevImg = prevProfile?.image else { return true }
         
         return !prevImg.isEqual(newImg)
@@ -170,15 +173,15 @@ extension ProfileViewController {
 
 extension ProfileViewController {
     func isHiddenCancelGCDOperationButtons(_ isHidden: Bool) {
-        mainView.cancelButton.isHidden = isHidden
-        mainView.gcdButton.isHidden = isHidden
-        mainView.operationButton.isHidden = isHidden
-        mainView.editButton.isHidden = !isHidden
+        mainView?.cancelButton.isHidden = isHidden
+        mainView?.gcdButton.isHidden = isHidden
+        mainView?.operationButton.isHidden = isHidden
+        mainView?.editButton.isHidden = !isHidden
     }
     
     func isEnabledGCDOperationButtons(_ isEnabled: Bool) {
-        mainView.gcdButton.isEnabled = isEnabled
-        mainView.operationButton.isEnabled = isEnabled
+        mainView?.gcdButton.isEnabled = isEnabled
+        mainView?.operationButton.isEnabled = isEnabled
     }
     
     func updateGCDOperationButtonsState() {
@@ -189,9 +192,9 @@ extension ProfileViewController {
 // MARK: - ProfileViewController: UIImagePickerControllerDelegate, UINavigationControllerDelegate
 
 extension ProfileViewController: UIImagePickerControllerDelegate, UINavigationControllerDelegate {
-    func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
+    func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey: Any]) {
         if let image = info[.originalImage] as? UIImage {
-            mainView.userImageView.image = image
+            mainView?.userImageView.image = image
             isHiddenCancelGCDOperationButtons(false)
             isEnabledFields(true)
             isEnabledGCDOperationButtons(true)
@@ -220,13 +223,13 @@ extension ProfileViewController: UITextViewDelegate {
 
 extension ProfileViewController {
     func saveData() {
-        let username = mainView.usernameTextField.text
-        let description = mainView.descriptionTextView.text
-        let image = mainView.userImageView.image
+        let username = mainView?.usernameTextField.text
+        let description = mainView?.descriptionTextView.text
+        let image = mainView?.userImageView.image
         
         let profile = Profile(username: username, description: description, image: image)
         
-        mainView.activityIndicator.startAnimating()
+        mainView?.activityIndicator.startAnimating()
         isEnabledFields(false)
         isEnabledGCDOperationButtons(false)
         
@@ -241,7 +244,7 @@ extension ProfileViewController {
         let isImageNew = isImageNew()
         
         dataManager.saveData(profile, flags: (isUsernameNew, isDescriptionNew, isImageNew)) { [weak self] isSaved in
-            self?.mainView.activityIndicator.stopAnimating()
+            self?.mainView?.activityIndicator.stopAnimating()
             alertController.addAction(cancelAction)
             
             if isSaved {

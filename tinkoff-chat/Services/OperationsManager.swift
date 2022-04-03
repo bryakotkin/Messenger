@@ -8,7 +8,7 @@
 import Foundation
 
 class OperationsManager: MultithreadingManager {
-    func saveData(_ profile: Profile, flags: ProfileFlags, completionHandler: @escaping (Bool) -> ()) {
+    func saveData(_ profile: Profile, flags: ProfileFlags, completionHandler: @escaping (Bool) -> Void) {
         let operationQueue = OperationQueue()
         let operation = WriteOperation()
         operation.profile = profile
@@ -24,7 +24,7 @@ class OperationsManager: MultithreadingManager {
         operationQueue.addOperation(operation)
     }
     
-    func getData(completionHandler: @escaping (Profile) -> ()) {
+    func getData(completionHandler: @escaping (Profile) -> Void) {
         let operationQueue = OperationQueue()
         let operation = ReadOperation()
         operation.qualityOfService = .userInteractive

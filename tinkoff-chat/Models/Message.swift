@@ -6,11 +6,36 @@
 //
 
 import Foundation
+import Firebase
 
 struct Message {
-    var text: String?
-    var date: Date?
-    var isIncoming: Bool?
+    let content: String
+    let created: Date
+    var senderId: String?
+    var senderName: String?
+}
+
+extension Message {
+    init?(dict: [String: Any]) {
+        guard let content = dict["content"] as? String else { return nil }
+        guard let created = (dict["created"] as? Timestamp)?.dateValue() else { return nil }
+        
+        self.content = content
+        self.created = created
+        self.senderId = dict["senderID"] as? String
+        self.senderName = dict["senderName"] as? String
+    }
+}
+
+extension Message {
+    func toDict() -> [String: Any] {
+        return [
+            "content": content,
+            "created": Timestamp(date: created),
+            "senderID": senderId ?? "",
+            "senderName": senderName ?? ""
+        ]
+    }
 }
 
 typealias Messages = [Message]

@@ -137,8 +137,7 @@ class ThemesView: UIView {
         
         if let theme = theme {
             currentTheme = theme
-        }
-        else {
+        } else {
             currentTheme = ThemeManager.shared.currentTheme
         }
         
@@ -192,15 +191,15 @@ class ThemesView: UIView {
     }
     
     private func checkCurrentBorder(_ currentTheme: Theme?) {
-        if let _ = currentTheme as? NightTheme {
+        if (currentTheme as? NightTheme) != nil {
             setBorder(nightThemeView)
             return
         }
-        if let _ = currentTheme as? DayTheme {
+        if (currentTheme as? DayTheme) != nil {
             setBorder(dayThemeView)
             return
         }
-        if let _ = currentTheme as? ClassicTheme {
+        if (currentTheme as? ClassicTheme) != nil {
             setBorder(classicThemeView)
             return
         }
@@ -214,7 +213,7 @@ class ThemesView: UIView {
             dayThemeView.centerYAnchor.constraint(equalTo: centerYAnchor),
             dayThemeView.leftAnchor.constraint(equalTo: leftAnchor, constant: 30),
             dayThemeView.rightAnchor.constraint(equalTo: rightAnchor, constant: -30),
-            dayThemeView.heightAnchor.constraint(equalTo: dayThemeView.widthAnchor, multiplier: 1/5)
+            dayThemeView.heightAnchor.constraint(equalTo: dayThemeView.widthAnchor, multiplier: 1 / 5)
         ]
         
         let dayLabelConstraint = [

@@ -8,7 +8,7 @@
 import Foundation
 
 class GCDManager: MultithreadingManager {
-    func saveData(_ profile: Profile, flags: ProfileFlags, completionHandler: @escaping (Bool) -> ()) {
+    func saveData(_ profile: Profile, flags: ProfileFlags, completionHandler: @escaping (Bool) -> Void) {
         let queue = DispatchQueue.global(qos: .userInitiated)
         queue.async {
             let isSaved = ProfileDataManager.saveObjectToFile(profile, flags: flags)
@@ -18,7 +18,7 @@ class GCDManager: MultithreadingManager {
         }
     }
     
-    func getData(completionHandler: @escaping (Profile) -> ()) {
+    func getData(completionHandler: @escaping (Profile) -> Void) {
         let queue = DispatchQueue.global(qos: .userInitiated)
         queue.async {
             let profile = ProfileDataManager.getObjectFromFile()

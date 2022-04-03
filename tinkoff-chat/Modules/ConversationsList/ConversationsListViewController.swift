@@ -9,11 +9,12 @@ import UIKit
 
 class ConversationsListViewController: UIViewController {
     
-    let conversations = ConversationsDataManager.getConversations()
-    let sections = ["Online", "History"]
+    var channels: Channels = []
+    let sectionName = "Channels"
+    let firebaseManager = (UIApplication.shared.delegate as? AppDelegate)?.firebaseManager
     
-    var mainView: ConversationsListView {
-        return view as! ConversationsListView
+    var mainView: ConversationsListView? {
+        return view as? ConversationsListView
     }
     
     override func loadView() {
@@ -21,35 +22,32 @@ class ConversationsListViewController: UIViewController {
     }
     
     override func viewDidLoad() {
+        super.viewDidLoad()
+        
         title = "Tinkoff Chat"
         
-        mainView.tableView.delegate = self
-        mainView.tableView.dataSource = self
+        mainView?.tableView.delegate = self
+        mainView?.tableView.dataSource = self
         
+        fetchChannels()
         setupNavigationItem()
         updateTheme()
     }
     
     private func setupNavigationItem() {
-        var profileButton: UIBarButtonItem?
-        var settingsButton: UIBarButtonItem?
+        var profileButton = UIBarButtonItem(title: "Profile", style: .plain, target: self, action: #selector(showProfileVC))
+        var settingsButton = UIBarButtonItem(title: "Settings", style: .plain, target: self, action: #selector(showThemesVC))
         
         if let profileImage = UIImage(systemName: "person") {
             profileButton = UIBarButtonItem(image: profileImage, style: .plain, target: self, action: #selector(showProfileVC))
         }
-        else {
-            profileButton = UIBarButtonItem(title: "Profile", style: .plain, target: self, action: #selector(showProfileVC))
-        }
-        
         if let settingsImage = UIImage(systemName: "gearshape") {
             settingsButton = UIBarButtonItem(image: settingsImage, style: .plain, target: self, action: #selector(showThemesVC))
         }
-        else {
-            settingsButton = UIBarButtonItem(title: "Settings", style: .plain, target: self, action: #selector(showThemesVC))
-        }
+        let addChannelButton = UIBarButtonItem(barButtonSystemItem: .add, target: self, action: #selector(showNewChannelAlert))
         
-        navigationItem.rightBarButtonItem = profileButton
         navigationItem.leftBarButtonItem = settingsButton
+        navigationItem.setRightBarButtonItems([profileButton, addChannelButton], animated: false)
     }
     
     @objc private func showProfileVC() {
@@ -73,6 +71,26 @@ class ConversationsListViewController: UIViewController {
         show(themesVC, sender: self)
     }
     
+    @objc private func showNewChannelAlert() {
+        let alertController = UIAlertController(title: "Создать канал", message: "Введите название канала", preferredStyle: .alert)
+        alertController.addTextField { textField in
+            textField.placeholder = "Название"
+        }
+        
+        let closeButtonAction = UIAlertAction(title: "Закрыть", style: .cancel, handler: .none)
+        let createButtonAction = UIAlertAction(title: "Создать", style: .default) { [weak self] _ in
+            let textField = alertController.textFields?.first
+            guard let name = textField?.text, !name.isBlank else { return }
+            
+            self?.firebaseManager?.createChannel(name: name)
+        }
+        
+        alertController.addAction(closeButtonAction)
+        alertController.addAction(createButtonAction)
+        
+        present(alertController, animated: true)
+    }
+    
     private func updateTheme() {
         let theme = ThemeManager.shared.currentTheme
         
@@ -84,61 +102,56 @@ class ConversationsListViewController: UIViewController {
             NSAttributedString.Key.foregroundColor: theme?.titleControllerColor ?? .black
         ]
         
-        mainView.tableView.reloadData()
+        mainView?.tableView.reloadData()
+    }
+}
+
+// MARK: - Firebase logic
+
+extension ConversationsListViewController {
+    func fetchChannels() {
+        firebaseManager?.listeningChannels { [weak self] channels in
+            self?.channels = channels
+            self?.mainView?.tableView.reloadData()
+        }
     }
 }
 
 // MARK: - ConversationsListViewController: UITableViewDelegate
 
 extension ConversationsListViewController: UITableViewDelegate {
-    
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        let model = conversations[indexPath.section][indexPath.row]
+        let model = channels[indexPath.row]
         
         let conversationVC = ConversationViewController()
         conversationVC.title = model.name
-        conversationVC.messages = model.messages
+        conversationVC.channel = model
         
         navigationController?.pushViewController(conversationVC, animated: true)
-        mainView.tableView.deselectRow(at: indexPath, animated: true)
+        mainView?.tableView.deselectRow(at: indexPath, animated: true)
     }
 }
 
 // MARK: - ConversationsListViewController: UITableViewDataSource
 
 extension ConversationsListViewController: UITableViewDataSource {
-    
-    func numberOfSections(in tableView: UITableView) -> Int {
-        return sections.count
-    }
-    
     func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
-        return sections[section]
+        return sectionName
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return conversations[section].count
-    }
-    
-    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return 100
+        return channels.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        guard let cell = tableView.dequeueReusableCell(withIdentifier: Constants.conversationCell.rawValue, for: indexPath) as? ConversationListCell else { return UITableViewCell() }
+        guard let cell = tableView.dequeueReusableCell(
+            withIdentifier: Constants.conversationCell.rawValue,
+            for: indexPath
+        ) as? ConversationListCell else { return UITableViewCell() }
         
-        let data = conversations[indexPath.section][indexPath.row]
-        let message: Message? = data.messages?.last
+        let channel = channels[indexPath.row]
         
-        let model = ConversationListCellModel(
-            name: data.name,
-            message: message?.text,
-            date: message?.date,
-            online: data.online,
-            hasUnreadMessages: data.hasUnreadMessages
-        )
-        
-        cell.configure(model: model)
+        cell.configure(model: channel)
         cell.updateTheme()
         
         return cell
@@ -148,10 +161,8 @@ extension ConversationsListViewController: UITableViewDataSource {
 // MARK: - ConversationsListViewController: ThemesPickerDelegate
 
 extension ConversationsListViewController: ThemesPickerDelegate {
-    
     func configureTheme(_ theme: Themes) {
         ThemeManager.shared.saveCurrentTheme(theme)
         updateTheme()
     }
 }
-

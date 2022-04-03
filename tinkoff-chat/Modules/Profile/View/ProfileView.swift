@@ -155,7 +155,10 @@ class ProfileView: UIView {
         usernameTextField.textColor = theme?.labelColor
         
         if let placeHolderColor = theme?.labelColor {
-            usernameTextField.attributedPlaceholder = NSAttributedString(string: "ФИО", attributes: [NSAttributedString.Key.foregroundColor: placeHolderColor.withAlphaComponent(0.5)])
+            usernameTextField.attributedPlaceholder = NSAttributedString(
+                string: "ФИО",
+                attributes: [NSAttributedString.Key.foregroundColor: placeHolderColor.withAlphaComponent(0.5)]
+            )
         }
         
         if let clearButton = usernameTextField.value(forKey: "_clearButton") as? UIButton {
@@ -175,7 +178,7 @@ class ProfileView: UIView {
         let userImageViewConstraint = [
             userImageView.topAnchor.constraint(equalTo: safeAreaLayoutGuide.topAnchor, constant: 10),
             userImageView.centerXAnchor.constraint(equalTo: centerXAnchor),
-            userImageView.widthAnchor.constraint(equalTo: widthAnchor, multiplier: 2/3),
+            userImageView.widthAnchor.constraint(equalTo: widthAnchor, multiplier: 2 / 3),
             userImageView.heightAnchor.constraint(equalTo: userImageView.widthAnchor)
         ]
         
@@ -215,7 +218,7 @@ class ProfileView: UIView {
         ]
         
         let gcdButtonConstraint = [
-            gcdButton.widthAnchor.constraint(equalTo: cancelButton.widthAnchor, multiplier: 1/2, constant: -5),
+            gcdButton.widthAnchor.constraint(equalTo: cancelButton.widthAnchor, multiplier: 1 / 2, constant: -5),
             gcdButton.leftAnchor.constraint(equalTo: cancelButton.leftAnchor),
             gcdButton.topAnchor.constraint(equalTo: cancelButton.bottomAnchor, constant: 10),
             gcdButton.bottomAnchor.constraint(equalTo: safeAreaLayoutGuide.bottomAnchor, constant: -10)

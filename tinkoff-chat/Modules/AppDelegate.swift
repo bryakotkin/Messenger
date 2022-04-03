@@ -6,13 +6,18 @@
 //
 
 import UIKit
+import Firebase
 
 @main
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
     var window: UIWindow?
+    var firebaseManager: FirebaseManager?
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
+        FirebaseApp.configure()
+        firebaseManager = FirebaseManager()
+        
         extractTheme()
         
         let conversationsListVC = ConversationsListViewController()
@@ -30,8 +35,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     func extractTheme() {
         if let theme = ThemeManager.shared.theme {
             ThemeManager.shared.saveCurrentTheme(theme)
-        }
-        else {
+        } else {
             ThemeManager.shared.saveCurrentTheme(.classic)
         }
     }
@@ -56,4 +60,3 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         Logger.printAppStatus(.background, .terminated, #function)
     }
 }
-
