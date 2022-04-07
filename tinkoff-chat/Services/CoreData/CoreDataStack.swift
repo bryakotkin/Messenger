@@ -66,7 +66,7 @@ class CoreDataStack {
     }
     
     func saveChannels(channels: Channels) {
-        service.saveData { context in
+        service.performSave { context in
             channels.forEach { channel in
                 let dbChannel = DBChannel(context: context)
                 dbChannel.identifier = channel.identifier
@@ -78,8 +78,12 @@ class CoreDataStack {
     }
     
     func saveMessages(channel: Channel, messages: Messages) {
-        service.saveData { [weak self] context in
-            guard let dbChannel = self?.fetchDBChannel(channel: channel) else { return }
+        service.performSave { context in
+            let dbChannel = DBChannel(context: context)
+            dbChannel.identifier = channel.identifier
+            dbChannel.name = channel.name
+            dbChannel.lastMessage = channel.lastMessage
+            dbChannel.lastActivity = channel.lastActivity
             
             var dbMessages: [DBMessage] = []
             messages.forEach { message in

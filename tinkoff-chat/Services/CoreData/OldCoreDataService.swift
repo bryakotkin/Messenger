@@ -79,20 +79,25 @@ class OldCoreDataService {
         }
     }
     
-    func saveData(_ block: @escaping (NSManagedObjectContext) -> Void) {
+    func performSave(_ block: @escaping (NSManagedObjectContext) -> Void) {
         let context = writeContext
         
-        context.performAndWait {
+        context.performAndWait { [weak self] in
             block(context)
             if context.hasChanges {
                 do {
-                    try context.save()
+                    try self?.performSave(in: context)
                 } catch {
                     context.rollback()
                     print("No data saved:", error.localizedDescription)
                 }
             }
         }
+    }
+    
+    private func performSave(in context: NSManagedObjectContext) throws {
+        try context.save()
+        if let parent = context.parent { try performSave(in: parent) }
     }
     
     func readData<T: NSManagedObject>() -> [T] {
