@@ -7,6 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		1100B4FF27FF094D00A19919 /* Chat.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 1100B4FD27FF094D00A19919 /* Chat.xcdatamodeld */; };
+		1100B50127FF0D5D00A19919 /* OldCoreDataService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1100B50027FF0D5D00A19919 /* OldCoreDataService.swift */; };
+		1100B50327FF310800A19919 /* CoreDataStack.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1100B50227FF310800A19919 /* CoreDataStack.swift */; };
 		111FE23C27D0F41C003D9098 /* UIButton+Color.swift in Sources */ = {isa = PBXBuildFile; fileRef = 111FE23B27D0F41C003D9098 /* UIButton+Color.swift */; };
 		111FE23E27D10872003D9098 /* UIViewController+HideKeyboard.swift in Sources */ = {isa = PBXBuildFile; fileRef = 111FE23D27D10872003D9098 /* UIViewController+HideKeyboard.swift */; };
 		11202C7327F4EB9E00297F4E /* String+isBlank.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11202C7227F4EB9E00297F4E /* String+isBlank.swift */; };
@@ -52,6 +55,9 @@
 
 /* Begin PBXFileReference section */
 		01ACE05962374C353934854E /* Pods-tinkoff-chat.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-tinkoff-chat.release.xcconfig"; path = "Target Support Files/Pods-tinkoff-chat/Pods-tinkoff-chat.release.xcconfig"; sourceTree = "<group>"; };
+		1100B4FE27FF094D00A19919 /* Chat.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Chat.xcdatamodel; sourceTree = "<group>"; };
+		1100B50027FF0D5D00A19919 /* OldCoreDataService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OldCoreDataService.swift; sourceTree = "<group>"; };
+		1100B50227FF310800A19919 /* CoreDataStack.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataStack.swift; sourceTree = "<group>"; };
 		111FE23B27D0F41C003D9098 /* UIButton+Color.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIButton+Color.swift"; sourceTree = "<group>"; };
 		111FE23D27D10872003D9098 /* UIViewController+HideKeyboard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewController+HideKeyboard.swift"; sourceTree = "<group>"; };
 		11202C7227F4EB9E00297F4E /* String+isBlank.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+isBlank.swift"; sourceTree = "<group>"; };
@@ -110,6 +116,16 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		1100B4FC27FF092C00A19919 /* CoreData */ = {
+			isa = PBXGroup;
+			children = (
+				1100B4FD27FF094D00A19919 /* Chat.xcdatamodeld */,
+				1100B50027FF0D5D00A19919 /* OldCoreDataService.swift */,
+				1100B50227FF310800A19919 /* CoreDataStack.swift */,
+			);
+			path = CoreData;
+			sourceTree = "<group>";
+		};
 		116DB0C427ECBA8C00FC9E49 /* Operations */ = {
 			isa = PBXGroup;
 			children = (
@@ -217,6 +233,7 @@
 		11CC1EBB27C69D4B00450552 /* Services */ = {
 			isa = PBXGroup;
 			children = (
+				1100B4FC27FF092C00A19919 /* CoreData */,
 				116DB0C427ECBA8C00FC9E49 /* Operations */,
 				11CC1EBE27C69DC200450552 /* Logger.swift */,
 				11D7FA7127E358D4003A3303 /* ThemeManager.swift */,
@@ -441,6 +458,7 @@
 			files = (
 				11A8557027C80F720005514D /* ProfileView.swift in Sources */,
 				119EF9F127ECF72D00EA3378 /* OperationsManager.swift in Sources */,
+				1100B50127FF0D5D00A19919 /* OldCoreDataService.swift in Sources */,
 				111FE23E27D10872003D9098 /* UIViewController+HideKeyboard.swift in Sources */,
 				116E9E0A27DA25F6003AF977 /* ConversationViewCell.swift in Sources */,
 				11873E7327E333A90072FE5B /* ThemesViewController.swift in Sources */,
@@ -448,6 +466,7 @@
 				11E717FE27EAE49500E963E6 /* Message.swift in Sources */,
 				11E717F827EAE16200E963E6 /* JSONSerialization+JSONFile.swift in Sources */,
 				116E9DF327D9CF6C003AF977 /* ConversationsListViewController.swift in Sources */,
+				1100B4FF27FF094D00A19919 /* Chat.xcdatamodeld in Sources */,
 				116DB0C627ECBAA100FC9E49 /* WriteOperation.swift in Sources */,
 				11873E6827E32FE70072FE5B /* Theme.swift in Sources */,
 				11E717FA27EAE1DA00E963E6 /* Profile.swift in Sources */,
@@ -475,6 +494,7 @@
 				116E9DF527D9D03C003AF977 /* ConversationsListView.swift in Sources */,
 				11DEFF4E27BEEDA800688EE4 /* AppDelegate.swift in Sources */,
 				11873E6A27E3313B0072FE5B /* ClassicTheme.swift in Sources */,
+				1100B50327FF310800A19919 /* CoreDataStack.swift in Sources */,
 				11A8557227C813020005514D /* UIColor+HEX.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -697,6 +717,19 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCVersionGroup section */
+		1100B4FD27FF094D00A19919 /* Chat.xcdatamodeld */ = {
+			isa = XCVersionGroup;
+			children = (
+				1100B4FE27FF094D00A19919 /* Chat.xcdatamodel */,
+			);
+			currentVersion = 1100B4FE27FF094D00A19919 /* Chat.xcdatamodel */;
+			path = Chat.xcdatamodeld;
+			sourceTree = "<group>";
+			versionGroupType = wrapper.xcdatamodel;
+		};
+/* End XCVersionGroup section */
 	};
 	rootObject = 11DEFF4227BEEDA800688EE4 /* Project object */;
 }

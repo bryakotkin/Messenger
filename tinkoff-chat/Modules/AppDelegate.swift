@@ -18,6 +18,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         FirebaseApp.configure()
         firebaseManager = FirebaseManager()
         
+        CoreDataStack.shared.enableObservers()
+
         extractTheme()
         
         let conversationsListVC = ConversationsListViewController()

@@ -29,6 +29,7 @@ class ConversationsListViewController: UIViewController {
         mainView?.tableView.delegate = self
         mainView?.tableView.dataSource = self
         
+        fetchDataFromDB()
         fetchChannels()
         setupNavigationItem()
         updateTheme()
@@ -102,6 +103,15 @@ class ConversationsListViewController: UIViewController {
             NSAttributedString.Key.foregroundColor: theme?.titleControllerColor ?? .black
         ]
         
+        mainView?.tableView.reloadData()
+    }
+}
+
+// MARK: - CoreDataStack
+
+extension ConversationsListViewController {
+    func fetchDataFromDB() {
+        channels = CoreDataStack.shared.fetchChannels()
         mainView?.tableView.reloadData()
     }
 }

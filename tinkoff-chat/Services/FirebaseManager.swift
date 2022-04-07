@@ -38,6 +38,8 @@ class FirebaseManager {
                     
                     return date1 > date2
                 }
+                
+                CoreDataStack.shared.saveChannels(channels: channels)
                 completionHandler(channels)
             }
         }
@@ -63,6 +65,8 @@ class FirebaseManager {
                 messages = messages.sorted { message1, message2 in
                     return message1.created < message2.created
                 }
+                
+                CoreDataStack.shared.saveMessages(channel: channel, messages: messages)
                 completionHandler(messages)
             }
         }

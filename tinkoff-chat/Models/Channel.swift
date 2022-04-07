@@ -26,4 +26,13 @@ extension Channel {
     }
 }
 
+extension Channel {
+    init(dbModel: DBChannel) {
+        self.identifier = dbModel.identifier ?? ""
+        self.name = dbModel.name ?? ""
+        self.lastMessage = dbModel.lastMessage
+        self.lastActivity = dbModel.lastActivity
+    }
+}
+
 typealias Channels = [Channel]

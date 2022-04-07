@@ -9,11 +9,7 @@ import UIKit
 
 class ConversationViewController: UIViewController {
     
-    var channel: Channel? {
-        didSet {
-            fetchMessages()
-        }
-    }
+    var channel: Channel?
 
     var messages: Messages = []
     let firebaseManager = (UIApplication.shared.delegate as? AppDelegate)?.firebaseManager
@@ -30,8 +26,19 @@ class ConversationViewController: UIViewController {
         super.viewDidLoad()
 
         self.hideKeyboardWhenTappedAround()
+        fetchMessagesFromDB()
+        fetchMessages()
         mainView?.tableView.dataSource = self
         mainView?.delegate = self
+    }
+}
+
+extension ConversationViewController {
+    func fetchMessagesFromDB() {
+        guard let channel = channel else { return }
+        self.messages = CoreDataStack.shared.fetchMessages(channel: channel)
+        self.mainView?.tableView.reloadData()
+        self.mainView?.tableView.scrollToBottom(isAnimated: false)
     }
 }
 
