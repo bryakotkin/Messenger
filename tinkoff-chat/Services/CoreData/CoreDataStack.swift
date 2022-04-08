@@ -10,7 +10,7 @@ import CoreData
 class CoreDataStack {
     
     static let shared = CoreDataStack()
-    let service: CoreDataService = NewCoreDataService()
+    let service = NewCoreDataService()
     
     private init() {}
     

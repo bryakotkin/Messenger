@@ -7,7 +7,9 @@
 
 import CoreData
 
-class OldCoreDataService: CoreDataService {
+class OldCoreDataService {
+    
+    let basicService = BasicCoreDataService()
     
     private lazy var managedObjectModel: NSManagedObjectModel = {
         guard let url = Bundle.main.url(forResource: "Chat", withExtension: "momd"), let model = NSManagedObjectModel(contentsOf: url) else {
@@ -51,56 +53,14 @@ class OldCoreDataService: CoreDataService {
     }()
     
     func enableObservers() {
-        let notification = NotificationCenter.default
-        
-        notification.addObserver(
-            self,
-            selector: #selector(contextDidChanged),
-            name: .NSManagedObjectContextObjectsDidChange,
-            object: writeContext
-        )
-    }
-    
-    @objc func contextDidChanged(_ notification: Notification) {
-        guard let userInfo = notification.userInfo else { return }
-        
-        if let countInserted = (userInfo[NSInsertedObjectsKey] as? Set<NSManagedObject>)?.count {
-            print("Добавлено записей:", countInserted)
-        }
-        if let countUpdated = (userInfo[NSUpdatedObjectsKey] as? Set<NSManagedObject>)?.count {
-            print("Изменено записей:", countUpdated)
-        }
-        if let countDeleted = (userInfo[NSDeletedObjectsKey] as? Set<NSManagedObject>)?.count {
-            print("Удалено записей:", countDeleted)
-        }
+        basicService.enableObservers(writeContext)
     }
     
     func performSave(_ block: @escaping (NSManagedObjectContext) -> Void) {
-        let context = writeContext
-        
-        context.performAndWait { [weak self] in
-            block(context)
-            if context.hasChanges {
-                do {
-                    try self?.performSave(in: context)
-                } catch {
-                    context.rollback()
-                    print("No data saved:", error.localizedDescription)
-                }
-            }
-        }
+        basicService.performSave(writeContext: writeContext, block)
     }
-    
-    private func performSave(in context: NSManagedObjectContext) throws {
-        try context.save()
-        if let parent = context.parent { try performSave(in: parent) }
-    }
-    
+
     func readData<T: NSManagedObject>() -> [T] {
-        let fetchRequest = T.fetchRequest()
-        let context = readContext
-        
-        guard let result = try? context.fetch(fetchRequest) as? [T] else { return [] }
-        return result
+        return basicService.readData(readContext: readContext)
     }
 }

@@ -8,7 +8,7 @@
 import CoreData
 
 protocol CoreDataService {
-    func enableObservers()
-    func performSave(_ block: @escaping (NSManagedObjectContext) -> Void)
-    func readData<T: NSManagedObject>() -> [T]
+    func enableObservers(_ context: NSManagedObjectContext)
+    func performSave(writeContext: NSManagedObjectContext, _ block: @escaping (NSManagedObjectContext) -> Void)
+    func readData<T: NSManagedObject>(readContext: NSManagedObjectContext) -> [T]
 }
