@@ -10,7 +10,9 @@ import CoreData
 class CoreDataStack {
     
     static let shared = CoreDataStack()
-    let service: OldCoreDataService = OldCoreDataService.shared
+    let service: CoreDataService = NewCoreDataService()
+    
+    private init() {}
     
     func enableObservers() {
         service.enableObservers()

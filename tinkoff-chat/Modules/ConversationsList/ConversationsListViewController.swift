@@ -121,6 +121,10 @@ extension ConversationsListViewController {
 extension ConversationsListViewController {
     func fetchChannels() {
         firebaseManager?.listeningChannels { [weak self] channels in
+            if channels.isEmpty {
+                return
+            }
+            
             self?.channels = channels
             self?.mainView?.tableView.reloadData()
         }

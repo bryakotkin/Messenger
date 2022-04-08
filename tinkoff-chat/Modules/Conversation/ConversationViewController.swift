@@ -48,6 +48,10 @@ extension ConversationViewController {
     func fetchMessages() {
         guard let channel = channel else { return }
         firebaseManager?.listeningMessages(channel: channel) { [weak self] messages in
+            if messages.isEmpty {
+                return
+            }
+
             self?.messages = messages
             self?.mainView?.tableView.reloadData()
             self?.mainView?.tableView.scrollToBottom(isAnimated: false)

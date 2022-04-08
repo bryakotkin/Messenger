@@ -1,52 +1,32 @@
 //
-//  OldCoreDataService.swift
+//  NewCoreDataService.swift
 //  tinkoff-chat
 //
-//  Created by Nikita on 07.04.2022.
+//  Created by Nikita on 08.04.2022.
 //
 
 import CoreData
 
-class OldCoreDataService: CoreDataService {
+class NewCoreDataService: CoreDataService {
     
-    private lazy var managedObjectModel: NSManagedObjectModel = {
-        guard let url = Bundle.main.url(forResource: "Chat", withExtension: "momd"), let model = NSManagedObjectModel(contentsOf: url) else {
-            return NSManagedObjectModel()
+    private lazy var storeContainer: NSPersistentContainer = {
+        let container = NSPersistentContainer(name: "Chat")
+        container.loadPersistentStores { _, error in
+            if let error = error {
+                print(error.localizedDescription)
+            }
         }
-        return model
-    }()
-    
-    private lazy var persistentStoreCoordinator: NSPersistentStoreCoordinator = {
-        let coordinator = NSPersistentStoreCoordinator(managedObjectModel: managedObjectModel)
-        
-        let fileManager = FileManager.default
-        let storeName = "Chat.sqlite"
-        let documentsDirectoryURL = fileManager.urls(for: .documentDirectory, in: .userDomainMask)[0]
-        let persistantStoreURL = documentsDirectoryURL.appendingPathComponent(storeName)
-        
-        do {
-            try coordinator.addPersistentStore(
-                ofType: NSSQLiteStoreType,
-                configurationName: nil,
-                at: persistantStoreURL
-            )
-        } catch {
-            print(error.localizedDescription)
-        }
-        
-        return coordinator
-    }()
-    
-    private lazy var readContext: NSManagedObjectContext = {
-        let context = NSManagedObjectContext(concurrencyType: .mainQueueConcurrencyType)
-        context.persistentStoreCoordinator = persistentStoreCoordinator
-        return context
+        return container
     }()
     
     private lazy var writeContext: NSManagedObjectContext = {
-        let context = NSManagedObjectContext(concurrencyType: .privateQueueConcurrencyType)
-        context.persistentStoreCoordinator = persistentStoreCoordinator
+        let context = storeContainer.newBackgroundContext()
         context.mergePolicy = NSMergeByPropertyObjectTrumpMergePolicy
+        return context
+    }()
+    
+    private lazy var readContext: NSManagedObjectContext = {
+        let context = storeContainer.viewContext
         return context
     }()
     
