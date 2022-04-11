@@ -29,6 +29,7 @@ class ConversationsListViewController: UIViewController {
         mainView?.tableView.delegate = self
         mainView?.tableView.dataSource = self
         
+        fetchDataFromDB()
         fetchChannels()
         setupNavigationItem()
         updateTheme()
@@ -106,11 +107,24 @@ class ConversationsListViewController: UIViewController {
     }
 }
 
+// MARK: - CoreDataStack
+
+extension ConversationsListViewController {
+    func fetchDataFromDB() {
+        channels = CoreDataStack.shared.fetchChannels()
+        mainView?.tableView.reloadData()
+    }
+}
+
 // MARK: - Firebase logic
 
 extension ConversationsListViewController {
     func fetchChannels() {
         firebaseManager?.listeningChannels { [weak self] channels in
+            if channels.isEmpty {
+                return
+            }
+            
             self?.channels = channels
             self?.mainView?.tableView.reloadData()
         }

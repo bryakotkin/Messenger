@@ -28,6 +28,15 @@ extension Message {
 }
 
 extension Message {
+    init(dbModel: DBMessage) {
+        self.content = dbModel.content ?? ""
+        self.created = dbModel.created ?? Date()
+        self.senderId = dbModel.senderId
+        self.senderName = dbModel.senderName
+    }
+}
+
+extension Message {
     func toDict() -> [String: Any] {
         return [
             "content": content,
