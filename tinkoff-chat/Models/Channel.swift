@@ -27,9 +27,12 @@ extension Channel {
 }
 
 extension Channel {
-    init(dbModel: DBChannel) {
-        self.identifier = dbModel.identifier ?? ""
-        self.name = dbModel.name ?? ""
+    init?(dbModel: DBChannel) {
+        guard let identifier = dbModel.identifier else { return nil }
+        guard let name = dbModel.name else { return nil }
+        
+        self.identifier = identifier
+        self.name = name
         self.lastMessage = dbModel.lastMessage
         self.lastActivity = dbModel.lastActivity
     }

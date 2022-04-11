@@ -38,11 +38,11 @@ class BasicCoreDataService: CoreDataService {
     }
     
     func performSave(writeContext context: NSManagedObjectContext, _ block: @escaping (NSManagedObjectContext) -> Void) {
-        context.performAndWait {
+        context.performAndWait { [weak self] in
             block(context)
             if context.hasChanges {
                 do {
-                    try performSave(in: context)
+                    try self?.performSave(in: context)
                 } catch {
                     context.rollback()
                     print("No data saved:", error.localizedDescription)
@@ -56,10 +56,20 @@ class BasicCoreDataService: CoreDataService {
         if let parent = context.parent { try performSave(in: parent) }
     }
     
-    func readData<T: NSManagedObject>(readContext context: NSManagedObjectContext) -> [T] {
+    func readData<T: NSManagedObject>(readContext context: NSManagedObjectContext, predicate: NSPredicate? = nil) -> [T] {
         let fetchRequest = T.fetchRequest()
+        
+        if let predicate = predicate {
+            fetchRequest.predicate = predicate
+        }
         
         guard let result = try? context.fetch(fetchRequest) as? [T] else { return [] }
         return result
+    }
+    
+    func deleteData<T: NSManagedObject>(writeContext context: NSManagedObjectContext, model: T) {
+        performSave(writeContext: context) { context in
+            context.delete(model)
+        }
     }
 }

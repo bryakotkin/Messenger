@@ -9,17 +9,19 @@ import Foundation
 import Firebase
 
 struct Message {
+    let identifier: String
     let content: String
     let created: Date
-    var senderId: String?
-    var senderName: String?
+    let senderId: String?
+    let senderName: String?
 }
 
 extension Message {
-    init?(dict: [String: Any]) {
+    init?(identifier: String, dict: [String: Any]) {
         guard let content = dict["content"] as? String else { return nil }
         guard let created = (dict["created"] as? Timestamp)?.dateValue() else { return nil }
         
+        self.identifier = identifier
         self.content = content
         self.created = created
         self.senderId = dict["senderID"] as? String
@@ -28,9 +30,14 @@ extension Message {
 }
 
 extension Message {
-    init(dbModel: DBMessage) {
-        self.content = dbModel.content ?? ""
-        self.created = dbModel.created ?? Date()
+    init?(dbModel: DBMessage) {
+        guard let identifier = dbModel.identifier else { return nil }
+        guard let content = dbModel.content else { return nil }
+        guard let created = dbModel.created else { return nil }
+        
+        self.identifier = identifier
+        self.content = content
+        self.created = created
         self.senderId = dbModel.senderId
         self.senderName = dbModel.senderName
     }

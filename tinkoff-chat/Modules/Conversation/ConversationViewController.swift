@@ -6,17 +6,48 @@
 //
 
 import UIKit
+import CoreData
 
 class ConversationViewController: UIViewController {
     
     var channel: Channel?
-
-    var messages: Messages = []
     let firebaseManager = (UIApplication.shared.delegate as? AppDelegate)?.firebaseManager
+    
+    lazy var fetchController: NSFetchedResultsController<DBMessage> = {
+        let context = CoreDataStack.shared.service.readContext
+        
+        let fetchRequest = DBMessage.fetchRequest()
+        fetchRequest.sortDescriptors = [
+            NSSortDescriptor(key: #keyPath(DBMessage.created), ascending: true)
+        ]
+        
+        let format = #keyPath(DBMessage.channel.identifier) + " == %@"
+        let predicate = NSPredicate(format: format, self.channel?.identifier ?? "")
+        fetchRequest.predicate = predicate
+        
+        let controller = NSFetchedResultsController(
+            fetchRequest: fetchRequest,
+            managedObjectContext: context,
+            sectionNameKeyPath: nil,
+            cacheName: nil
+        )
+        
+        controller.delegate = self
+        
+        do {
+            try controller.performFetch()
+        } catch {
+            print("Fetch Controller error:", error.localizedDescription)
+        }
+        
+        return controller
+    }()
     
     var mainView: ConversationView? {
         return view as? ConversationView
     }
+    
+    // MARK: - Overridden methods
     
     override func loadView() {
         view = ConversationView()
@@ -26,36 +57,11 @@ class ConversationViewController: UIViewController {
         super.viewDidLoad()
 
         self.hideKeyboardWhenTappedAround()
-        fetchMessagesFromDB()
-        fetchMessages()
+        
+        firebaseManager?.listeningMessages(channel: channel)
+        
         mainView?.tableView.dataSource = self
         mainView?.delegate = self
-    }
-}
-
-extension ConversationViewController {
-    func fetchMessagesFromDB() {
-        guard let channel = channel else { return }
-        self.messages = CoreDataStack.shared.fetchMessages(channel: channel)
-        self.mainView?.tableView.reloadData()
-        self.mainView?.tableView.scrollToBottom(isAnimated: false)
-    }
-}
-
-// MARK: - Firebase logic
-
-extension ConversationViewController {
-    func fetchMessages() {
-        guard let channel = channel else { return }
-        firebaseManager?.listeningMessages(channel: channel) { [weak self] messages in
-            if messages.isEmpty {
-                return
-            }
-
-            self?.messages = messages
-            self?.mainView?.tableView.reloadData()
-            self?.mainView?.tableView.scrollToBottom(isAnimated: false)
-        }
     }
 }
 
@@ -63,7 +69,8 @@ extension ConversationViewController {
 
 extension ConversationViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return messages.count
+        guard let sections = fetchController.sections else { return 0 }
+        return sections[section].numberOfObjects
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -72,7 +79,9 @@ extension ConversationViewController: UITableViewDataSource {
             for: indexPath
         ) as? ConversationViewCell else { return UITableViewCell() }
         
-        let message = messages[indexPath.row]
+        let dbMessage = fetchController.object(at: indexPath)
+        guard let message = Message(dbModel: dbMessage) else { return UITableViewCell() }
+        
         cell.configure(model: message)
         cell.updateTheme()
         
@@ -80,9 +89,38 @@ extension ConversationViewController: UITableViewDataSource {
     }
 }
 
+// MARK: - ConversationViewController: ConversationViewDelegate
+
 extension ConversationViewController: ConversationViewDelegate {
     func sendButtonEvent(_ messageText: String) {
         guard let channel = channel else { return }
         firebaseManager?.createMessage(channel: channel, messageText)
+    }
+}
+
+// MARK: - ConversationViewController: NSFetchedResultsControllerDelegate
+
+extension ConversationViewController: NSFetchedResultsControllerDelegate {
+    func controllerWillChangeContent(_ controller: NSFetchedResultsController<NSFetchRequestResult>) {
+        mainView?.tableView.beginUpdates()
+    }
+    
+    func controllerDidChangeContent(_ controller: NSFetchedResultsController<NSFetchRequestResult>) {
+        mainView?.tableView.endUpdates()
+        mainView?.tableView.scrollToBottom()
+    }
+    
+    func controller(
+        _ controller: NSFetchedResultsController<NSFetchRequestResult>,
+        didChange anObject: Any,
+        at indexPath: IndexPath?,
+        for type: NSFetchedResultsChangeType,
+        newIndexPath: IndexPath?
+    ) {
+        if type == .insert {
+            guard let newIndexPath = newIndexPath else { return }
+            
+            mainView?.tableView.insertRows(at: [newIndexPath], with: .none)
+        }
     }
 }
