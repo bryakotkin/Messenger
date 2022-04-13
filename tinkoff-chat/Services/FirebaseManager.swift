@@ -53,6 +53,8 @@ class FirebaseManager {
             }
             
             if let documents = snapshot?.documentChanges {
+                var messages: Messages = []
+                
                 documents.forEach { documentChange in
                     let messageSnap = documentChange.document
                     
@@ -61,10 +63,12 @@ class FirebaseManager {
                         dict: messageSnap.data()
                     ) {
                         if documentChange.type == .added {
-                            CoreDataStack.shared.insertMessage(channel: channel, message: message)
+                            messages.append(message)
                         }
                     }
                 }
+                
+                CoreDataStack.shared.insertMessages(channel: channel, messages: messages)
             }
         }
     }

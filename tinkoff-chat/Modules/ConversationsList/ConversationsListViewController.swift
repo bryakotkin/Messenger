@@ -244,8 +244,7 @@ extension ConversationsListViewController: NSFetchedResultsControllerDelegate {
 
             mainView?.tableView.deleteRows(at: [indexPath], with: .none)
         case .move:
-            guard let indexPath = indexPath,
-                    let newIndexPath = newIndexPath else { return }
+            guard let indexPath = indexPath, let newIndexPath = newIndexPath else { return }
 
             mainView?.tableView.deleteRows(at: [indexPath], with: .none)
             mainView?.tableView.insertRows(at: [newIndexPath], with: .none)

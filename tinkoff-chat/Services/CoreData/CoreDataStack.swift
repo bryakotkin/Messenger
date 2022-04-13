@@ -68,19 +68,27 @@ class CoreDataStack {
         service.deleteData(model: dbChannel)
     }
     
-    func insertMessage(channel: Channel, message: Message) {
+    func insertMessage(dbChannel: DBChannel, message: Message, context: NSManagedObjectContext) {
         guard fetchMessageByIdentifier(message) == nil else { return }
+        
+        let dbMessage = DBMessage(context: context)
+        dbMessage.identifier = message.identifier
+        dbMessage.content = message.content
+        dbMessage.created = message.created
+        dbMessage.senderId = message.senderId
+        dbMessage.senderName = message.senderName
+            
+        dbChannel.addToMessages(dbMessage)
+    }
+    
+    func insertMessages(channel: Channel, messages: Messages) {
+        guard !messages.isEmpty else { return }
         guard let dbChannel = fetchChannelByIdentifier(channel) else { return }
         
-        service.performSave { context in
-            let dbMessage = DBMessage(context: context)
-            dbMessage.identifier = message.identifier
-            dbMessage.content = message.content
-            dbMessage.created = message.created
-            dbMessage.senderId = message.senderId
-            dbMessage.senderName = message.senderName
-            
-            dbChannel.addToMessages(dbMessage)
+        service.performSave { [weak self] context in
+            messages.forEach { message in
+                self?.insertMessage(dbChannel: dbChannel, message: message, context: context)
+            }
         }
     }
 }

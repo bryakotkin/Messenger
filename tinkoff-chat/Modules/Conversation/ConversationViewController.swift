@@ -117,10 +117,26 @@ extension ConversationViewController: NSFetchedResultsControllerDelegate {
         for type: NSFetchedResultsChangeType,
         newIndexPath: IndexPath?
     ) {
-        if type == .insert {
+        switch type {
+        case .insert:
             guard let newIndexPath = newIndexPath else { return }
-            
+
             mainView?.tableView.insertRows(at: [newIndexPath], with: .none)
+        case .delete:
+            guard let indexPath = indexPath else { return }
+
+            mainView?.tableView.deleteRows(at: [indexPath], with: .none)
+        case .move:
+            guard let indexPath = indexPath, let newIndexPath = newIndexPath else { return }
+
+            mainView?.tableView.deleteRows(at: [indexPath], with: .none)
+            mainView?.tableView.insertRows(at: [newIndexPath], with: .none)
+        case .update:
+            guard let indexPath = indexPath else { return }
+
+            mainView?.tableView.reloadRows(at: [indexPath], with: .none)
+        @unknown default:
+            return
         }
     }
 }
