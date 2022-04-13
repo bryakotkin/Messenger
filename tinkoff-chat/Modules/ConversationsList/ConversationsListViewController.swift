@@ -27,14 +27,6 @@ class ConversationsListViewController: UIViewController {
             cacheName: nil
         )
         
-        controller.delegate = self
-        
-        do {
-            try controller.performFetch()
-        } catch {
-            print("Fetch Controller error:", error.localizedDescription)
-        }
-        
         return controller
     }()
     
@@ -60,6 +52,25 @@ class ConversationsListViewController: UIViewController {
         
         setupNavigationItem()
         updateTheme()
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        
+        fetchController.delegate = self
+        
+        do {
+            try fetchController.performFetch()
+            mainView?.tableView.reloadData()
+        } catch {
+            print("Fetch error:", error.localizedDescription)
+        }
+    }
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        
+        fetchController.delegate = nil
     }
     
     // MARK: - Views configuration
