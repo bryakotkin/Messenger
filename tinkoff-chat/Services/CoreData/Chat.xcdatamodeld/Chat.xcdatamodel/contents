@@ -5,7 +5,7 @@
         <attribute name="lastActivity" optional="YES" attributeType="Date" usesScalarValueType="NO"/>
         <attribute name="lastMessage" optional="YES" attributeType="String"/>
         <attribute name="name" attributeType="String"/>
-        <relationship name="messages" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="DBMessage" inverseName="channel" inverseEntity="DBMessage"/>
+        <relationship name="messages" optional="YES" toMany="YES" deletionRule="Cascade" destinationEntity="DBMessage" inverseName="channel" inverseEntity="DBMessage"/>
         <uniquenessConstraints>
             <uniquenessConstraint>
                 <constraint value="identifier"/>
@@ -15,26 +15,18 @@
     <entity name="DBMessage" representedClassName="DBMessage" syncable="YES" codeGenerationType="class">
         <attribute name="content" attributeType="String"/>
         <attribute name="created" attributeType="Date" usesScalarValueType="NO"/>
+        <attribute name="identifier" attributeType="String"/>
         <attribute name="senderId" optional="YES" attributeType="String"/>
         <attribute name="senderName" optional="YES" attributeType="String"/>
         <relationship name="channel" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="DBChannel" inverseName="messages" inverseEntity="DBChannel"/>
         <uniquenessConstraints>
             <uniquenessConstraint>
-                <constraint value="content"/>
-            </uniquenessConstraint>
-            <uniquenessConstraint>
-                <constraint value="created"/>
-            </uniquenessConstraint>
-            <uniquenessConstraint>
-                <constraint value="senderId"/>
-            </uniquenessConstraint>
-            <uniquenessConstraint>
-                <constraint value="senderName"/>
+                <constraint value="identifier"/>
             </uniquenessConstraint>
         </uniquenessConstraints>
     </entity>
     <elements>
         <element name="DBChannel" positionX="-280.8359375" positionY="17.28515625" width="128" height="104"/>
-        <element name="DBMessage" positionX="83.94140625" positionY="17.12109375" width="128" height="104"/>
+        <element name="DBMessage" positionX="83.94140625" positionY="17.12109375" width="128" height="119"/>
     </elements>
 </model>

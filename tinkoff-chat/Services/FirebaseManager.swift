@@ -14,38 +14,36 @@ class FirebaseManager {
     private lazy var db = Firestore.firestore()
     private lazy var channelsReference = db.collection(Constants.channels.rawValue)
     
-    func listeningChannels(completionHandler: @escaping (Channels) -> Void) {
+    func listeningChannels() {
         channelsReference.addSnapshotListener { snapshot, error in
             if let error = error {
                 print("Fetch channels error:", error.localizedDescription)
                 return
             }
             
-            var channels: Channels = []
-            if let documents = snapshot?.documents {
-                documents.forEach { channelSnap in
+            if let documents = snapshot?.documentChanges {
+                documents.forEach { documentChange in
+                    let channelSnap = documentChange.document
                     let identifier = channelSnap.documentID
                     let dict = channelSnap.data()
                     
                     if let channel = Channel(identifier: identifier, dict: dict) {
-                        channels.append(channel)
+                        switch documentChange.type {
+                        case .added:
+                            CoreDataStack.shared.insertOrUpdateChannel(channel: channel)
+                        case .modified:
+                            CoreDataStack.shared.insertOrUpdateChannel(channel: channel)
+                        case .removed:
+                            CoreDataStack.shared.deleteChannel(channel: channel)
+                        }
                     }
                 }
-                
-                channels = channels.sorted { channel1, channel2 in
-                    guard let date1 = channel1.lastActivity else { return true }
-                    guard let date2 = channel2.lastActivity else { return true }
-                    
-                    return date1 > date2
-                }
-                
-                CoreDataStack.shared.saveChannels(channels: channels)
-                completionHandler(channels)
             }
         }
     }
     
-    func listeningMessages(channel: Channel, completionHandler: @escaping (Messages) -> Void) {
+    func listeningMessages(channel: Channel?) {
+        guard let channel = channel else { return }
         let messageReferance = channelsReference.document(channel.identifier).collection(Constants.messages.rawValue)
         
         messageReferance.addSnapshotListener { snapshot, error in
@@ -54,20 +52,23 @@ class FirebaseManager {
                 return
             }
             
-            var messages: Messages = []
-            if let documents = snapshot?.documents {
-                documents.forEach { messageSnap in
-                    if let message = Message(dict: messageSnap.data()) {
-                        messages.append(message)
+            if let documents = snapshot?.documentChanges {
+                var messages: Messages = []
+                
+                documents.forEach { documentChange in
+                    let messageSnap = documentChange.document
+                    
+                    if let message = Message(
+                        identifier: messageSnap.documentID,
+                        dict: messageSnap.data()
+                    ) {
+                        if documentChange.type == .added {
+                            messages.append(message)
+                        }
                     }
                 }
                 
-                messages = messages.sorted { message1, message2 in
-                    return message1.created < message2.created
-                }
-                
-                CoreDataStack.shared.saveMessages(channel: channel, messages: messages)
-                completionHandler(messages)
+                CoreDataStack.shared.insertMessages(channel: channel, messages: messages)
             }
         }
     }
@@ -88,6 +89,7 @@ class FirebaseManager {
         
         DispatchQueue.global(qos: .userInteractive).async {
             let message = Message(
+                identifier: "Firebase generates",
                 content: messageText,
                 created: Date(),
                 senderId: deviceId,
@@ -100,6 +102,14 @@ class FirebaseManager {
                 if let error = error {
                     print("Message not added:", error.localizedDescription)
                 }
+            }
+        }
+    }
+    
+    func deleteChannel(channel: Channel) {
+        channelsReference.document(channel.identifier).delete { error in
+            if let error = error {
+                print("Error removing channel:", error.localizedDescription)
             }
         }
     }

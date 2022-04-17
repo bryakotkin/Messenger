@@ -10,11 +10,11 @@
 		1100B4FF27FF094D00A19919 /* Chat.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 1100B4FD27FF094D00A19919 /* Chat.xcdatamodeld */; };
 		1100B50127FF0D5D00A19919 /* OldCoreDataService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1100B50027FF0D5D00A19919 /* OldCoreDataService.swift */; };
 		1100B50327FF310800A19919 /* CoreDataStack.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1100B50227FF310800A19919 /* CoreDataStack.swift */; };
+		110D192128061E780017E92F /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 110D192028061E780017E92F /* GoogleService-Info.plist */; };
 		110F157527FFB7D00011248F /* NewCoreDataService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 110F157427FFB7D00011248F /* NewCoreDataService.swift */; };
 		111FE23C27D0F41C003D9098 /* UIButton+Color.swift in Sources */ = {isa = PBXBuildFile; fileRef = 111FE23B27D0F41C003D9098 /* UIButton+Color.swift */; };
 		111FE23E27D10872003D9098 /* UIViewController+HideKeyboard.swift in Sources */ = {isa = PBXBuildFile; fileRef = 111FE23D27D10872003D9098 /* UIViewController+HideKeyboard.swift */; };
 		11202C7327F4EB9E00297F4E /* String+isBlank.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11202C7227F4EB9E00297F4E /* String+isBlank.swift */; };
-		112BA6E227EF8CAE00829CCC /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 112BA6E127EF8CAE00829CCC /* GoogleService-Info.plist */; };
 		114CF65627F352B500D360B5 /* UITableView+Scroll.swift in Sources */ = {isa = PBXBuildFile; fileRef = 114CF65527F352B500D360B5 /* UITableView+Scroll.swift */; };
 		116DB0C127EC6DD000FC9E49 /* GCDManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 116DB0C027EC6DD000FC9E49 /* GCDManager.swift */; };
 		116DB0C627ECBAA100FC9E49 /* WriteOperation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 116DB0C527ECBAA100FC9E49 /* WriteOperation.swift */; };
@@ -61,11 +61,11 @@
 		1100B4FE27FF094D00A19919 /* Chat.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Chat.xcdatamodel; sourceTree = "<group>"; };
 		1100B50027FF0D5D00A19919 /* OldCoreDataService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OldCoreDataService.swift; sourceTree = "<group>"; };
 		1100B50227FF310800A19919 /* CoreDataStack.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataStack.swift; sourceTree = "<group>"; };
+		110D192028061E780017E92F /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		110F157427FFB7D00011248F /* NewCoreDataService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewCoreDataService.swift; sourceTree = "<group>"; };
 		111FE23B27D0F41C003D9098 /* UIButton+Color.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIButton+Color.swift"; sourceTree = "<group>"; };
 		111FE23D27D10872003D9098 /* UIViewController+HideKeyboard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewController+HideKeyboard.swift"; sourceTree = "<group>"; };
 		11202C7227F4EB9E00297F4E /* String+isBlank.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+isBlank.swift"; sourceTree = "<group>"; };
-		112BA6E127EF8CAE00829CCC /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		114CF65527F352B500D360B5 /* UITableView+Scroll.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UITableView+Scroll.swift"; sourceTree = "<group>"; };
 		116DB0C027EC6DD000FC9E49 /* GCDManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GCDManager.swift; sourceTree = "<group>"; };
 		116DB0C527ECBAA100FC9E49 /* WriteOperation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WriteOperation.swift; sourceTree = "<group>"; };
@@ -308,8 +308,8 @@
 				11CC1EBC27C69D5400450552 /* Modules */,
 				11DEFF5627BEEDA900688EE4 /* Assets.xcassets */,
 				11DEFF5827BEEDA900688EE4 /* LaunchScreen.storyboard */,
+				110D192028061E780017E92F /* GoogleService-Info.plist */,
 				11DEFF5B27BEEDA900688EE4 /* Info.plist */,
-				112BA6E127EF8CAE00829CCC /* GoogleService-Info.plist */,
 			);
 			path = "tinkoff-chat";
 			sourceTree = "<group>";
@@ -394,7 +394,7 @@
 			files = (
 				11DEFF5A27BEEDA900688EE4 /* LaunchScreen.storyboard in Resources */,
 				11DEFF5727BEEDA900688EE4 /* Assets.xcassets in Resources */,
-				112BA6E227EF8CAE00829CCC /* GoogleService-Info.plist in Resources */,
+				110D192128061E780017E92F /* GoogleService-Info.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -650,7 +650,7 @@
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = UA2ZXG4WK9;
+				DEVELOPMENT_TEAM = "";
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = "tinkoff-chat/Info.plist";
 				INFOPLIST_KEY_NSCameraUsageDescription = "Camera use";
@@ -665,7 +665,7 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = ru.tinkoff.TinkoffChat;
+				PRODUCT_BUNDLE_IDENTIFIER = ru.tcsbank.TinkoffChat;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_EMIT_LOC_STRINGS = YES;
@@ -683,7 +683,7 @@
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = UA2ZXG4WK9;
+				DEVELOPMENT_TEAM = "";
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = "tinkoff-chat/Info.plist";
 				INFOPLIST_KEY_NSCameraUsageDescription = "Camera use";
@@ -698,7 +698,7 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = ru.tinkoff.TinkoffChat;
+				PRODUCT_BUNDLE_IDENTIFIER = ru.tcsbank.TinkoffChat;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_EMIT_LOC_STRINGS = YES;

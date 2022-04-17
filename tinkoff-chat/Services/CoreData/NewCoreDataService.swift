@@ -21,26 +21,37 @@ class NewCoreDataService {
         return container
     }()
     
-    private lazy var writeContext: NSManagedObjectContext = {
-        let context = storeContainer.newBackgroundContext()
+    lazy var readContext: NSManagedObjectContext = {
+        let context = storeContainer.viewContext
         context.mergePolicy = NSMergeByPropertyObjectTrumpMergePolicy
         return context
     }()
     
-    private lazy var readContext: NSManagedObjectContext = {
-        let context = storeContainer.viewContext
+    lazy var writeContext: NSManagedObjectContext = {
+        let context = NSManagedObjectContext(concurrencyType: .privateQueueConcurrencyType)
+        context.parent = readContext
+        context.mergePolicy = NSMergeByPropertyObjectTrumpMergePolicy
         return context
     }()
     
     func enableObservers() {
-        basicService.enableObservers(writeContext)
+        basicService.enableObservers(readContext)
     }
     
     func performSave(_ block: @escaping (NSManagedObjectContext) -> Void) {
         basicService.performSave(writeContext: writeContext, block)
     }
 
-    func readData<T: NSManagedObject>() -> [T] {
-        return basicService.readData(readContext: readContext)
+    func readData<T: NSManagedObject>(predicate: NSPredicate? = nil, context userContext: NSManagedObjectContext? = nil) -> [T] {
+        var context = readContext
+        
+        if let userContext = userContext {
+            context = userContext
+        }
+        return basicService.readData(readContext: context, predicate: predicate)
+    }
+    
+    func deleteData<T: NSManagedObject>(model: T) {
+        basicService.deleteData(writeContext: writeContext, model: model)
     }
 }

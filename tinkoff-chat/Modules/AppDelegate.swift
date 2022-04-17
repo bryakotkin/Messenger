@@ -18,7 +18,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         FirebaseApp.configure()
         firebaseManager = FirebaseManager()
         
-        CoreDataStack.shared.enableObservers()
+//        CoreDataStack.shared.enableObservers()
 
         extractTheme()
         
