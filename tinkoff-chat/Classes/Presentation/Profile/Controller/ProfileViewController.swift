@@ -10,10 +10,21 @@ import UIKit
 class ProfileViewController: UIViewController {
     
     var prevProfile: Profile?
-    var dataManager = ServiceAssembly.gcdService
+    
+    var model: IProfileModel
     
     var mainView: ProfileView? {
         return view as? ProfileView
+    }
+    
+    init(model: IProfileModel) {
+        self.model = model
+        
+        super.init(nibName: nil, bundle: nil)
+    }
+    
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
     }
     
     override func loadView() {
@@ -23,7 +34,7 @@ class ProfileViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        getData()
+        fetchProfileData()
     
         self.hideKeyboardWhenTappedAround()
         setupNavigationBar()
@@ -58,7 +69,7 @@ class ProfileViewController: UIViewController {
         ]
     }
     
-    private func setupFields() {
+    func setupFields() {
         mainView?.usernameTextField.text = prevProfile?.username
         mainView?.descriptionTextView.text = prevProfile?.description
         mainView?.userImageView.image = prevProfile?.image
@@ -66,7 +77,7 @@ class ProfileViewController: UIViewController {
         isEnabledFields(false)
     }
     
-    private func showImagePicker(type: UIImagePickerController.SourceType) {
+    func showImagePicker(type: UIImagePickerController.SourceType) {
         if UIImagePickerController.isSourceTypeAvailable(type) {
             let imagePicker = UIImagePickerController()
 
@@ -81,57 +92,6 @@ class ProfileViewController: UIViewController {
     
     @objc private func cancelBarButtonAction() {
         dismiss(animated: true, completion: nil)
-    }
-}
-
-// MARK: - ProfileViewController: ProfileViewProtocol
-
-extension ProfileViewController: ProfileViewProtocol {
-    func editImageButtonAction() {
-        let alert = UIAlertController(title: nil, message: "Выберите изображение профиля", preferredStyle: .actionSheet)
-                
-        let galeryAction = UIAlertAction(title: "Установить из галлереи", style: .default) { _ in
-            self.showImagePicker(type: .photoLibrary)
-        }
-                
-        let cameraAction = UIAlertAction(title: "Сделать фото", style: .default) { _ in
-            self.showImagePicker(type: .camera)
-        }
-                
-        let cancelAction = UIAlertAction(title: "Отмена", style: .cancel)
-                
-        alert.addAction(galeryAction)
-        alert.addAction(cameraAction)
-        alert.addAction(cancelAction)
-                
-        present(alert, animated: true, completion: nil)
-    }
-    
-    func editButtonAction() {
-        isEnabledFields(true)
-        mainView?.usernameTextField.becomeFirstResponder()
-        isHiddenCancelGCDOperationButtons(false)
-        isEnabledGCDOperationButtons(false)
-    }
-    
-    func cancelButtonAction() {
-        isHiddenCancelGCDOperationButtons(true)
-        setupFields()
-    }
-    
-    func isEnabledEditButtons(_ isEnabled: Bool) {
-        mainView?.editImageButton.isEnabled = isEnabled
-        mainView?.editButton.isEnabled = isEnabled
-    }
-    
-    func gcdButtonAction() {
-        dataManager = ServiceAssembly.gcdService
-        saveData()
-    }
-    
-    func operationButtonAction() {
-        dataManager = ServiceAssembly.operationsService
-        saveData()
     }
 }
 
@@ -189,36 +149,6 @@ extension ProfileViewController {
     }
 }
 
-// MARK: - ProfileViewController: UIImagePickerControllerDelegate, UINavigationControllerDelegate
-
-extension ProfileViewController: UIImagePickerControllerDelegate, UINavigationControllerDelegate {
-    func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey: Any]) {
-        if let image = info[.originalImage] as? UIImage {
-            mainView?.userImageView.image = image
-            isHiddenCancelGCDOperationButtons(false)
-            isEnabledFields(true)
-            isEnabledGCDOperationButtons(true)
-        }
-        picker.dismiss(animated: true, completion: nil)
-    }
-}
-
-// MARK: - ProfileViewController: UITextFieldDelegate
-
-extension ProfileViewController: UITextFieldDelegate {
-    func textFieldDidEndEditing(_ textField: UITextField) {
-        updateGCDOperationButtonsState()
-    }
-}
-
-// MARK: - ProfileViewController: UITextViewDelegate
-
-extension ProfileViewController: UITextViewDelegate {
-    func textViewDidEndEditing(_ textView: UITextView) {
-        updateGCDOperationButtonsState()
-    }
-}
-
 // MARK: - GCD Work
 
 extension ProfileViewController {
@@ -243,7 +173,7 @@ extension ProfileViewController {
         let isDescriptionNew = isTextViewHaveNewValues()
         let isImageNew = isImageNew()
         
-        dataManager.saveData(profile, flags: (isUsernameNew, isDescriptionNew, isImageNew)) { [weak self] isSaved in
+        model.saveProfileData(profile: profile, flags: (isUsernameNew, isDescriptionNew, isImageNew)) { [weak self] isSaved in
             self?.mainView?.activityIndicator.stopAnimating()
             alertController.addAction(cancelAction)
             
@@ -269,9 +199,9 @@ extension ProfileViewController {
         }
     }
     
-    func getData() {
+    func fetchProfileData() {
         isEnabledEditButtons(false)
-        dataManager.getData { [weak self] profile in
+        model.fetchProfileData { [weak self] profile in
             self?.isEnabledEditButtons(true)
             self?.prevProfile = profile
             self?.setupFields()

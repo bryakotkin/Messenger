@@ -20,9 +20,8 @@ class ConversationsListTableViewDelegate: NSObject, UITableViewDelegate {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         guard let model = delegate?.fetchChannel(by: indexPath) else { return }
         
-        let conversationVC = ConversationViewController()
+        let conversationVC = PresentationAssembly.getConversationViewController(channel: model)
         conversationVC.title = model.name
-        conversationVC.channel = model
         
         delegate?.cellDidSelected(indexPath: indexPath, controller: conversationVC)
     }

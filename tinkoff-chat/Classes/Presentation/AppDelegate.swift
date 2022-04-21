@@ -16,11 +16,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         FirebaseApp.configure()
         
-//        CoreDataStack.shared.enableObservers()
-
         extractTheme()
         
-        let conversationsListVC = ConversationsListViewController(ConversationListModel())
+        let conversationsListVC = PresentationAssembly.conversationsListViewController
         let navigationVC = UINavigationController(rootViewController: conversationsListVC)
         
         window = UIWindow(frame: UIScreen.main.bounds)

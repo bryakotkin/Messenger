@@ -15,7 +15,7 @@ class ConversationsListTableViewDataSource: NSObject, UITableViewDataSource {
     var fetchController: NSFetchedResultsController<DBChannel>?
     
     init(frc: NSFetchedResultsController<DBChannel>?) {
-        self.fetchController = frc
+        fetchController = frc
     }
     
     // MARK: - Public methods

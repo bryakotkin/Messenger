@@ -10,7 +10,9 @@ import CoreData
 
 class ConversationsListViewController: UIViewController {
     
-    let model: ConversationListModel
+    let fetchController: NSFetchedResultsController<DBChannel>?
+
+    let model: IConversationsListModel
     
     // MARK: - TableView properties
     
@@ -21,10 +23,11 @@ class ConversationsListViewController: UIViewController {
         return view as? ConversationsListView
     }
     
-    init(_ model: ConversationListModel) {
+    init(_ model: IConversationsListModel) {
         self.model = model
+        self.fetchController = model.getFetchController()
         self.tableViewDataSource = ConversationsListTableViewDataSource(
-            frc: model.getFetchController()
+            frc: fetchController
         )
         self.tableViewDelegate = ConversationsListTableViewDelegate()
         
@@ -60,10 +63,10 @@ class ConversationsListViewController: UIViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         
-        tableViewDataSource.fetchController?.delegate = self
+        fetchController?.delegate = self
         
         do {
-            try tableViewDataSource.fetchController?.performFetch()
+            try fetchController?.performFetch()
             mainView?.tableView.reloadData()
         } catch {
             print("Fetch error:", error.localizedDescription)
@@ -73,7 +76,7 @@ class ConversationsListViewController: UIViewController {
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
         
-        tableViewDataSource.fetchController?.delegate = nil
+        fetchController?.delegate = nil
     }
     
     // MARK: - Views configuration
@@ -94,8 +97,8 @@ class ConversationsListViewController: UIViewController {
         navigationItem.setRightBarButtonItems([profileButton, addChannelButton], animated: false)
     }
     
-    private func updateTheme() {
-        let theme = model.themeService.currentTheme
+    func updateTheme() {
+        let theme = model.getTheme()
         
         UITableView.appearance().backgroundColor = theme?.backgroundColor
         UITableViewHeaderFooterView.appearance().tintColor = theme?.backgroundColor
@@ -121,7 +124,7 @@ class ConversationsListViewController: UIViewController {
 
 extension ConversationsListViewController {
     @objc private func showProfileVC() {
-        let profileVC = ProfileViewController()
+        let profileVC = PresentationAssembly.profileViewController
         profileVC.title = "My Profile"
         let navigationVC = UINavigationController(rootViewController: profileVC)
         
@@ -129,12 +132,12 @@ extension ConversationsListViewController {
     }
     
     @objc private func showThemesVC() {
-        let themesVC = ThemesViewController()
+        let themesVC = PresentationAssembly.themeViewController
         themesVC.title = "Settings"
         themesVC.delegate = self
         
         themesVC.onComplition = { [weak self] theme in
-            self?.model.themeService.saveCurrentTheme(theme)
+            self?.model.saveTheme(theme)
             self?.updateTheme()
         }
         
@@ -159,57 +162,5 @@ extension ConversationsListViewController {
         alertController.addAction(createButtonAction)
         
         present(alertController, animated: true)
-    }
-}
-
-// MARK: - ConversationsListViewController: ThemesPickerDelegate
-
-extension ConversationsListViewController: ThemesPickerDelegate {
-    func configureTheme(_ theme: Themes) {
-        model.themeService.saveCurrentTheme(theme)
-        updateTheme()
-    }
-}
-
-// MARK: - ConversationsListViewController: NSFetchedResultsControllerDelegate
-
-extension ConversationsListViewController: NSFetchedResultsControllerDelegate {
-    func controllerWillChangeContent(_ controller: NSFetchedResultsController<NSFetchRequestResult>) {
-        mainView?.tableView.beginUpdates()
-    }
-    
-    func controllerDidChangeContent(_ controller: NSFetchedResultsController<NSFetchRequestResult>) {
-        mainView?.tableView.endUpdates()
-    }
-    
-    func controller(
-        _ controller: NSFetchedResultsController<NSFetchRequestResult>,
-        didChange anObject: Any,
-        at indexPath: IndexPath?,
-        for type: NSFetchedResultsChangeType,
-        newIndexPath: IndexPath?
-    ) {
-        mainView?.tableView.updateRowsState(
-            at: indexPath,
-            for: type,
-            newIndexPath: newIndexPath
-        )
-    }
-}
-
-// MARK: - ConversationsListViewController: ConversationsListDelegate
-
-extension ConversationsListViewController: ConversationsListDelegate {
-    func fetchChannel(by indexPath: IndexPath) -> Channel? {
-        return tableViewDataSource.fetchChannel(by: indexPath)
-    }
-    
-    func cellDidSelected(indexPath: IndexPath, controller: UIViewController) {
-        navigationController?.pushViewController(controller, animated: true)
-        mainView?.tableView.deselectRow(at: indexPath, animated: true)
-    }
-    
-    func removeSwipeActionCompleted(indexPath: IndexPath) {
-        self.removeChannelSwipeAction(indexPath)
     }
 }

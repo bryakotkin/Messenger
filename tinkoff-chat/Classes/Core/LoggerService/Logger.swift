@@ -7,16 +7,7 @@
 
 import Foundation
 
-class Logger {
-
-    enum ApplicationState: String {
-        case notrunning
-        case inactive
-        case active
-        case background
-        case terminated
-    }
-    
+class Logger: ILoggerService {
     static func printAppStatus(_ prev: ApplicationState, _ next: ApplicationState, _ funcName: String) {
         if ProcessInfo.processInfo.environment["logger"] == "show" {
             print("Application moved from \(prev) to \(next): \(funcName)")

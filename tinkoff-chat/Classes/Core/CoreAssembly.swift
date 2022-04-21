@@ -15,8 +15,4 @@ class CoreAssembly {
     static var storageService: IStorageService {
         return StorageService()
     }
-    
-    static var fetchControllerService: IFetchControllerService {
-        return FetchContollerService()
-    }
 }

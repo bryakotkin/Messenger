@@ -7,10 +7,15 @@
 
 import CoreData
 
-class ConversationListModel {
+class ConversationListModel: IConversationsListModel {
     
-    let channelService = ServiceAssembly.channelService
-    let themeService = ServiceAssembly.themeService
+    let channelService: IChannelFirebaseService
+    let themeService: IThemeService
+    
+    init(channelService: IChannelFirebaseService, themeService: IThemeService) {
+        self.channelService = channelService
+        self.themeService = themeService
+    }
     
     func listeningChannels() {
         channelService.listeningChannels()
@@ -29,12 +34,20 @@ class ConversationListModel {
             NSSortDescriptor(key: #keyPath(DBChannel.lastActivity), ascending: false)
         ]
         
-        let fetchService = CoreAssembly.fetchControllerService
+        let fetchService = ServiceAssembly.fetchControllerService
         let controller: NSFetchedResultsController<DBChannel>? = fetchService.createFetchController(
             sortDescriptors: sortDescriptors,
             predicate: nil
         )
             
         return controller
+    }
+    
+    func saveTheme(_ theme: Themes) {
+        themeService.saveCurrentTheme(theme)
+    }
+    
+    func getTheme() -> Theme? {
+        themeService.currentTheme
     }
 }
