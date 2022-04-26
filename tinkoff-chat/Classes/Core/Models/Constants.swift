@@ -11,6 +11,7 @@ import UIKit
 enum Constants: String {
     case conversationListCell
     case conversationCell
+    case imagePickerCell
     case profileUsername
     case profileDescription
     case profileImage

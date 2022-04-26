@@ -18,7 +18,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         extractTheme()
         
-        let conversationsListVC = PresentationAssembly.conversationsListViewController
+//        let conversationsListVC = PresentationAssembly.conversationsListViewController
+        let conversationsListVC = PixabayImagePickerViewController()
         let navigationVC = UINavigationController(rootViewController: conversationsListVC)
         
         window = UIWindow(frame: UIScreen.main.bounds)

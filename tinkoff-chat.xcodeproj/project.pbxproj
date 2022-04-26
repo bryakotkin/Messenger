@@ -62,12 +62,20 @@
 		119EF9F127ECF72D00EA3378 /* OperationsService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 119EF9F027ECF72D00EA3378 /* OperationsService.swift */; };
 		119EF9F327ECFB2500EA3378 /* ReadOperation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 119EF9F227ECFB2500EA3378 /* ReadOperation.swift */; };
 		119EF9F527ECFF5000EA3378 /* IMultithreadingService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 119EF9F427ECFF5000EA3378 /* IMultithreadingService.swift */; };
+		11A51284281825E500EA1C18 /* IRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11A51283281825E500EA1C18 /* IRequest.swift */; };
+		11A512862818264900EA1C18 /* IParser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11A512852818264900EA1C18 /* IParser.swift */; };
+		11A51288281826A200EA1C18 /* RequestConfig.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11A51287281826A200EA1C18 /* RequestConfig.swift */; };
+		11A5128A281827B000EA1C18 /* IRequestSender.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11A51289281827B000EA1C18 /* IRequestSender.swift */; };
 		11A7D3042800A65800ECDB4A /* IStorageService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11A7D3032800A65800ECDB4A /* IStorageService.swift */; };
 		11A7D3082800C04200ECDB4A /* StorageService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11A7D3072800C04200ECDB4A /* StorageService.swift */; };
 		11A8556E27C807FE0005514D /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11A8556D27C807FE0005514D /* ProfileViewController.swift */; };
 		11A8557027C80F720005514D /* ProfileView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11A8556F27C80F720005514D /* ProfileView.swift */; };
 		11A8557227C813020005514D /* UIColor+HEX.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11A8557127C813020005514D /* UIColor+HEX.swift */; };
 		11A8557427C8188D0005514D /* UIView+Nib.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11A8557327C8188D0005514D /* UIView+Nib.swift */; };
+		11AFB5012817FB15005FD8FC /* PixabayImagePickerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11AFB5002817FB15005FD8FC /* PixabayImagePickerViewController.swift */; };
+		11AFB5032817FBB6005FD8FC /* PixabayImagePickerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11AFB5022817FBB6005FD8FC /* PixabayImagePickerView.swift */; };
+		11AFB5052817FD5A005FD8FC /* PixabayImagePickerCollectionViewDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11AFB5042817FD5A005FD8FC /* PixabayImagePickerCollectionViewDelegate.swift */; };
+		11AFB5072817FDE3005FD8FC /* PixabayImagePickerCollectionViewDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11AFB5062817FDE3005FD8FC /* PixabayImagePickerCollectionViewDataSource.swift */; };
 		11B0845E280D5AD500AC0320 /* ConversationsListTableViewDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11B0845D280D5AD500AC0320 /* ConversationsListTableViewDataSource.swift */; };
 		11B08463280D681000AC0320 /* IFirebaseService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11B08462280D681000AC0320 /* IFirebaseService.swift */; };
 		11B08465280D6ABA00AC0320 /* FirebaseService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11B08464280D6ABA00AC0320 /* FirebaseService.swift */; };
@@ -142,12 +150,20 @@
 		119EF9F027ECF72D00EA3378 /* OperationsService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OperationsService.swift; sourceTree = "<group>"; };
 		119EF9F227ECFB2500EA3378 /* ReadOperation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReadOperation.swift; sourceTree = "<group>"; };
 		119EF9F427ECFF5000EA3378 /* IMultithreadingService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IMultithreadingService.swift; sourceTree = "<group>"; };
+		11A51283281825E500EA1C18 /* IRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IRequest.swift; sourceTree = "<group>"; };
+		11A512852818264900EA1C18 /* IParser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IParser.swift; sourceTree = "<group>"; };
+		11A51287281826A200EA1C18 /* RequestConfig.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RequestConfig.swift; sourceTree = "<group>"; };
+		11A51289281827B000EA1C18 /* IRequestSender.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IRequestSender.swift; sourceTree = "<group>"; };
 		11A7D3032800A65800ECDB4A /* IStorageService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IStorageService.swift; sourceTree = "<group>"; };
 		11A7D3072800C04200ECDB4A /* StorageService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StorageService.swift; sourceTree = "<group>"; };
 		11A8556D27C807FE0005514D /* ProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewController.swift; sourceTree = "<group>"; };
 		11A8556F27C80F720005514D /* ProfileView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileView.swift; sourceTree = "<group>"; };
 		11A8557127C813020005514D /* UIColor+HEX.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIColor+HEX.swift"; sourceTree = "<group>"; };
 		11A8557327C8188D0005514D /* UIView+Nib.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+Nib.swift"; sourceTree = "<group>"; };
+		11AFB5002817FB15005FD8FC /* PixabayImagePickerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PixabayImagePickerViewController.swift; sourceTree = "<group>"; };
+		11AFB5022817FBB6005FD8FC /* PixabayImagePickerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PixabayImagePickerView.swift; sourceTree = "<group>"; };
+		11AFB5042817FD5A005FD8FC /* PixabayImagePickerCollectionViewDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PixabayImagePickerCollectionViewDelegate.swift; sourceTree = "<group>"; };
+		11AFB5062817FDE3005FD8FC /* PixabayImagePickerCollectionViewDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PixabayImagePickerCollectionViewDataSource.swift; sourceTree = "<group>"; };
 		11B0845D280D5AD500AC0320 /* ConversationsListTableViewDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConversationsListTableViewDataSource.swift; sourceTree = "<group>"; };
 		11B08462280D681000AC0320 /* IFirebaseService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IFirebaseService.swift; sourceTree = "<group>"; };
 		11B08464280D6ABA00AC0320 /* FirebaseService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirebaseService.swift; sourceTree = "<group>"; };
@@ -382,6 +398,17 @@
 			path = MultithreadingService;
 			sourceTree = "<group>";
 		};
+		11A51282281825C800EA1C18 /* NetworkServices */ = {
+			isa = PBXGroup;
+			children = (
+				11A51283281825E500EA1C18 /* IRequest.swift */,
+				11A512852818264900EA1C18 /* IParser.swift */,
+				11A51287281826A200EA1C18 /* RequestConfig.swift */,
+				11A51289281827B000EA1C18 /* IRequestSender.swift */,
+			);
+			path = NetworkServices;
+			sourceTree = "<group>";
+		};
 		11A8556827C807840005514D /* Profile */ = {
 			isa = PBXGroup;
 			children = (
@@ -400,9 +427,45 @@
 			path = View;
 			sourceTree = "<group>";
 		};
+		11AFB4FC2817FAC8005FD8FC /* PixabayImagePicker */ = {
+			isa = PBXGroup;
+			children = (
+				11AFB4FF2817FAEF005FD8FC /* Controller */,
+				11AFB4FE2817FAEB005FD8FC /* View */,
+				11AFB4FD2817FAE4005FD8FC /* Model */,
+			);
+			path = PixabayImagePicker;
+			sourceTree = "<group>";
+		};
+		11AFB4FD2817FAE4005FD8FC /* Model */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		11AFB4FE2817FAEB005FD8FC /* View */ = {
+			isa = PBXGroup;
+			children = (
+				11AFB5022817FBB6005FD8FC /* PixabayImagePickerView.swift */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		11AFB4FF2817FAEF005FD8FC /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				11AFB5002817FB15005FD8FC /* PixabayImagePickerViewController.swift */,
+				11AFB5042817FD5A005FD8FC /* PixabayImagePickerCollectionViewDelegate.swift */,
+				11AFB5062817FDE3005FD8FC /* PixabayImagePickerCollectionViewDataSource.swift */,
+			);
+			path = Controller;
+			sourceTree = "<group>";
+		};
 		11B08456280D4E6700AC0320 /* Core */ = {
 			isa = PBXGroup;
 			children = (
+				11A51282281825C800EA1C18 /* NetworkServices */,
 				11121A352811E6B700096670 /* LoggerService */,
 				11121A2B2811DF3400096670 /* Models */,
 				11B08461280D679D00AC0320 /* FirebaseService */,
@@ -508,6 +571,7 @@
 		11CC1EBC27C69D5400450552 /* Presentation */ = {
 			isa = PBXGroup;
 			children = (
+				11AFB4FC2817FAC8005FD8FC /* PixabayImagePicker */,
 				11873E6F27E333490072FE5B /* Themes */,
 				116E9E0127DA23C4003AF977 /* Conversation */,
 				116E9DEF27D9CEBA003AF977 /* ConversationsList */,
@@ -741,6 +805,7 @@
 				11873E6527E32CFD0072FE5B /* CustomColors.swift in Sources */,
 				11CC1EBF27C69DC200450552 /* Logger.swift in Sources */,
 				119EF9F327ECFB2500EA3378 /* ReadOperation.swift in Sources */,
+				11A51284281825E500EA1C18 /* IRequest.swift in Sources */,
 				11929E65280D7F220045EE34 /* IMessageFirebaseService.swift in Sources */,
 				11873E7527E333DD0072FE5B /* ThemesView.swift in Sources */,
 				11A8557427C8188D0005514D /* UIView+Nib.swift in Sources */,
@@ -757,13 +822,16 @@
 				116E9DFE27DA0586003AF977 /* Channel.swift in Sources */,
 				11A8556E27C807FE0005514D /* ProfileViewController.swift in Sources */,
 				11121A342811E69100096670 /* ApplicationState.swift in Sources */,
+				11AFB5012817FB15005FD8FC /* PixabayImagePickerViewController.swift in Sources */,
 				116E9E0627DA23FC003AF977 /* ConversationViewController.swift in Sources */,
 				1136BB5C28103D050096F48D /* ConversationsListModel.swift in Sources */,
 				119EF9F527ECFF5000EA3378 /* IMultithreadingService.swift in Sources */,
+				11A5128A281827B000EA1C18 /* IRequestSender.swift in Sources */,
 				11121A432811EF3000096670 /* IConversationModel.swift in Sources */,
 				11A7D3042800A65800ECDB4A /* IStorageService.swift in Sources */,
 				110F157527FFB7D00011248F /* NewCoreDataService.swift in Sources */,
 				11E717F327EADF4A00E963E6 /* ProfileDataService.swift in Sources */,
+				11A51288281826A200EA1C18 /* RequestConfig.swift in Sources */,
 				116E9E0827DA2425003AF977 /* ConversationView.swift in Sources */,
 				1136BB49280FF67D0096F48D /* IThemeService.swift in Sources */,
 				11121A2A2811DEEC00096670 /* IFetchControllerService.swift in Sources */,
@@ -771,14 +839,18 @@
 				11929E6F280D98810045EE34 /* ICoreDataService.swift in Sources */,
 				111FE23C27D0F41C003D9098 /* UIButton+Color.swift in Sources */,
 				11D7FA7427E36463003A3303 /* Themes.swift in Sources */,
+				11AFB5052817FD5A005FD8FC /* PixabayImagePickerCollectionViewDelegate.swift in Sources */,
 				11873E6C27E331DF0072FE5B /* NightTheme.swift in Sources */,
 				11B08468280D778D00AC0320 /* CoreAssembly.swift in Sources */,
 				11121A3D2811EC1F00096670 /* ProfileViewController+Delegates.swift in Sources */,
+				11AFB5072817FDE3005FD8FC /* PixabayImagePickerCollectionViewDataSource.swift in Sources */,
+				11AFB5032817FBB6005FD8FC /* PixabayImagePickerView.swift in Sources */,
 				116E9DF527D9D03C003AF977 /* ConversationsListView.swift in Sources */,
 				11DEFF4E27BEEDA800688EE4 /* AppDelegate.swift in Sources */,
 				11A7D3082800C04200ECDB4A /* StorageService.swift in Sources */,
 				11121A2F2811E0F600096670 /* PresentationAssembly.swift in Sources */,
 				11929E71280D9CC30045EE34 /* ICoreDataStack.swift in Sources */,
+				11A512862818264900EA1C18 /* IParser.swift in Sources */,
 				1136BB4E2810044C0096F48D /* ConversationsListTableViewDelegate.swift in Sources */,
 				11873E6A27E3313B0072FE5B /* ClassicTheme.swift in Sources */,
 				1100B50327FF310800A19919 /* CoreDataStack.swift in Sources */,
