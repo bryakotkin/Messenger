@@ -9,16 +9,22 @@ import UIKit
 
 class PixabayImagePickerViewController: UIViewController {
     
-    let collectionDelegate: UICollectionViewDelegate
-    let collectionDataSource: UICollectionViewDataSource
+    let model: IPixabayImagePickerModel
+    
+    let collectionDelegate: PixabayImagePickerCollectionViewDelegate
+    let collectionDataSource: PixabayImagePickerCollectionViewDataSource
+    
+    var completionHandler: ((UIImage) -> Void)?
     
     var mainView: PixabayImagePickerView? {
         return view as? PixabayImagePickerView
     }
     
-    init() {
+    init(model: IPixabayImagePickerModel) {
+        self.model = model
+        
         collectionDelegate = PixabayImagePickerCollectionViewDelegate()
-        collectionDataSource = PixabayImagePickerCollectionViewDataSource()
+        collectionDataSource = PixabayImagePickerCollectionViewDataSource(model: model)
         
         super.init(nibName: nil, bundle: nil)
     }
@@ -36,5 +42,40 @@ class PixabayImagePickerViewController: UIViewController {
 
         mainView?.imageCollectionView.delegate = collectionDelegate
         mainView?.imageCollectionView.dataSource = collectionDataSource
+        
+        collectionDelegate.delegate = self
+        
+        fetchImagesList()
+    }
+    
+    private func fetchImagesList() {
+        Task {
+            mainView?.activityIndicator.startAnimating()
+            let imagesURLs = try? await model.fetchImagesList().imagesURLs
+            mainView?.activityIndicator.stopAnimating()
+            collectionDataSource.imagesURLs = imagesURLs
+            mainView?.imageCollectionView.reloadData()
+        }
+    }
+}
+
+// MARK: - PixabayImagePickerViewController: PixabayImagePickerCollectionViewDelegateProtocol
+
+extension PixabayImagePickerViewController: PixabayImagePickerCollectionViewDelegateProtocol {
+    func cellDidSelect(by indexPath: IndexPath) {
+        let index = NSNumber(value: indexPath.row)
+        guard let image = collectionDataSource.cache.object(forKey: index) else {
+            let alertController = UIAlertController(title: "Ошибка",
+                                                    message: "Изображение ещё не было загружено. Попробуйте позже",
+                                                    preferredStyle: .alert)
+            let cancelAction = UIAlertAction(title: "Закрыть", style: .cancel)
+            
+            alertController.addAction(cancelAction)
+            
+            return present(alertController, animated: true)
+        }
+        
+        completionHandler?(image)
+        dismiss(animated: true)
     }
 }

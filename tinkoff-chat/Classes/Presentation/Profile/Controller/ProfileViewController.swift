@@ -90,6 +90,19 @@ class ProfileViewController: UIViewController {
         }
     }
     
+    func showImagePicker() {
+        let controller = PresentationAssembly.pixabayImagePickerViewController
+        
+        controller.completionHandler = { [weak self] image in
+            self?.mainView?.userImageView.image = image
+            self?.isHiddenCancelGCDOperationButtons(false)
+            self?.isEnabledFields(true)
+            self?.isEnabledGCDOperationButtons(true)
+        }
+        
+        present(controller, animated: true)
+    }
+    
     @objc private func cancelBarButtonAction() {
         dismiss(animated: true, completion: nil)
     }

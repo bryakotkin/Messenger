@@ -9,7 +9,7 @@ import Foundation
 
 class PresentationAssembly {
 
-    static var conversationsListViewController: ConversationsListViewController = {
+    static var conversationsListViewController: ConversationsListViewController {
         let channelService = ServiceAssembly.channelService
         let themeService = ServiceAssembly.themeService
         
@@ -18,18 +18,31 @@ class PresentationAssembly {
         let conversationList = ConversationsListViewController(model)
         
         return conversationList
-    }()
+    }
     
-    static var profileViewController: ProfileViewController = {
+    static var profileViewController: ProfileViewController {
         let service = ServiceAssembly.gcdService
         
         let model = ProfileModel(concurrencyService: service)
         let profileController = ProfileViewController(model: model)
         
         return profileController
-    }()
+    }
     
-    static var themeViewController = ThemesViewController()
+    static var pixabayImagePickerViewController: PixabayImagePickerViewController {
+        let service = CoreAssembly.requestService
+        let factory = ServiceAssembly.networkConfigFactory
+        
+        let model = PixabayImagePickerModel(requestService: service,
+                                            networkFactory: factory)
+        let controller = PixabayImagePickerViewController(model: model)
+        
+        return controller
+    }
+    
+    static var themeViewController: ThemesViewController {
+        return ThemesViewController()
+    }
     
     static func getConversationViewController(channel: Channel) -> ConversationViewController {
         let fetchService = ServiceAssembly.fetchControllerService

@@ -7,7 +7,13 @@
 
 import UIKit
 
+protocol PixabayImagePickerCollectionViewDelegateProtocol: AnyObject {
+    func cellDidSelect(by indexPath: IndexPath)
+}
+
 class PixabayImagePickerCollectionViewDelegate: NSObject, UICollectionViewDelegateFlowLayout {
+    
+    weak var delegate: PixabayImagePickerCollectionViewDelegateProtocol?
     
     private func getLayoutInset(layout: UICollectionViewLayout) -> CGFloat {
         guard let layout = layout as? UICollectionViewFlowLayout else { return 0 }
@@ -27,5 +33,9 @@ class PixabayImagePickerCollectionViewDelegate: NSObject, UICollectionViewDelega
                         insetForSectionAt section: Int) -> UIEdgeInsets {
         let inset = getLayoutInset(layout: collectionViewLayout)
         return UIEdgeInsets(top: inset, left: inset, bottom: inset, right: inset)
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        delegate?.cellDidSelect(by: indexPath)
     }
 }

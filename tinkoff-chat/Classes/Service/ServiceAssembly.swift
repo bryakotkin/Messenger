@@ -43,4 +43,8 @@ class ServiceAssembly {
     static var fetchControllerService: IFetchControllerService {
         return FetchContollerService()
     }
+    
+    static var networkConfigFactory: NetworkConfigFactory {
+        return NetworkConfigFactory()
+    }
 }

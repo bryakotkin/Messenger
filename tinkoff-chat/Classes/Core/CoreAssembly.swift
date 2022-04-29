@@ -15,4 +15,8 @@ class CoreAssembly {
     static var storageService: IStorageService {
         return StorageService()
     }
+    
+    static var requestService: IRequestSender {
+        return RequestSender()
+    }
 }
