@@ -11,6 +11,7 @@ import UIKit
 enum Constants: String {
     case conversationListCell
     case conversationCell
+    case imagePickerCell
     case profileUsername
     case profileDescription
     case profileImage
@@ -19,3 +20,4 @@ enum Constants: String {
 }
 
 let deviceId = UIDevice.current.identifierForVendor?.uuidString
+let pixabayApiKey = "27046452-ad2d7a61a8ceea5b8a326d340"

@@ -13,18 +13,23 @@ extension ProfileViewController: ProfileViewProtocol {
     func editImageButtonAction() {
         let alert = UIAlertController(title: nil, message: "Выберите изображение профиля", preferredStyle: .actionSheet)
                 
-        let galeryAction = UIAlertAction(title: "Установить из галлереи", style: .default) { _ in
-            self.showImagePicker(type: .photoLibrary)
+        let galeryAction = UIAlertAction(title: "Установить из галлереи", style: .default) { [weak self] _ in
+            self?.showImagePicker(type: .photoLibrary)
         }
                 
-        let cameraAction = UIAlertAction(title: "Сделать фото", style: .default) { _ in
-            self.showImagePicker(type: .camera)
+        let cameraAction = UIAlertAction(title: "Сделать фото", style: .default) { [weak self] _ in
+            self?.showImagePicker(type: .camera)
+        }
+        
+        let pickerControllerAction = UIAlertAction(title: "Загрузить", style: .default) { [weak self] _ in
+            self?.showImagePicker()
         }
                 
         let cancelAction = UIAlertAction(title: "Отмена", style: .cancel)
                 
         alert.addAction(galeryAction)
         alert.addAction(cameraAction)
+        alert.addAction(pickerControllerAction)
         alert.addAction(cancelAction)
                 
         present(alert, animated: true, completion: nil)
