@@ -48,6 +48,13 @@ class PixabayImagePickerViewController: UIViewController {
         fetchImagesList()
     }
     
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        
+        print(mainView?.imageCollectionView.frame.width)
+        print(UIScreen.main.bounds.width)
+    }
+    
     private func fetchImagesList() {
         Task {
             mainView?.activityIndicator.startAnimating()
