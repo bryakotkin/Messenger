@@ -40,6 +40,10 @@
 		11486B442819C5F0007ABD39 /* IPixabayImagePickerModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11486B432819C5F0007ABD39 /* IPixabayImagePickerModel.swift */; };
 		11486B462819C9E2007ABD39 /* PixabayImagePickerViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11486B452819C9E2007ABD39 /* PixabayImagePickerViewCell.swift */; };
 		114CF65627F352B500D360B5 /* UITableView+Scroll.swift in Sources */ = {isa = PBXBuildFile; fileRef = 114CF65527F352B500D360B5 /* UITableView+Scroll.swift */; };
+		115E14ED2824AD650057D525 /* AnimatorService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 115E14EC2824AD650057D525 /* AnimatorService.swift */; };
+		115E14EF2824B1580057D525 /* UIViewController+TopViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 115E14EE2824B1580057D525 /* UIViewController+TopViewController.swift */; };
+		115E14F22824B24F0057D525 /* AppDelegate+Animator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 115E14F12824B24F0057D525 /* AppDelegate+Animator.swift */; };
+		115E14F42824BE580057D525 /* UIView+RemoveSubViews.swift in Sources */ = {isa = PBXBuildFile; fileRef = 115E14F32824BE580057D525 /* UIView+RemoveSubViews.swift */; };
 		116DB0C127EC6DD000FC9E49 /* GCDService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 116DB0C027EC6DD000FC9E49 /* GCDService.swift */; };
 		116DB0C627ECBAA100FC9E49 /* WriteOperation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 116DB0C527ECBAA100FC9E49 /* WriteOperation.swift */; };
 		116E9DF327D9CF6C003AF977 /* ConversationsListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 116E9DF227D9CF6C003AF977 /* ConversationsListViewController.swift */; };
@@ -140,6 +144,10 @@
 		11486B432819C5F0007ABD39 /* IPixabayImagePickerModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IPixabayImagePickerModel.swift; sourceTree = "<group>"; };
 		11486B452819C9E2007ABD39 /* PixabayImagePickerViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PixabayImagePickerViewCell.swift; sourceTree = "<group>"; };
 		114CF65527F352B500D360B5 /* UITableView+Scroll.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UITableView+Scroll.swift"; sourceTree = "<group>"; };
+		115E14EC2824AD650057D525 /* AnimatorService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnimatorService.swift; sourceTree = "<group>"; };
+		115E14EE2824B1580057D525 /* UIViewController+TopViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewController+TopViewController.swift"; sourceTree = "<group>"; };
+		115E14F12824B24F0057D525 /* AppDelegate+Animator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "AppDelegate+Animator.swift"; sourceTree = "<group>"; };
+		115E14F32824BE580057D525 /* UIView+RemoveSubViews.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+RemoveSubViews.swift"; sourceTree = "<group>"; };
 		116DB0C027EC6DD000FC9E49 /* GCDService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GCDService.swift; sourceTree = "<group>"; };
 		116DB0C527ECBAA100FC9E49 /* WriteOperation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WriteOperation.swift; sourceTree = "<group>"; };
 		116E9DF227D9CF6C003AF977 /* ConversationsListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConversationsListViewController.swift; sourceTree = "<group>"; };
@@ -320,6 +328,23 @@
 				11486B3F2819C102007ABD39 /* PixabayImageParser.swift */,
 			);
 			path = PixabayImage;
+			sourceTree = "<group>";
+		};
+		115E14EB2824AD370057D525 /* AnimatorService */ = {
+			isa = PBXGroup;
+			children = (
+				115E14EC2824AD650057D525 /* AnimatorService.swift */,
+			);
+			path = AnimatorService;
+			sourceTree = "<group>";
+		};
+		115E14F02824B2330057D525 /* AppDelegate */ = {
+			isa = PBXGroup;
+			children = (
+				11DEFF4D27BEEDA800688EE4 /* AppDelegate.swift */,
+				115E14F12824B24F0057D525 /* AppDelegate+Animator.swift */,
+			);
+			path = AppDelegate;
 			sourceTree = "<group>";
 		};
 		116DB0C427ECBA8C00FC9E49 /* Operations */ = {
@@ -593,6 +618,7 @@
 		11CC1EBB27C69D4B00450552 /* Service */ = {
 			isa = PBXGroup;
 			children = (
+				115E14EB2824AD370057D525 /* AnimatorService */,
 				11E129F328196AAC0086DDA7 /* NetworkService */,
 				11121A262811DED000096670 /* FetchControllerService */,
 				1136BB4A280FFC7A0096F48D /* ProfileDataService */,
@@ -609,12 +635,12 @@
 		11CC1EBC27C69D5400450552 /* Presentation */ = {
 			isa = PBXGroup;
 			children = (
+				115E14F02824B2330057D525 /* AppDelegate */,
 				11AFB4FC2817FAC8005FD8FC /* PixabayImagePicker */,
 				11873E6F27E333490072FE5B /* Themes */,
 				116E9E0127DA23C4003AF977 /* Conversation */,
 				116E9DEF27D9CEBA003AF977 /* ConversationsList */,
 				11A8556827C807840005514D /* Profile */,
-				11DEFF4D27BEEDA800688EE4 /* AppDelegate.swift */,
 				11121A2E2811E0F600096670 /* PresentationAssembly.swift */,
 			);
 			path = Presentation;
@@ -632,6 +658,8 @@
 				11202C7227F4EB9E00297F4E /* String+isBlank.swift */,
 				1136BB57281018050096F48D /* UITableView+UpdateRowsState.swift */,
 				11E129F1281964880086DDA7 /* URLSession+AsyncTask.swift */,
+				115E14EE2824B1580057D525 /* UIViewController+TopViewController.swift */,
+				115E14F32824BE580057D525 /* UIView+RemoveSubViews.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -845,6 +873,7 @@
 				11121A372811E6C800096670 /* ILoggerService.swift in Sources */,
 				119EF9F127ECF72D00EA3378 /* OperationsService.swift in Sources */,
 				11929E63280D788A0045EE34 /* MessageFirebaseService.swift in Sources */,
+				115E14EF2824B1580057D525 /* UIViewController+TopViewController.swift in Sources */,
 				1100B50127FF0D5D00A19919 /* OldCoreDataService.swift in Sources */,
 				111FE23E27D10872003D9098 /* UIViewController+HideKeyboard.swift in Sources */,
 				11121A282811DEE900096670 /* FetchControllerService.swift in Sources */,
@@ -872,6 +901,7 @@
 				11929E65280D7F220045EE34 /* IMessageFirebaseService.swift in Sources */,
 				11873E7527E333DD0072FE5B /* ThemesView.swift in Sources */,
 				11E129F2281964880086DDA7 /* URLSession+AsyncTask.swift in Sources */,
+				115E14ED2824AD650057D525 /* AnimatorService.swift in Sources */,
 				11A8557427C8188D0005514D /* UIView+Nib.swift in Sources */,
 				11929E68280D84780045EE34 /* IChannelFirebaseService.swift in Sources */,
 				11873E6E27E3322F0072FE5B /* DayTheme.swift in Sources */,
@@ -896,7 +926,9 @@
 				1136BB5C28103D050096F48D /* ConversationsListModel.swift in Sources */,
 				119EF9F527ECFF5000EA3378 /* IMultithreadingService.swift in Sources */,
 				11E129F0281961CF0086DDA7 /* RequestSender.swift in Sources */,
+				115E14F22824B24F0057D525 /* AppDelegate+Animator.swift in Sources */,
 				11A5128A281827B000EA1C18 /* IRequestSender.swift in Sources */,
+				115E14F42824BE580057D525 /* UIView+RemoveSubViews.swift in Sources */,
 				11121A432811EF3000096670 /* IConversationModel.swift in Sources */,
 				11A7D3042800A65800ECDB4A /* IStorageService.swift in Sources */,
 				110F157527FFB7D00011248F /* NewCoreDataService.swift in Sources */,

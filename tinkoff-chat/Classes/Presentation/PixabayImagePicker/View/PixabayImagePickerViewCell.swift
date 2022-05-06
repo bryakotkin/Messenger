@@ -28,7 +28,6 @@ class PixabayImagePickerViewCell: UICollectionViewCell {
     }
     
     var task: Task<(), Never>?
-    var indexPath: IndexPath?
     
     override init(frame: CGRect) {
         super.init(frame: frame)

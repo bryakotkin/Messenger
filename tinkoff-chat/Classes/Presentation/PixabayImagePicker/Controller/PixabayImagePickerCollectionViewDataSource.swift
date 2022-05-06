@@ -35,7 +35,6 @@ class PixabayImagePickerCollectionViewDataSource: NSObject, UICollectionViewData
             cell.pixabayImage = image
         } else {
             let task = Task {
-                cell.indexPath = indexPath
                 let image = try? await model.fetchImage(imageURL: imageURL)
                 if let image = image {
                     if !Task.isCancelled {
