@@ -253,7 +253,8 @@ extension ProfileView {
             withDuration: 0.3,
             delay: 0,
             options: [.allowUserInteraction, .repeat]
-        ) {
+        ) { [weak self] in
+            guard let self = self else { return }
             UIView.addKeyframe(withRelativeStartTime: 0,
                                relativeDuration: 0.25) {
                 self.gcdButton.center = CGPoint(x: defaultCenter.x + 5, y: defaultCenter.y + 5)
@@ -290,8 +291,8 @@ extension ProfileView {
         gcdButton.transform = tmpTransform
         gcdButton.center = CGPoint(x: tmpCenter.midX, y: tmpCenter.midY)
         
-        UIView.animate(withDuration: 0.1) {
-            self.setDefaultsParametersToSaveButton()
+        UIView.animate(withDuration: 0.1) { [weak self] in
+            self?.setDefaultsParametersToSaveButton()
         }
     }
     

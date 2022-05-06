@@ -97,11 +97,12 @@ class ProfileViewController: UIViewController {
         let controller = PresentationAssembly.pixabayImagePickerViewController
         
         controller.completionHandler = { [weak self] image in
-            self?.mainView?.userImageView.image = image
-            self?.mainView?.startAnimationSaveButton()
-            self?.isHiddenCancelGCDOperationButtons(false)
-            self?.isEnabledFields(true)
-            self?.isEnabledGCDOperationButtons(true)
+            guard let self = self else { return }
+            self.mainView?.userImageView.image = image
+            self.mainView?.startAnimationSaveButton()
+            self.isHiddenCancelGCDOperationButtons(false)
+            self.isEnabledFields(true)
+            self.isEnabledGCDOperationButtons(true)
         }
         
         present(controller, animated: true)
@@ -217,9 +218,10 @@ extension ProfileViewController {
     func fetchProfileData() {
         isEnabledEditButtons(false)
         model.fetchProfileData { [weak self] profile in
-            self?.isEnabledEditButtons(true)
-            self?.prevProfile = profile
-            self?.setupFields()
+            guard let self = self else { return }
+            self.isEnabledEditButtons(true)
+            self.prevProfile = profile
+            self.setupFields()
         }
     }
 }
