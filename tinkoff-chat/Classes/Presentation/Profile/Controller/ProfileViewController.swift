@@ -51,6 +51,9 @@ class ProfileViewController: UIViewController {
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         
+        mainView?.defaultCenter = mainView?.gcdButton.center
+        mainView?.defaultTransform = mainView?.gcdButton.transform
+        
 //        Значения размеров и положение не нулевые, потому что всё посчитано и отображено пользователю
 //        print(#function, mainView?.editButton.frame)
     }
@@ -94,10 +97,12 @@ class ProfileViewController: UIViewController {
         let controller = PresentationAssembly.pixabayImagePickerViewController
         
         controller.completionHandler = { [weak self] image in
-            self?.mainView?.userImageView.image = image
-            self?.isHiddenCancelGCDOperationButtons(false)
-            self?.isEnabledFields(true)
-            self?.isEnabledGCDOperationButtons(true)
+            guard let self = self else { return }
+            self.mainView?.userImageView.image = image
+            self.mainView?.startAnimationSaveButton()
+            self.isHiddenCancelGCDOperationButtons(false)
+            self.isEnabledFields(true)
+            self.isEnabledGCDOperationButtons(true)
         }
         
         present(controller, animated: true)
@@ -148,13 +153,11 @@ extension ProfileViewController {
     func isHiddenCancelGCDOperationButtons(_ isHidden: Bool) {
         mainView?.cancelButton.isHidden = isHidden
         mainView?.gcdButton.isHidden = isHidden
-        mainView?.operationButton.isHidden = isHidden
         mainView?.editButton.isHidden = !isHidden
     }
     
     func isEnabledGCDOperationButtons(_ isEnabled: Bool) {
         mainView?.gcdButton.isEnabled = isEnabled
-        mainView?.operationButton.isEnabled = isEnabled
     }
     
     func updateGCDOperationButtonsState() {
@@ -215,9 +218,10 @@ extension ProfileViewController {
     func fetchProfileData() {
         isEnabledEditButtons(false)
         model.fetchProfileData { [weak self] profile in
-            self?.isEnabledEditButtons(true)
-            self?.prevProfile = profile
-            self?.setupFields()
+            guard let self = self else { return }
+            self.isEnabledEditButtons(true)
+            self.prevProfile = profile
+            self.setupFields()
         }
     }
 }

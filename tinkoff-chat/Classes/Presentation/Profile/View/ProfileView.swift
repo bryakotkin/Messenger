@@ -12,12 +12,14 @@ protocol ProfileViewProtocol: AnyObject {
     func editButtonAction()
     func cancelButtonAction()
     func gcdButtonAction()
-    func operationButtonAction()
 }
 
 class ProfileView: UIView {
     
     weak var delegate: ProfileViewProtocol?
+    
+    var defaultCenter: CGPoint?
+    var defaultTransform: CGAffineTransform?
     
     let userImageView: UIImageView = {
         let view = UIImageView()
@@ -95,20 +97,7 @@ class ProfileView: UIView {
     
     let gcdButton: UIButton = {
         let button = UIButton()
-        button.setTitle("GCD", for: .normal)
-        button.setTitleColor(CustomColors.lightBlue, for: .normal)
-        button.setTitleColor(CustomColors.lightBlueAlpha, for: .disabled)
-        button.titleLabel?.font = .systemFont(ofSize: 19, weight: .semibold)
-        button.backgroundColor = CustomColors.lightGrey
-        button.translatesAutoresizingMaskIntoConstraints = false
-        button.layer.cornerRadius = 10
-        
-        return button
-    }()
-    
-    let operationButton: UIButton = {
-        let button = UIButton()
-        button.setTitle("Operation", for: .normal)
+        button.setTitle("Save", for: .normal)
         button.setTitleColor(CustomColors.lightBlue, for: .normal)
         button.setTitleColor(CustomColors.lightBlueAlpha, for: .disabled)
         button.titleLabel?.font = .systemFont(ofSize: 19, weight: .semibold)
@@ -129,7 +118,6 @@ class ProfileView: UIView {
         addSubview(editButton)
         addSubview(cancelButton)
         addSubview(gcdButton)
-        addSubview(operationButton)
         addSubview(activityIndicator)
 
         addTargets()
@@ -146,7 +134,6 @@ class ProfileView: UIView {
         editButton.addTarget(self, action: #selector(editButtonAction), for: .touchUpInside)
         cancelButton.addTarget(self, action: #selector(cancelButtonAction), for: .touchUpInside)
         gcdButton.addTarget(self, action: #selector(gcdButtonAction), for: .touchUpInside)
-        operationButton.addTarget(self, action: #selector(operationButtonAction), for: .touchUpInside)
     }
     
     private func updateTheme() {
@@ -218,17 +205,10 @@ class ProfileView: UIView {
         ]
         
         let gcdButtonConstraint = [
-            gcdButton.widthAnchor.constraint(equalTo: cancelButton.widthAnchor, multiplier: 1 / 2, constant: -5),
+            gcdButton.widthAnchor.constraint(equalTo: cancelButton.widthAnchor),
             gcdButton.leftAnchor.constraint(equalTo: cancelButton.leftAnchor),
-            gcdButton.topAnchor.constraint(equalTo: cancelButton.bottomAnchor, constant: 10),
+            gcdButton.topAnchor.constraint(equalTo: cancelButton.bottomAnchor, constant: 20),
             gcdButton.bottomAnchor.constraint(equalTo: safeAreaLayoutGuide.bottomAnchor, constant: -10)
-        ]
-        
-        let operationButtonConstraint = [
-            operationButton.rightAnchor.constraint(equalTo: cancelButton.rightAnchor),
-            operationButton.widthAnchor.constraint(equalTo: gcdButton.widthAnchor),
-            operationButton.bottomAnchor.constraint(equalTo: gcdButton.bottomAnchor),
-            operationButton.topAnchor.constraint(equalTo: gcdButton.topAnchor)
         ]
         
         constraints.append(contentsOf: usernameTextFieldConstraint)
@@ -239,7 +219,6 @@ class ProfileView: UIView {
         constraints.append(contentsOf: editImageButtonConstraint)
         constraints.append(contentsOf: cancelButtonConstraint)
         constraints.append(contentsOf: gcdButtonConstraint)
-        constraints.append(contentsOf: operationButtonConstraint)
         
         NSLayoutConstraint.activate(constraints)
     }
@@ -250,17 +229,77 @@ class ProfileView: UIView {
     
     @objc private func editButtonAction() {
         delegate?.editButtonAction()
+        startAnimationSaveButton()
     }
     
     @objc private func cancelButtonAction() {
         delegate?.cancelButtonAction()
+        stopAnimationSaveButton()
     }
     
     @objc private func gcdButtonAction() {
         delegate?.gcdButtonAction()
+        stopAnimationSaveButton()
+    }
+}
+
+// MARK: - Animation for edit button
+
+extension ProfileView {
+    func startAnimationSaveButton() {
+        guard let defaultCenter = defaultCenter, let defaultTransform = defaultTransform else { return }
+        
+        UIView.animateKeyframes(
+            withDuration: 0.3,
+            delay: 0,
+            options: [.allowUserInteraction, .repeat]
+        ) { [weak self] in
+            guard let self = self else { return }
+            UIView.addKeyframe(withRelativeStartTime: 0,
+                               relativeDuration: 0.25) {
+                self.gcdButton.center = CGPoint(x: defaultCenter.x + 5, y: defaultCenter.y + 5)
+                self.gcdButton.transform = CGAffineTransform(rotationAngle: Double.pi / 40)
+            }
+            UIView.addKeyframe(withRelativeStartTime: 0.25,
+                               relativeDuration: 0.25) {
+                self.gcdButton.center = defaultCenter
+                self.gcdButton.transform = defaultTransform
+            }
+            UIView.addKeyframe(withRelativeStartTime: 0.5,
+                               relativeDuration: 0.25) {
+                self.gcdButton.center = CGPoint(x: defaultCenter.x - 5, y: defaultCenter.y - 5)
+                
+                // Сделал угол поменьше, так как 18 градусов слишком некрасиво, сейчас 4.5
+                self.gcdButton.transform = CGAffineTransform(rotationAngle: -Double.pi / 40)
+            }
+            UIView.addKeyframe(withRelativeStartTime: 0.75,
+                               relativeDuration: 1) {
+                self.gcdButton.center = defaultCenter
+                self.gcdButton.transform = defaultTransform
+            }
+        }
     }
     
-    @objc private func operationButtonAction() {
-        delegate?.operationButtonAction()
+    func stopAnimationSaveButton() {
+        gcdButton.layer.removeAllAnimations()
+        
+        guard let tmpTransform = gcdButton.layer.presentation()?.affineTransform(),
+              let tmpCenter = gcdButton.layer.presentation()?.frame else {
+            return setDefaultsParametersToSaveButton()
+        }
+        
+        gcdButton.transform = tmpTransform
+        gcdButton.center = CGPoint(x: tmpCenter.midX, y: tmpCenter.midY)
+        
+        UIView.animate(withDuration: 0.1) { [weak self] in
+            self?.setDefaultsParametersToSaveButton()
+        }
+    }
+    
+    private func setDefaultsParametersToSaveButton() {
+        guard let defaultCenter = defaultCenter, let defaultTransform = defaultTransform else { return }
+        
+        self.gcdButton.center = defaultCenter
+        self.gcdButton.transform = defaultTransform
     }
 }

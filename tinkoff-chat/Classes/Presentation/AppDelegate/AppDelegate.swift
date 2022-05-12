@@ -25,6 +25,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         window?.rootViewController = navigationVC
         window?.makeKeyAndVisible()
         
+        setupAnimatorGestureRecognizer()
+        
         Logger.printAppStatus(.notrunning, .inactive, #function)
         
         return true

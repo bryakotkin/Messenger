@@ -57,12 +57,6 @@ extension ProfileViewController: ProfileViewProtocol {
         model.updateConcurrencyService(service)
         saveData()
     }
-    
-    func operationButtonAction() {
-        let service = ServiceAssembly.operationsService
-        model.updateConcurrencyService(service)
-        saveData()
-    }
 }
 
 // MARK: - ProfileViewController: UIImagePickerControllerDelegate, UINavigationControllerDelegate
@@ -71,6 +65,7 @@ extension ProfileViewController: UIImagePickerControllerDelegate, UINavigationCo
     func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey: Any]) {
         if let image = info[.originalImage] as? UIImage {
             mainView?.userImageView.image = image
+            mainView?.startAnimationSaveButton()
             isHiddenCancelGCDOperationButtons(false)
             isEnabledFields(true)
             isEnabledGCDOperationButtons(true)
