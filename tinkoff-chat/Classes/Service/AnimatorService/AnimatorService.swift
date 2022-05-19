@@ -72,7 +72,7 @@ class AnimatorService {
         let prevTransform = view.transform
         
         UIView.animateKeyframes(
-            withDuration: 0.4,
+            withDuration: 0.5,
             delay: 0.0,
             options: [.allowUserInteraction, .repeat]
         ) {
