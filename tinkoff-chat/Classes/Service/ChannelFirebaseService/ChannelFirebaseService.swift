@@ -9,14 +9,13 @@ import FirebaseFirestore
 
 class ChannelFirebaseService: IChannelFirebaseService {
     
-    let service: IFirebaseService = {
-        var service = CoreAssembly.firebaseService
-        service.collectionReference = service.db.collection(Constants.channels.rawValue)
-        
-        return service
-    }()
+    let service: IFirebaseService
+    let coreDataStack: ICoreDataStack
     
-    let coreDataStack = ServiceAssembly.coreDataStack
+    init(coreDataStack: ICoreDataStack, firebaseService: IFirebaseService) {
+        self.coreDataStack = coreDataStack
+        self.service = firebaseService
+    }
     
     func listeningChannels() {
         service.addSnapshotListener { result in

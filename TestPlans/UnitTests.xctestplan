@@ -1,0 +1,24 @@
+{
+  "configurations" : [
+    {
+      "id" : "4E874314-CBE9-41A4-B423-3851728FF932",
+      "name" : "Configuration 1",
+      "options" : {
+
+      }
+    }
+  ],
+  "defaultOptions" : {
+    "testTimeoutsEnabled" : true
+  },
+  "testTargets" : [
+    {
+      "target" : {
+        "containerPath" : "container:tinkoff-chat.xcodeproj",
+        "identifier" : "11791D95283A86E900697D40",
+        "name" : "tinkoff-chat-tests"
+      }
+    }
+  ],
+  "version" : 1
+}
