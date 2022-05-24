@@ -1,0 +1,31 @@
+{
+  "configurations" : [
+    {
+      "id" : "77A5790F-CA0A-40AA-A94A-390303DD4110",
+      "name" : "Configuration 1",
+      "options" : {
+
+      }
+    }
+  ],
+  "defaultOptions" : {
+
+  },
+  "testTargets" : [
+    {
+      "target" : {
+        "containerPath" : "container:tinkoff-chat.xcodeproj",
+        "identifier" : "11943726283AEBEE004F4CCD",
+        "name" : "tinkoff-chat-UITests"
+      }
+    },
+    {
+      "target" : {
+        "containerPath" : "container:tinkoff-chat.xcodeproj",
+        "identifier" : "11791D95283A86E900697D40",
+        "name" : "tinkoff-chat-tests"
+      }
+    }
+  ],
+  "version" : 1
+}

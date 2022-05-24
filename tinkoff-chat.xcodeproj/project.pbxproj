@@ -204,6 +204,7 @@
 		119EF9F027ECF72D00EA3378 /* OperationsService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OperationsService.swift; sourceTree = "<group>"; };
 		119EF9F227ECFB2500EA3378 /* ReadOperation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReadOperation.swift; sourceTree = "<group>"; };
 		119EF9F427ECFF5000EA3378 /* IMultithreadingService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IMultithreadingService.swift; sourceTree = "<group>"; };
+		11A29CE8283BF0FD006FE7BF /* AllTests.xctestplan */ = {isa = PBXFileReference; lastKnownFileType = text; path = AllTests.xctestplan; sourceTree = "<group>"; };
 		11A51283281825E500EA1C18 /* IRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IRequest.swift; sourceTree = "<group>"; };
 		11A512852818264900EA1C18 /* IParser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IParser.swift; sourceTree = "<group>"; };
 		11A51287281826A200EA1C18 /* RequestConfig.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RequestConfig.swift; sourceTree = "<group>"; };
@@ -521,6 +522,7 @@
 			children = (
 				11943733283B087D004F4CCD /* UnitTests.xctestplan */,
 				11943734283B08A6004F4CCD /* UITests.xctestplan */,
+				11A29CE8283BF0FD006FE7BF /* AllTests.xctestplan */,
 			);
 			path = TestPlans;
 			sourceTree = "<group>";
