@@ -165,6 +165,7 @@
 		11486B432819C5F0007ABD39 /* IPixabayImagePickerModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IPixabayImagePickerModel.swift; sourceTree = "<group>"; };
 		11486B452819C9E2007ABD39 /* PixabayImagePickerViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PixabayImagePickerViewCell.swift; sourceTree = "<group>"; };
 		114CF65527F352B500D360B5 /* UITableView+Scroll.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UITableView+Scroll.swift"; sourceTree = "<group>"; };
+		11502F9B28405762002B24D2 /* ChatConfig.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = ChatConfig.xcconfig; sourceTree = "<group>"; };
 		115E14EC2824AD650057D525 /* AnimatorService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnimatorService.swift; sourceTree = "<group>"; };
 		115E14EE2824B1580057D525 /* UIViewController+TopViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewController+TopViewController.swift"; sourceTree = "<group>"; };
 		115E14F12824B24F0057D525 /* AppDelegate+Animator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "AppDelegate+Animator.swift"; sourceTree = "<group>"; };
@@ -738,6 +739,7 @@
 		11DEFF4127BEEDA800688EE4 = {
 			isa = PBXGroup;
 			children = (
+				11502F9B28405762002B24D2 /* ChatConfig.xcconfig */,
 				11DEFF4C27BEEDA800688EE4 /* tinkoff-chat */,
 				11791D97283A86E900697D40 /* tinkoff-chat-tests */,
 				11943728283AEBEE004F4CCD /* tinkoff-chat-UITests */,
@@ -1243,6 +1245,7 @@
 		};
 		11DEFF5C27BEEDA900688EE4 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 11502F9B28405762002B24D2 /* ChatConfig.xcconfig */;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				CLANG_ANALYZER_NONNULL = YES;
