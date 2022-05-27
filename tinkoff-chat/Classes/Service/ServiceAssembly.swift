@@ -9,7 +9,13 @@ import Foundation
 
 class ServiceAssembly {
     static var channelService: IChannelFirebaseService {
-        return ChannelFirebaseService()
+        var firebaseService = CoreAssembly.firebaseService
+        firebaseService.collectionReference = firebaseService.db.collection(Constants.channels.rawValue)
+
+        return ChannelFirebaseService(
+            coreDataStack: ServiceAssembly.coreDataStack,
+            firebaseService: firebaseService
+        )
     }
     
     static var messageService: IMessageFirebaseService {

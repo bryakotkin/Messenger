@@ -27,6 +27,7 @@ class ProfileView: UIView {
         view.backgroundColor = CustomColors.lightGrey
         view.translatesAutoresizingMaskIntoConstraints = false
         view.layer.masksToBounds = true
+        view.accessibilityIdentifier = "userImageView"
         
         return view
     }()
@@ -38,6 +39,7 @@ class ProfileView: UIView {
         field.clearButtonMode = .whileEditing
         field.textAlignment = .center
         field.translatesAutoresizingMaskIntoConstraints = false
+        field.accessibilityIdentifier = "usernameTextField"
         
         return field
     }()
@@ -46,6 +48,7 @@ class ProfileView: UIView {
         let indicator = UIActivityIndicatorView()
         indicator.hidesWhenStopped = true
         indicator.translatesAutoresizingMaskIntoConstraints = false
+        indicator.accessibilityIdentifier = "activityIndicator"
         
         return indicator
     }()
@@ -55,6 +58,7 @@ class ProfileView: UIView {
         view.font = .systemFont(ofSize: 16)
         view.textAlignment = .center
         view.translatesAutoresizingMaskIntoConstraints = false
+        view.accessibilityIdentifier = "descriptionTextView"
         
         return view
     }()
@@ -66,6 +70,7 @@ class ProfileView: UIView {
         button.setTitleColor(CustomColors.lightBlueAlpha, for: .disabled)
         button.titleLabel?.font = .systemFont(ofSize: 16, weight: .semibold)
         button.translatesAutoresizingMaskIntoConstraints = false
+        button.accessibilityIdentifier = "editImageButton"
         
         return button
     }()
@@ -79,6 +84,7 @@ class ProfileView: UIView {
         button.backgroundColor = CustomColors.lightGrey
         button.translatesAutoresizingMaskIntoConstraints = false
         button.layer.cornerRadius = 10
+        button.accessibilityIdentifier = "editButton"
         
         return button
     }()
@@ -91,6 +97,7 @@ class ProfileView: UIView {
         button.backgroundColor = CustomColors.lightGrey
         button.translatesAutoresizingMaskIntoConstraints = false
         button.layer.cornerRadius = 10
+        button.accessibilityIdentifier = "cancelButton"
         
         return button
     }()
@@ -104,6 +111,7 @@ class ProfileView: UIView {
         button.backgroundColor = CustomColors.lightGrey
         button.translatesAutoresizingMaskIntoConstraints = false
         button.layer.cornerRadius = 10
+        button.accessibilityIdentifier = "gcdButton"
         
         return button
     }()
