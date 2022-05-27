@@ -1,0 +1,12 @@
+//
+//  ChatConfig.xcconfig
+//  tinkoff-chat
+//
+//  Created by Nikita on 27.05.2022.
+//
+
+// Configuration settings file format documentation can be found at:
+// https://help.apple.com/xcode/#/dev745c5c974
+
+PIXABAY_API_KEY=27046452-ad2d7a61a8ceea5b8a326d340
+PIXABAY_API_URL=pixabay.com/api

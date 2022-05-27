@@ -14,7 +14,12 @@ class ImagesListRequest: IRequest {
         let pageSize = PixabayConstants.pageSize.rawValue
         let query = PixabayConstants.query.rawValue
         
-        let strUrl = "https://pixabay.com/api/?key=\(pixabayApiKey)&image_type=\(imageType)&per_page=\(pageSize)&q=\(query)"
+        let bundle = Bundle.main
+        
+        guard let pixabayApiKey = bundle.object(forInfoDictionaryKey: EnvConstants.pixabayApiKey.rawValue) as? String,
+              let pixabayApiUrl = bundle.object(forInfoDictionaryKey: EnvConstants.pixabayApiUrl.rawValue) as? String else { return nil }
+        
+        let strUrl = "https://\(pixabayApiUrl)/?key=\(pixabayApiKey)&image_type=\(imageType)&per_page=\(pageSize)&q=\(query)"
         guard let url = URL(string: strUrl) else { return nil }
         let request = URLRequest(url: url)
         

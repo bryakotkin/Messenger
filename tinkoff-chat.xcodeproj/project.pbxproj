@@ -165,6 +165,7 @@
 		11486B432819C5F0007ABD39 /* IPixabayImagePickerModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IPixabayImagePickerModel.swift; sourceTree = "<group>"; };
 		11486B452819C9E2007ABD39 /* PixabayImagePickerViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PixabayImagePickerViewCell.swift; sourceTree = "<group>"; };
 		114CF65527F352B500D360B5 /* UITableView+Scroll.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UITableView+Scroll.swift"; sourceTree = "<group>"; };
+		11502F9B28405762002B24D2 /* ChatConfig.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = ChatConfig.xcconfig; sourceTree = "<group>"; };
 		115E14EC2824AD650057D525 /* AnimatorService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnimatorService.swift; sourceTree = "<group>"; };
 		115E14EE2824B1580057D525 /* UIViewController+TopViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewController+TopViewController.swift"; sourceTree = "<group>"; };
 		115E14F12824B24F0057D525 /* AppDelegate+Animator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "AppDelegate+Animator.swift"; sourceTree = "<group>"; };
@@ -204,6 +205,7 @@
 		119EF9F027ECF72D00EA3378 /* OperationsService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OperationsService.swift; sourceTree = "<group>"; };
 		119EF9F227ECFB2500EA3378 /* ReadOperation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReadOperation.swift; sourceTree = "<group>"; };
 		119EF9F427ECFF5000EA3378 /* IMultithreadingService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IMultithreadingService.swift; sourceTree = "<group>"; };
+		11A29CE8283BF0FD006FE7BF /* AllTests.xctestplan */ = {isa = PBXFileReference; lastKnownFileType = text; path = AllTests.xctestplan; sourceTree = "<group>"; };
 		11A51283281825E500EA1C18 /* IRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IRequest.swift; sourceTree = "<group>"; };
 		11A512852818264900EA1C18 /* IParser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IParser.swift; sourceTree = "<group>"; };
 		11A51287281826A200EA1C18 /* RequestConfig.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RequestConfig.swift; sourceTree = "<group>"; };
@@ -521,6 +523,7 @@
 			children = (
 				11943733283B087D004F4CCD /* UnitTests.xctestplan */,
 				11943734283B08A6004F4CCD /* UITests.xctestplan */,
+				11A29CE8283BF0FD006FE7BF /* AllTests.xctestplan */,
 			);
 			path = TestPlans;
 			sourceTree = "<group>";
@@ -736,6 +739,7 @@
 		11DEFF4127BEEDA800688EE4 = {
 			isa = PBXGroup;
 			children = (
+				11502F9B28405762002B24D2 /* ChatConfig.xcconfig */,
 				11DEFF4C27BEEDA800688EE4 /* tinkoff-chat */,
 				11791D97283A86E900697D40 /* tinkoff-chat-tests */,
 				11943728283AEBEE004F4CCD /* tinkoff-chat-UITests */,
@@ -1241,6 +1245,7 @@
 		};
 		11DEFF5C27BEEDA900688EE4 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 11502F9B28405762002B24D2 /* ChatConfig.xcconfig */;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				CLANG_ANALYZER_NONNULL = YES;

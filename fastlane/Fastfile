@@ -1,0 +1,59 @@
+# This file contains the fastlane.tools configuration
+# You can find the documentation at https://docs.fastlane.tools
+#
+# For a list of all available actions, check out
+#
+#     https://docs.fastlane.tools/actions
+#
+# For a list of all available plugins, check out
+#
+#     https://docs.fastlane.tools/plugins/available-plugins
+#
+
+# Uncomment the line if you want fastlane to automatically update itself
+# update_fastlane
+
+default_platform(:ios)
+
+platform :ios do
+  desc "Install pods and build project with swiftlint"
+  lane :build_for_testing do
+    puts "Start install Pods"
+    cocoapods
+    puts "Pods Done!"
+
+    puts "Start scan"
+    scan(
+      device: "iPhone 13",
+      ensure_devices_found: true,
+      clean: true,
+      build_for_testing: true
+    )
+    puts "Scan Done!"
+
+    puts "Start swiftlint analyze"
+    swiftlint(
+      executable: './Pods/SwiftLint/swiftlint',
+      config_file: "./.swiftlint.yml"
+    )
+    puts "Swiftlint Done!"
+  end
+
+  desc "Runs Unit and UI Tests without build"
+  lane :run_tests do
+    puts "Start scan"
+    scan(
+      device: "iPhone 13",
+      ensure_devices_found: true,
+      testplan: "AllTests",
+      test_without_building: true,
+    )
+    puts "Scan Done!"
+  end
+
+  desc "Build project and run all tests"
+  lane :build_and_test do
+    build_for_testing()
+    run_tests()
+  end
+end
