@@ -2,9 +2,6 @@
 # Created by https://www.toptal.com/developers/gitignore/api/swift,macos,Xcode
 # Edit at https://www.toptal.com/developers/gitignore?templates=swift,macos,Xcode
 
-## Project ##
-.ChatConfig.xcconfig
-
 ### macOS ###
 # General
 .DS_Store
