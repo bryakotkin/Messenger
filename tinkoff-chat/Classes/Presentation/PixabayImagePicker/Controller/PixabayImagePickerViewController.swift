@@ -40,12 +40,20 @@ class PixabayImagePickerViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
+        mainView?.delegate = self
+        
         mainView?.imageCollectionView.delegate = collectionDelegate
         mainView?.imageCollectionView.dataSource = collectionDataSource
         
         collectionDelegate.delegate = self
         
         fetchImagesList()
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        
+        mainView?.updateTheme()
     }
     
     private func fetchImagesList() {
@@ -62,7 +70,7 @@ class PixabayImagePickerViewController: UIViewController {
 // MARK: - PixabayImagePickerViewController: PixabayImagePickerCollectionViewDelegateProtocol
 
 extension PixabayImagePickerViewController: PixabayImagePickerCollectionViewDelegateProtocol {
-    func cellDidSelect(by indexPath: IndexPath) {
+    func cellDidSelected(by indexPath: IndexPath) {
         let index = NSNumber(value: indexPath.row)
         guard let image = collectionDataSource.cache.object(forKey: index) else {
             let alertController = UIAlertController(title: "Ошибка",
@@ -77,5 +85,13 @@ extension PixabayImagePickerViewController: PixabayImagePickerCollectionViewDele
         
         completionHandler?(image)
         dismiss(animated: true)
+    }
+}
+
+// MARK: - PixabayImagePickerViewController: PixabayImagePickerViewDelegate
+
+extension PixabayImagePickerViewController: PixabayImagePickerViewDelegate {
+    func fetchCurrentTheme() -> Theme? {
+        model.fetchCurrentTheme()
     }
 }

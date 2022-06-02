@@ -8,15 +8,12 @@
 import UIKit
 
 protocol ThemesPickerDelegate: AnyObject {
-    func configureTheme(_ theme: Themes)
+    func fetchCurrentTheme() -> Theme?
 }
 
 class ThemesViewController: UIViewController {
     
-    // swiftlint:disable:next line_length
-    // В случае если бы класс ConversationListVC имел ссылку на ThemesVC и наоборот, то есть на друг друга и ссылки были бы сильные, то мог бы возникнуть RetainCycle. В данном случае такого быть не может.
-    
-    var onComplition: ((Themes) -> Void)?
+    var onComplition: ((Theme) -> Void)?
     weak var delegate: ThemesPickerDelegate?
     
     var mainView: ThemesView? {
@@ -32,14 +29,22 @@ class ThemesViewController: UIViewController {
         
         mainView?.delegate = self
     }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        
+        mainView?.updateTheme()
+    }
 }
 
 // MARK: - ThemesViewController: ThemeViewDelegate
 
 extension ThemesViewController: ThemeViewDelegate {
+    func fetchCurrentTheme() -> Theme? {
+        delegate?.fetchCurrentTheme()
+    }
     
-    func viewTapped(_ theme: Themes) {
-//        delegate?.configureTheme(theme)
+    func viewTapped(_ theme: Theme) {
         onComplition?(theme)
     }
 }

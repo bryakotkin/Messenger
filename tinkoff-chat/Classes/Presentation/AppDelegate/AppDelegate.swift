@@ -33,10 +33,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     }
     
     func extractTheme() {
-        let themeService = ServiceAssembly.themeService
-        let theme = themeService.theme
+        var themeService = ServiceAssembly.themeService
+        guard themeService.theme == nil else { return }
         
-        themeService.saveCurrentTheme(theme ?? .classic)
+        themeService.theme = ClassicTheme()
     }
     
     func applicationDidBecomeActive(_ application: UIApplication) {

@@ -32,9 +32,11 @@ class PresentationAssembly {
     static var pixabayImagePickerViewController: PixabayImagePickerViewController {
         let service = CoreAssembly.requestService
         let factory = ServiceAssembly.networkConfigFactory
+        let themeService = ServiceAssembly.themeService
         
         let model = PixabayImagePickerModel(requestService: service,
-                                            networkFactory: factory)
+                                            networkFactory: factory,
+                                            themeService: themeService)
         let controller = PixabayImagePickerViewController(model: model)
         
         return controller
@@ -47,9 +49,11 @@ class PresentationAssembly {
     static func getConversationViewController(channel: Channel) -> ConversationViewController {
         let fetchService = ServiceAssembly.fetchControllerService
         let messageService = ServiceAssembly.messageService
+        let themeService = ServiceAssembly.themeService
         
         let model = ConversationModel(messageService: messageService,
                                       fetchControllerService: fetchService,
+                                      themeService: themeService,
                                       channel: channel)
         let controller = ConversationViewController(model: model)
         

@@ -14,11 +14,16 @@ class ConversationModel: IConversationModel {
     
     let messageService: IMessageFirebaseService
     let fetchControllerService: IFetchControllerService
+    let themeService: IThemeService
     
-    init(messageService: IMessageFirebaseService, fetchControllerService: IFetchControllerService, channel: Channel) {
+    init(messageService: IMessageFirebaseService,
+         fetchControllerService: IFetchControllerService,
+         themeService: IThemeService,
+         channel: Channel) {
         self.channel = channel
         self.messageService = messageService
         self.fetchControllerService = fetchControllerService
+        self.themeService = themeService
     }
     
     func createMessage(messageText: String) {
@@ -43,5 +48,9 @@ class ConversationModel: IConversationModel {
         )
         
         return controller
+    }
+    
+    func fetchCurrentTheme() -> Theme? {
+        themeService.theme
     }
 }

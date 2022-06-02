@@ -9,6 +9,7 @@ import Foundation
 import UIKit
 
 class DayTheme: Theme {
+    var themeType: ThemeType = .day
     var labelColor: UIColor = .black
     var labelColorOnline: UIColor = .black
     var labelColorIncomming: UIColor = .black

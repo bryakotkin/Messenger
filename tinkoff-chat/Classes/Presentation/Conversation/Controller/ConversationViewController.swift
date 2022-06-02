@@ -11,9 +11,7 @@ import CoreData
 class ConversationViewController: UIViewController {
     
     let model: IConversationModel
-    
     let fetchController: NSFetchedResultsController<DBMessage>?
-    
     let tableViewDataSource: ConversationTableViewDataSource
     
     var mainView: ConversationView? {
@@ -24,7 +22,8 @@ class ConversationViewController: UIViewController {
         self.model = model
         fetchController = model.getFetchController()
         tableViewDataSource = ConversationTableViewDataSource(
-            frc: fetchController
+            frc: fetchController,
+            model: model
         )
         
         super.init(nibName: nil, bundle: nil)
@@ -45,6 +44,7 @@ class ConversationViewController: UIViewController {
 
         self.hideKeyboardWhenTappedAround()
         
+        mainView?.delegate = self
         fetchController?.delegate = self
         
         do {
@@ -56,6 +56,11 @@ class ConversationViewController: UIViewController {
         model.listeningMessages()
         
         mainView?.tableView.dataSource = tableViewDataSource
-        mainView?.delegate = self
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        
+        mainView?.updateTheme()
     }
 }

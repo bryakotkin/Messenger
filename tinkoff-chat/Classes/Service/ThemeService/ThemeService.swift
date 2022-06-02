@@ -7,35 +7,40 @@
 
 import Foundation
 
-class ThemeService: IThemeService {
+enum ThemeType: String {
+    case classic
+    case day
+    case night
     
-    static let shared: IThemeService = ThemeService()
+    func getTheme() -> Theme {
+        switch self {
+        case .classic: return ClassicTheme()
+        case .day: return DayTheme()
+        case .night: return NightTheme()
+        }
+    }
+}
+
+class ThemeService: IThemeService {
     
     private let defaults = UserDefaults.standard
     
-    var theme: Themes? {
+    var theme: Theme? {
         get {
-            guard let rawValue = defaults.string(forKey: #function) else { return nil }
-            
-            return Themes(rawValue: rawValue)
+            return themeType?.getTheme()
         }
         set {
-            defaults.set(newValue?.rawValue, forKey: #function)
+            themeType = newValue?.themeType
         }
     }
     
-    var currentTheme: Theme?
-    
-    func saveCurrentTheme(_ theme: Themes) {
-        self.theme = theme
-        
-        switch theme {
-        case .classic:
-            currentTheme = ClassicTheme()
-        case .day:
-            currentTheme = DayTheme()
-        case .night:
-            currentTheme = NightTheme()
+    private var themeType: ThemeType? {
+        get {
+            guard let rawValue = defaults.string(forKey: #function) else { return nil }
+            return ThemeType(rawValue: rawValue)
+        }
+        set {
+            defaults.set(newValue?.rawValue, forKey: #function)
         }
     }
 }

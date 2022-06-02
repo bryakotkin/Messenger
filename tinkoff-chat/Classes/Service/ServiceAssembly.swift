@@ -43,7 +43,7 @@ class ServiceAssembly {
     }
     
     static var themeService: IThemeService {
-        return ThemeService.shared
+        return ThemeService()
     }
     
     static var fetchControllerService: IFetchControllerService {

@@ -7,7 +7,13 @@
 
 import UIKit
 
+protocol ConversationListCellDelegate: AnyObject {
+    func fetchCurrentTheme() -> Theme?
+}
+
 class ConversationListCell: UITableViewCell {
+    
+    weak var delegate: ConversationListCellDelegate?
     
     private let titleLabel: UILabel = {
         let label = UILabel()
@@ -98,7 +104,7 @@ class ConversationListCell: UITableViewCell {
     }
     
     func updateTheme() {
-        let theme = ServiceAssembly.themeService.currentTheme
+        let theme = delegate?.fetchCurrentTheme()
         let isOnline: Bool = isOnline ?? false
         let labelColor = isOnline ? theme?.labelColorOnline : theme?.labelColor
         

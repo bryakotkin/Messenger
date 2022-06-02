@@ -8,7 +8,8 @@
 import UIKit
 
 protocol ThemeViewDelegate: AnyObject {
-    func viewTapped(_ theme: Themes)
+    func fetchCurrentTheme() -> Theme?
+    func viewTapped(_ theme: Theme)
 }
 
 class ThemesView: UIView {
@@ -85,7 +86,6 @@ class ThemesView: UIView {
     override init(frame: CGRect) {
         super.init(frame: frame)
         
-        updateTheme()
         setupSubviews()
         setupActions()
         setupConstraints()
@@ -112,7 +112,7 @@ class ThemesView: UIView {
     
     private func setDayViewTapRecognizer() -> UITapGestureRecognizer {
         let dayViewTapRecognizer = UITapGestureRecognizer(target: self, action: #selector(dayViewTapped))
-        
+
         return dayViewTapRecognizer
     }
     
@@ -132,51 +132,41 @@ class ThemesView: UIView {
         nightLabel.addGestureRecognizer(setNightViewTapRecognizer())
     }
     
-    private func updateTheme(_ theme: Theme? = nil) {
-        var currentTheme: Theme?
+    func updateTheme() {
+        let theme = delegate?.fetchCurrentTheme()
+        updateTheme(theme)
+    }
+    
+    private func updateTheme(_ theme: Theme?) {
+        checkCurrentBorder(theme)
         
-        if let theme = theme {
-            currentTheme = theme
-        } else {
-            currentTheme = ServiceAssembly.themeService.currentTheme
-        }
-        
-        checkCurrentBorder(currentTheme)
-        
-        backgroundColor = currentTheme?.backgroundColor
-        classicLabel.textColor = currentTheme?.labelColor
-        dayLabel.textColor = currentTheme?.labelColor
-        nightLabel.textColor = currentTheme?.labelColor
+        backgroundColor = theme?.backgroundColor
+        classicLabel.textColor = theme?.labelColor
+        dayLabel.textColor = theme?.labelColor
+        nightLabel.textColor = theme?.labelColor
     }
     
     @objc private func classicViewTapped() {
-        setDefaultBorder()
-        setBorder(classicThemeView)
-        
-        let classicTheme = ClassicTheme()
-        updateTheme(classicTheme)
-        
-        delegate?.viewTapped(.classic)
+        themeViewTapped(view: classicThemeView,
+                        theme: ClassicTheme())
     }
     
     @objc private func dayViewTapped() {
-        setDefaultBorder()
-        setBorder(dayThemeView)
-        
-        let dayTheme = DayTheme()
-        updateTheme(dayTheme)
-        
-        delegate?.viewTapped(.day)
+        themeViewTapped(view: dayThemeView,
+                        theme: DayTheme())
     }
     
     @objc private func nightViewTapped() {
+        themeViewTapped(view: nightThemeView,
+                        theme: NightTheme())
+    }
+    
+    private func themeViewTapped(view: UIView, theme: Theme) {
         setDefaultBorder()
-        setBorder(nightThemeView)
+        setBorder(view)
+        updateTheme(theme)
         
-        let nightTheme = NightTheme()
-        updateTheme(nightTheme)
-        
-        delegate?.viewTapped(.night)
+        delegate?.viewTapped(theme)
     }
     
     private func setBorder(_ themeView: UIView) {
@@ -191,17 +181,15 @@ class ThemesView: UIView {
     }
     
     private func checkCurrentBorder(_ currentTheme: Theme?) {
-        if (currentTheme as? NightTheme) != nil {
-            setBorder(nightThemeView)
-            return
-        }
-        if (currentTheme as? DayTheme) != nil {
-            setBorder(dayThemeView)
-            return
-        }
-        if (currentTheme as? ClassicTheme) != nil {
+        guard let themeType = currentTheme?.themeType else { return }
+        
+        switch themeType {
+        case .classic:
             setBorder(classicThemeView)
-            return
+        case .day:
+            setBorder(dayThemeView)
+        case .night:
+            setBorder(nightThemeView)
         }
     }
     

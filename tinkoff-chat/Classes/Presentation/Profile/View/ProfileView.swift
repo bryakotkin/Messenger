@@ -145,7 +145,7 @@ class ProfileView: UIView {
     }
     
     private func updateTheme() {
-        let theme = ServiceAssembly.themeService.currentTheme
+        let theme = ServiceAssembly.themeService.theme
         
         usernameTextField.textColor = theme?.labelColor
         

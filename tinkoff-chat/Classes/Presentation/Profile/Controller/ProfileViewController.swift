@@ -68,7 +68,7 @@ class ProfileViewController: UIViewController {
         navigationItem.rightBarButtonItem = cancelButton
         
         navigationController?.navigationBar.titleTextAttributes = [
-            NSAttributedString.Key.foregroundColor: ServiceAssembly.themeService.currentTheme?.titleControllerColor ?? .black
+            NSAttributedString.Key.foregroundColor: ServiceAssembly.themeService.theme?.titleControllerColor ?? .black
         ]
     }
     

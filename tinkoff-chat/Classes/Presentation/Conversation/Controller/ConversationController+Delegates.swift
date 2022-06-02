@@ -8,9 +8,13 @@
 import UIKit
 import CoreData
 
-// MARK: - ConversationViewController: ConversationViewDelegate
+// MARK: - ConversationViewController: ConversationViewDelegate, ConversationViewCellDelegate
 
 extension ConversationViewController: ConversationViewDelegate {
+    func fetchCurrentTheme() -> Theme? {
+        model.fetchCurrentTheme()
+    }
+    
     func sendButtonEvent(_ messageText: String) {
         model.createMessage(messageText: messageText)
     }

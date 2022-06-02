@@ -9,6 +9,7 @@ import UIKit
 
 protocol ConversationViewDelegate: AnyObject {
     func sendButtonEvent(_ messageText: String)
+    func fetchCurrentTheme() -> Theme?
 }
 
 class ConversationView: UIView {
@@ -79,7 +80,6 @@ class ConversationView: UIView {
         
         setupButtonAction()
         setupKeyboardObservers()
-        updateTheme()
         setupConstraints()
         
         textViewDidChange(messageTextView)
@@ -100,8 +100,8 @@ class ConversationView: UIView {
         notificationCenter.addObserver(self, selector: #selector(keyboardNotification), name: UIWindow.keyboardWillHideNotification, object: nil)
     }
     
-    private func updateTheme() {
-        let theme = ServiceAssembly.themeService.currentTheme
+    func updateTheme() {
+        let theme = delegate?.fetchCurrentTheme()
         
         backgroundColor = theme?.backgroundColor
         backgroundView.backgroundColor = theme?.backgroundColor

@@ -7,7 +7,13 @@
 
 import UIKit
 
+protocol PixabayImagePickerViewDelegate: AnyObject {
+    func fetchCurrentTheme() -> Theme?
+}
+
 class PixabayImagePickerView: UIView {
+    
+    weak var delegate: PixabayImagePickerViewDelegate?
     
     let imageCollectionView: UICollectionView = {
         let layout = UICollectionViewFlowLayout()
@@ -36,8 +42,6 @@ class PixabayImagePickerView: UIView {
         
         setupSubviews()
         setupConstraints()
-        
-        updateTheme()
     }
     
     required init?(coder: NSCoder) {
@@ -45,7 +49,7 @@ class PixabayImagePickerView: UIView {
     }
     
     func updateTheme() {
-        let theme = ServiceAssembly.themeService.currentTheme
+        let theme = delegate?.fetchCurrentTheme()
         
         backgroundColor = theme?.backgroundColor
         imageCollectionView.backgroundColor = theme?.backgroundColor

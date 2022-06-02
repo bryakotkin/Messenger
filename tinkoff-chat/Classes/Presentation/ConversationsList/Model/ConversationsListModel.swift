@@ -10,7 +10,7 @@ import CoreData
 class ConversationListModel: IConversationsListModel {
     
     let channelService: IChannelFirebaseService
-    let themeService: IThemeService
+    var themeService: IThemeService
     
     init(channelService: IChannelFirebaseService, themeService: IThemeService) {
         self.channelService = channelService
@@ -43,11 +43,11 @@ class ConversationListModel: IConversationsListModel {
         return controller
     }
     
-    func saveTheme(_ theme: Themes) {
-        themeService.saveCurrentTheme(theme)
+    func saveTheme(_ theme: Theme) {
+        themeService.theme = theme
     }
     
-    func getTheme() -> Theme? {
-        themeService.currentTheme
+    func fetchTheme() -> Theme? {
+        themeService.theme
     }
 }

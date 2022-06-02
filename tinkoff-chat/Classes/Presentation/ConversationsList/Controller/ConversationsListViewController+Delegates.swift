@@ -11,9 +11,8 @@ import CoreData
 // MARK: - ConversationsListViewController: ThemesPickerDelegate
 
 extension ConversationsListViewController: ThemesPickerDelegate {
-    func configureTheme(_ theme: Themes) {
-        model.saveTheme(theme)
-        updateTheme()
+    func fetchCurrentTheme() -> Theme? {
+        model.fetchTheme()
     }
 }
 

@@ -13,4 +13,5 @@ protocol IConversationModel {
     func createMessage(messageText: String)
     func listeningMessages()
     func getFetchController() -> NSFetchedResultsController<DBMessage>?
+    func fetchCurrentTheme() -> Theme?
 }

@@ -12,10 +12,12 @@ class PixabayImagePickerModel: IPixabayImagePickerModel {
     
     let requestService: IRequestSender
     let networkFactory: NetworkConfigFactory
+    let themeService: IThemeService
     
-    init(requestService: IRequestSender, networkFactory: NetworkConfigFactory) {
+    init(requestService: IRequestSender, networkFactory: NetworkConfigFactory, themeService: IThemeService) {
         self.requestService = requestService
         self.networkFactory = networkFactory
+        self.themeService = themeService
     }
     
     func fetchImagesList() async throws -> ImagesList {
@@ -28,5 +30,9 @@ class PixabayImagePickerModel: IPixabayImagePickerModel {
     func fetchImage(imageURL: ImageURL) async throws -> UIImage? {
         let config = networkFactory.getPixabayImageConfig(imageURL.webformatURL)
         return try await requestService.send(requestConfig: config)
+    }
+    
+    func fetchCurrentTheme() -> Theme? {
+        themeService.theme
     }
 }

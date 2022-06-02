@@ -9,6 +9,7 @@ import Foundation
 import UIKit
 
 class NightTheme: Theme {
+    var themeType: ThemeType = .night
     var labelColor: UIColor = .white
     var labelColorOnline: UIColor = .white
     var labelColorIncomming: UIColor = .white

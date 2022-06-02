@@ -10,10 +10,12 @@ import CoreData
 
 class ConversationTableViewDataSource: NSObject, UITableViewDataSource {
     
+    var model: IConversationModel
     var fetchController: NSFetchedResultsController<DBMessage>?
     
-    init(frc: NSFetchedResultsController<DBMessage>?) {
+    init(frc: NSFetchedResultsController<DBMessage>?, model: IConversationModel) {
         fetchController = frc
+        self.model = model
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -30,9 +32,16 @@ class ConversationTableViewDataSource: NSObject, UITableViewDataSource {
         guard let dbMessage = fetchController?.object(at: indexPath),
               let message = Message(dbModel: dbMessage) else { return UITableViewCell() }
         
+        cell.delegate = self
         cell.configure(model: message)
         cell.updateTheme()
         
         return cell
+    }
+}
+
+extension ConversationTableViewDataSource: ConversationViewCellDelegate {
+    func fetchCurrentTheme() -> Theme? {
+        model.fetchCurrentTheme()
     }
 }

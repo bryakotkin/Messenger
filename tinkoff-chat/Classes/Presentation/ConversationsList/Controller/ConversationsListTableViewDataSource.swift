@@ -12,10 +12,13 @@ class ConversationsListTableViewDataSource: NSObject, UITableViewDataSource {
     
     let sectionName = "Channels"
     
+    var model: IConversationsListModel
     var fetchController: NSFetchedResultsController<DBChannel>?
     
-    init(frc: NSFetchedResultsController<DBChannel>?) {
+    init(frc: NSFetchedResultsController<DBChannel>?,
+         model: IConversationsListModel) {
         fetchController = frc
+        self.model = model
     }
     
     // MARK: - Public methods
@@ -47,9 +50,18 @@ class ConversationsListTableViewDataSource: NSObject, UITableViewDataSource {
         
         guard let channel = fetchChannel(by: indexPath) else { return UITableViewCell() }
         
+        cell.delegate = self
         cell.configure(model: channel)
         cell.updateTheme()
         
         return cell
+    }
+}
+
+// MARK: - ConversationsListTableViewDataSource: ConversationListCellDelegate
+
+extension ConversationsListTableViewDataSource: ConversationListCellDelegate {
+    func fetchCurrentTheme() -> Theme? {
+        model.fetchTheme()
     }
 }

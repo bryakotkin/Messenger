@@ -11,4 +11,5 @@ import UIKit
 protocol IPixabayImagePickerModel {
     func fetchImagesList() async throws -> ImagesList
     func fetchImage(imageURL: ImageURL) async throws -> UIImage?
+    func fetchCurrentTheme() -> Theme?
 }

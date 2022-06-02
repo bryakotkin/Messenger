@@ -12,6 +12,6 @@ protocol IConversationsListModel {
     func createChannel(name: String)
     func deleteChannel(channel: Channel)
     func getFetchController() -> NSFetchedResultsController<DBChannel>?
-    func saveTheme(_ theme: Themes)
-    func getTheme() -> Theme?
+    func saveTheme(_ theme: Theme)
+    func fetchTheme() -> Theme?
 }

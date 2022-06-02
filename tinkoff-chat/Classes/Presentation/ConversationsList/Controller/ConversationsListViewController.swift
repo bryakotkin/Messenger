@@ -12,7 +12,7 @@ class ConversationsListViewController: UIViewController {
     
     let fetchController: NSFetchedResultsController<DBChannel>?
 
-    let model: IConversationsListModel
+    var model: IConversationsListModel
     
     // MARK: - TableView properties
     
@@ -27,7 +27,8 @@ class ConversationsListViewController: UIViewController {
         self.model = model
         self.fetchController = model.getFetchController()
         self.tableViewDataSource = ConversationsListTableViewDataSource(
-            frc: fetchController
+            frc: fetchController,
+            model: model
         )
         self.tableViewDelegate = ConversationsListTableViewDelegate()
         
@@ -98,7 +99,7 @@ class ConversationsListViewController: UIViewController {
     }
     
     func updateTheme() {
-        let theme = model.getTheme()
+        let theme = model.fetchTheme()
         
         UITableView.appearance().backgroundColor = theme?.backgroundColor
         UITableViewHeaderFooterView.appearance().tintColor = theme?.backgroundColor

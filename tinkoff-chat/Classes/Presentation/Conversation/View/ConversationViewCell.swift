@@ -7,7 +7,13 @@
 
 import UIKit
 
+protocol ConversationViewCellDelegate: AnyObject {
+    func fetchCurrentTheme() -> Theme?
+}
+
 class ConversationViewCell: UITableViewCell {
+    
+    weak var delegate: ConversationViewCellDelegate?
     
     let cloudView: UIView = {
         let view = UIView()
@@ -68,7 +74,7 @@ class ConversationViewCell: UITableViewCell {
     }
     
     func updateTheme() {
-        let theme = ServiceAssembly.themeService.currentTheme
+        let theme = delegate?.fetchCurrentTheme()
         
         if isComming {
             cloudView.backgroundColor = theme?.cloudColorIncoming

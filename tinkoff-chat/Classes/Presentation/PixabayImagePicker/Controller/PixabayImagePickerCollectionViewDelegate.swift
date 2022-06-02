@@ -8,7 +8,7 @@
 import UIKit
 
 protocol PixabayImagePickerCollectionViewDelegateProtocol: AnyObject {
-    func cellDidSelect(by indexPath: IndexPath)
+    func cellDidSelected(by indexPath: IndexPath)
 }
 
 class PixabayImagePickerCollectionViewDelegate: NSObject, UICollectionViewDelegateFlowLayout {
@@ -36,6 +36,6 @@ class PixabayImagePickerCollectionViewDelegate: NSObject, UICollectionViewDelega
     }
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        delegate?.cellDidSelect(by: indexPath)
+        delegate?.cellDidSelected(by: indexPath)
     }
 }
